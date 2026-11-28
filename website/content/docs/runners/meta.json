@@ -1,0 +1,6 @@
+{
+  "title": "Noodle Runners",
+  "description": "GitHub Actions jobs on your own Mac",
+  "root": true,
+  "pages": ["index", "quickstart", "labels", "macos", "doctor", "security", "clean"]
+}

@@ -1,0 +1,10 @@
+{
+  "arch" : "arm64",
+  "build" : 7,
+  "length" : 20697520,
+  "minimumSystem" : "26.0",
+  "sha256" : "6e8f02baee03059b456da39eedeeacedf1d0eb7a5b502a140da2cd98e57276d3",
+  "signature" : "s7jBo0n0Cfmb+fMkfCW3yWaYWuuY5DXzSVHIhjWiqKpPl4KKjYPcMXYekUfD\/+bkDPuKp9IWm6ncRjSYVXiICg==",
+  "url" : "https:\/\/github.com\/ansumanshah\/noodle\/releases\/download\/v26.11.7\/Noodle-26.11.7-arm64.zip",
+  "version" : "26.11.7"
+}

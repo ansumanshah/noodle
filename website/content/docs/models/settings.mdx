@@ -1,0 +1,47 @@
+---
+title: Settings
+description: How long a model stays in memory, where models are stored and how to let other devices use them.
+---
+
+Open Settings in the app and choose Models. Every setting here has a command too.
+
+## Keep a model loaded
+
+Pick how long a model stays in memory after you last used it: 30 seconds, 5 minutes, 1 hour or keep loaded. The default is 5 minutes. When time is up the model unloads and gives its memory back, and the next request loads it again. Unload Now does it right away.
+
+```sh
+noodle model keep-alive          # show the saved choice
+noodle model keep-alive 1h       # save a new one
+noodle model keep-alive --reset  # back to 5m
+```
+
+A new choice applies the next time a model starts. A model that is running keeps its current setting until you unload it. The command also takes durations such as `250ms` or `1h30m`, `0` to unload after one idle second, and any negative value to stay loaded. See [idle sleep](/docs/models/catalog/#idle-sleep).
+
+## Model folder
+
+New downloads and imports go to the folder you choose, including a folder on an external drive. Models you already installed stay where they are.
+
+```sh
+noodle model location               # print the folder
+noodle model location /Volumes/Fast/models
+noodle model location --reset      # back to the default
+```
+
+If the drive is not connected, Settings says so. Connect it or choose another folder.
+
+## Use from other devices
+
+Off by default, so only this Mac can reach your models. Turn on "Allow other devices to use my models" and the app shows an address and a key. Another device on your network can then chat with the models on this Mac, and the prompts run here.
+
+```sh
+noodle model network on
+noodle model network          # on <address>, or off
+noodle model key              # print the key
+noodle model key --rotate     # make a new key, the old one stops working
+```
+
+Every request needs the key. Turning access on or rotating the key restarts a running model. Traffic on the network is plain HTTP, so use it on a network you trust. Details are in [Security](/docs/security/#models-network).
+
+## Open chat from anywhere
+
+Control-Option-Space opens Models chat from any app. Noodle also adds two actions to Shortcuts and Spotlight: Ask Noodle, which takes a prompt and returns the answer, and Open Noodle Chat.

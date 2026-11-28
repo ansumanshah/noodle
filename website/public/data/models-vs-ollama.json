@@ -1,0 +1,622 @@
+{
+ "date": "2026-11-15/16",
+ "hardware": "Apple M4, Mac16,10, 16 GiB, AC power",
+ "os": "macOS 27.2.1 (26B131)",
+ "model": "Qwen3 0.6B",
+ "samples_per_prompt_class": 30,
+ "warmups_per_class": 5,
+ "max_tokens": 128,
+ "engines": {
+  "noodle-mlx": "Noodle 0.0.1 (default runtime), mlx-serve 26.11.2, native MLX 0.32.5, MLX 4-bit gs64 mlx-community/Qwen3-0.6B-4bit 73e3e38d981303bc594367cd910ea6eb48349da8",
+  "noodle-gguf": "Noodle 0.0.1, mlx-serve 26.11.2 embedded llama.cpp b11429, Qwen3-0.6B-Q4_K_M.gguf",
+  "ollama-gguf": "Ollama 0.40.16, same Qwen3-0.6B-Q4_K_M.gguf (sha256 ac2d97712095a558e31573f62f466a3f9d93990898b0ec79d7c974c1780d524a)"
+ },
+ "contexts": {
+  "noodle-mlx": 3072,
+  "noodle-gguf": "8192 (history rounds) / 4096 (ctx4096 rounds); 4 sequences either way",
+  "ollama-gguf": 4096
+ },
+ "lm_studio": "not measured",
+ "runs": {
+  "ollama-gguf": {
+   "directory": "out",
+   "engine": "ollama-gguf",
+   "note": "round 1 (first)",
+   "short": {
+    "completed": 30,
+    "failed": 0,
+    "ttftMS": {
+     "n": 30,
+     "p50": 34.83724950092437,
+     "p95": 39.02861455026141
+    },
+    "decodeTokensPerSecond": {
+     "n": 30,
+     "p50": 141.09736527574677,
+     "p95": 152.24376447708488
+    }
+   },
+   "long": {
+    "completed": 30,
+    "failed": 0,
+    "ttftMS": {
+     "n": 30,
+     "p50": 496.3101875018765,
+     "p95": 532.318722949276
+    },
+    "decodeTokensPerSecond": {
+     "n": 30,
+     "p50": 123.9402558261823,
+     "p95": 131.67525056152436
+    }
+   },
+   "prompt_tokens_short": [
+    63,
+    69
+   ],
+   "prompt_tokens_long": [
+    823,
+    831
+   ],
+   "output_tokens_median_short": 101,
+   "output_tokens_median_long": 70,
+   "idle_footprint": [
+    {
+     "process": "ollama",
+     "log": "footprints/out-ollama-gguf-loaded-idle-footprint-81721.log",
+     "phys_footprint_mb": 12,
+     "phys_footprint_peak_mb": 12
+    },
+    {
+     "process": "llama-server",
+     "log": "footprints/out-ollama-gguf-loaded-idle-footprint-81732.log",
+     "phys_footprint_mb": 560,
+     "phys_footprint_peak_mb": 560
+    }
+   ],
+   "post_generation_footprint": [
+    {
+     "process": "ollama",
+     "log": "footprints/out-ollama-gguf-post-generation-footprint-81721.log",
+     "phys_footprint_mb": 14,
+     "phys_footprint_peak_mb": 14
+    },
+    {
+     "process": "llama-server",
+     "log": "footprints/out-ollama-gguf-post-generation-footprint-81732.log",
+     "phys_footprint_mb": 692,
+     "phys_footprint_peak_mb": 1118
+    }
+   ],
+   "prompt_set_sha256": "cb6eba771b53794d7d7e9568ec0637455f106c4b460c5e91900dec02b8d4bfe9"
+  },
+  "noodle-gguf": {
+   "directory": "out",
+   "engine": "noodle-gguf",
+   "note": "round 1 (second)",
+   "short": {
+    "completed": 30,
+    "failed": 0,
+    "ttftMS": {
+     "n": 30,
+     "p50": 31.607250000888598,
+     "p95": 34.69666889977816
+    },
+    "decodeTokensPerSecond": {
+     "n": 30,
+     "p50": 143.57426229168678,
+     "p95": 155.34553922666103
+    }
+   },
+   "long": {
+    "completed": 30,
+    "failed": 0,
+    "ttftMS": {
+     "n": 30,
+     "p50": 363.09185450045334,
+     "p95": 395.2368813988869
+    },
+    "decodeTokensPerSecond": {
+     "n": 30,
+     "p50": 123.82093947219064,
+     "p95": 134.5780593402265
+    }
+   },
+   "prompt_tokens_short": [
+    63,
+    69
+   ],
+   "prompt_tokens_long": [
+    823,
+    831
+   ],
+   "output_tokens_median_short": 100,
+   "output_tokens_median_long": 69,
+   "idle_footprint": [
+    {
+     "process": "mlx-serve",
+     "log": "footprints/out-noodle-gguf-loaded-idle-footprint-85574.log",
+     "phys_footprint_mb": 3768,
+     "phys_footprint_peak_mb": 3769
+    }
+   ],
+   "post_generation_footprint": [
+    {
+     "process": "mlx-serve",
+     "log": "footprints/out-noodle-gguf-post-generation-footprint-85574.log",
+     "phys_footprint_mb": 3769,
+     "phys_footprint_peak_mb": 3769
+    }
+   ],
+   "prompt_set_sha256": "cb6eba771b53794d7d7e9568ec0637455f106c4b460c5e91900dec02b8d4bfe9"
+  },
+  "noodle-mlx": {
+   "directory": "out",
+   "engine": "noodle-mlx",
+   "note": "single round; 20th start attempt (see admission attempts)",
+   "short": {
+    "completed": 30,
+    "failed": 0,
+    "ttftMS": {
+     "n": 30,
+     "p50": 35.26885400060564,
+     "p95": 38.55353299950366
+    },
+    "decodeTokensPerSecond": {
+     "n": 30,
+     "p50": 180.09828386278718,
+     "p95": 189.28589226167202
+    }
+   },
+   "long": {
+    "completed": 30,
+    "failed": 0,
+    "ttftMS": {
+     "n": 30,
+     "p50": 395.1623749999271,
+     "p95": 415.089295798316
+    },
+    "decodeTokensPerSecond": {
+     "n": 30,
+     "p50": 124.04723589923455,
+     "p95": 130.29633798824392
+    }
+   },
+   "prompt_tokens_short": [
+    63,
+    69
+   ],
+   "prompt_tokens_long": [
+    823,
+    831
+   ],
+   "output_tokens_median_short": 113,
+   "output_tokens_median_long": 99,
+   "idle_footprint": [
+    {
+     "process": "mlx-serve",
+     "log": "footprints/out-noodle-mlx-loaded-idle-footprint-43271.log",
+     "phys_footprint_mb": 725,
+     "phys_footprint_peak_mb": 990
+    },
+    {
+     "process": "mlx-serve",
+     "log": "footprints/out-noodle-mlx-loaded-idle-footprint-46085.log",
+     "phys_footprint_mb": 719,
+     "phys_footprint_peak_mb": 981
+    },
+    {
+     "process": "mlx-serve",
+     "log": "footprints/out-noodle-mlx-loaded-idle-footprint-9635.log",
+     "phys_footprint_mb": 739,
+     "phys_footprint_peak_mb": 995
+    }
+   ],
+   "post_generation_footprint": [
+    {
+     "process": "mlx-serve",
+     "log": "footprints/out-noodle-mlx-post-generation-footprint-46085.log",
+     "phys_footprint_mb": 1809,
+     "phys_footprint_peak_mb": 2163
+    }
+   ],
+   "prompt_set_sha256": "cb6eba771b53794d7d7e9568ec0637455f106c4b460c5e91900dec02b8d4bfe9"
+  },
+  "noodle-gguf-repeat": {
+   "directory": "out-repeat",
+   "engine": "noodle-gguf",
+   "note": "round 2 (first)",
+   "short": {
+    "completed": 30,
+    "failed": 0,
+    "ttftMS": {
+     "n": 30,
+     "p50": 28.28335450067243,
+     "p95": 29.321248399173783
+    },
+    "decodeTokensPerSecond": {
+     "n": 30,
+     "p50": 160.72446490668622,
+     "p95": 170.8942340687452
+    }
+   },
+   "long": {
+    "completed": 30,
+    "failed": 0,
+    "ttftMS": {
+     "n": 30,
+     "p50": 318.0742289987393,
+     "p95": 329.4642456501606
+    },
+    "decodeTokensPerSecond": {
+     "n": 30,
+     "p50": 140.98687500312965,
+     "p95": 148.42750106796737
+    }
+   },
+   "prompt_tokens_short": [
+    63,
+    69
+   ],
+   "prompt_tokens_long": [
+    823,
+    831
+   ],
+   "output_tokens_median_short": 100,
+   "output_tokens_median_long": 69,
+   "idle_footprint": [
+    {
+     "process": "mlx-serve",
+     "log": "footprints/out-repeat-noodle-gguf-loaded-idle-footprint-60734.log",
+     "phys_footprint_mb": 3767,
+     "phys_footprint_peak_mb": 3767
+    }
+   ],
+   "post_generation_footprint": [
+    {
+     "process": "mlx-serve",
+     "log": "footprints/out-repeat-noodle-gguf-post-generation-footprint-60734.log",
+     "phys_footprint_mb": 3768,
+     "phys_footprint_peak_mb": 3768
+    }
+   ],
+   "prompt_set_sha256": "cb6eba771b53794d7d7e9568ec0637455f106c4b460c5e91900dec02b8d4bfe9"
+  },
+  "ollama-gguf-repeat": {
+   "directory": "out-repeat",
+   "engine": "ollama-gguf",
+   "note": "round 2 (second)",
+   "short": {
+    "completed": 30,
+    "failed": 0,
+    "ttftMS": {
+     "n": 30,
+     "p50": 31.373750000057044,
+     "p95": 33.128787650457525
+    },
+    "decodeTokensPerSecond": {
+     "n": 30,
+     "p50": 169.307209741287,
+     "p95": 178.87772648321544
+    }
+   },
+   "long": {
+    "completed": 30,
+    "failed": 0,
+    "ttftMS": {
+     "n": 30,
+     "p50": 347.57585400075186,
+     "p95": 468.1535392493969
+    },
+    "decodeTokensPerSecond": {
+     "n": 30,
+     "p50": 141.31900853371067,
+     "p95": 152.86500586744376
+    }
+   },
+   "prompt_tokens_short": [
+    63,
+    69
+   ],
+   "prompt_tokens_long": [
+    823,
+    831
+   ],
+   "output_tokens_median_short": 101,
+   "output_tokens_median_long": 70,
+   "idle_footprint": [
+    {
+     "process": "ollama",
+     "log": "footprints/out-repeat-ollama-gguf-loaded-idle-footprint-63391.log",
+     "phys_footprint_mb": 13,
+     "phys_footprint_peak_mb": 13
+    },
+    {
+     "process": "llama-server",
+     "log": "footprints/out-repeat-ollama-gguf-loaded-idle-footprint-63401.log",
+     "phys_footprint_mb": 560,
+     "phys_footprint_peak_mb": 560
+    }
+   ],
+   "post_generation_footprint": [
+    {
+     "process": "ollama",
+     "log": "footprints/out-repeat-ollama-gguf-post-generation-footprint-63391.log",
+     "phys_footprint_mb": 13,
+     "phys_footprint_peak_mb": 13
+    },
+    {
+     "process": "llama-server",
+     "log": "footprints/out-repeat-ollama-gguf-post-generation-footprint-63401.log",
+     "phys_footprint_mb": 1016,
+     "phys_footprint_peak_mb": 1096
+    }
+   ],
+   "prompt_set_sha256": "cb6eba771b53794d7d7e9568ec0637455f106c4b460c5e91900dec02b8d4bfe9"
+  },
+  "ctx4096-ollama-gguf-r1": {
+   "directory": "out-new1",
+   "engine": "ollama-gguf",
+   "note": "new default, round 1 (first)",
+   "short": {
+    "completed": 30,
+    "failed": 0,
+    "ttftMS": {
+     "n": 30,
+     "p50": 30.31318750004175,
+     "p95": 35.3217395500792
+    },
+    "decodeTokensPerSecond": {
+     "n": 30,
+     "p50": 165.0050087339867,
+     "p95": 177.8238317630405
+    }
+   },
+   "long": {
+    "completed": 30,
+    "failed": 0,
+    "ttftMS": {
+     "n": 30,
+     "p50": 336.717750000048,
+     "p95": 351.8566668500398
+    },
+    "decodeTokensPerSecond": {
+     "n": 30,
+     "p50": 139.62305466013055,
+     "p95": 146.40698651907093
+    }
+   },
+   "idle_footprint": [
+    {
+     "process": "ollama",
+     "log": "footprints/out-new1-ollama-gguf-loaded-idle-footprint-69015.log",
+     "phys_footprint_mb": 12,
+     "phys_footprint_peak_mb": 12
+    },
+    {
+     "process": "llama-server",
+     "log": "footprints/out-new1-ollama-gguf-loaded-idle-footprint-69026.log",
+     "phys_footprint_mb": 560,
+     "phys_footprint_peak_mb": 560
+    }
+   ],
+   "post_generation_footprint": [
+    {
+     "process": "ollama",
+     "log": "footprints/out-new1-ollama-gguf-post-generation-footprint-69015.log",
+     "phys_footprint_mb": 13,
+     "phys_footprint_peak_mb": 13
+    },
+    {
+     "process": "llama-server",
+     "log": "footprints/out-new1-ollama-gguf-post-generation-footprint-69026.log",
+     "phys_footprint_mb": 1119,
+     "phys_footprint_peak_mb": 1119
+    }
+   ],
+   "prompt_set_sha256": "cb6eba771b53794d7d7e9568ec0637455f106c4b460c5e91900dec02b8d4bfe9"
+  },
+  "ctx4096-noodle-gguf-r1": {
+   "directory": "out-new1",
+   "engine": "noodle-gguf",
+   "note": "new default, round 1 (second)",
+   "short": {
+    "completed": 30,
+    "failed": 0,
+    "ttftMS": {
+     "n": 30,
+     "p50": 30.593020999958753,
+     "p95": 42.95873344991605
+    },
+    "decodeTokensPerSecond": {
+     "n": 30,
+     "p50": 132.5780130390731,
+     "p95": 169.49949594834865
+    }
+   },
+   "long": {
+    "completed": 30,
+    "failed": 0,
+    "ttftMS": {
+     "n": 30,
+     "p50": 311.37989599983484,
+     "p95": 332.9156378000107
+    },
+    "decodeTokensPerSecond": {
+     "n": 30,
+     "p50": 128.97080993897464,
+     "p95": 141.04636460700874
+    }
+   },
+   "idle_footprint": [
+    {
+     "process": "mlx-serve",
+     "log": "footprints/out-new1-noodle-gguf-loaded-idle-footprint-71361.log",
+     "phys_footprint_mb": 1973,
+     "phys_footprint_peak_mb": 1974
+    }
+   ],
+   "post_generation_footprint": [
+    {
+     "process": "mlx-serve",
+     "log": "footprints/out-new1-noodle-gguf-post-generation-footprint-71361.log",
+     "phys_footprint_mb": 1974,
+     "phys_footprint_peak_mb": 1974
+    }
+   ],
+   "prompt_set_sha256": "cb6eba771b53794d7d7e9568ec0637455f106c4b460c5e91900dec02b8d4bfe9"
+  },
+  "ctx4096-noodle-gguf-r2": {
+   "directory": "out-new2",
+   "engine": "noodle-gguf",
+   "note": "new default, round 2 (first)",
+   "short": {
+    "completed": 30,
+    "failed": 0,
+    "ttftMS": {
+     "n": 30,
+     "p50": 37.12729150004179,
+     "p95": 47.35367484997822
+    },
+    "decodeTokensPerSecond": {
+     "n": 30,
+     "p50": 125.16174218238693,
+     "p95": 131.22115455963163
+    }
+   },
+   "long": {
+    "completed": 30,
+    "failed": 0,
+    "ttftMS": {
+     "n": 30,
+     "p50": 313.44912550002846,
+     "p95": 336.1355080000408
+    },
+    "decodeTokensPerSecond": {
+     "n": 30,
+     "p50": 131.83459898248302,
+     "p95": 140.26531424342326
+    }
+   },
+   "idle_footprint": [
+    {
+     "process": "mlx-serve",
+     "log": "footprints/out-new2-noodle-gguf-loaded-idle-footprint-83005.log",
+     "phys_footprint_mb": 1974,
+     "phys_footprint_peak_mb": 1974
+    }
+   ],
+   "post_generation_footprint": [
+    {
+     "process": "mlx-serve",
+     "log": "footprints/out-new2-noodle-gguf-post-generation-footprint-83005.log",
+     "phys_footprint_mb": 1975,
+     "phys_footprint_peak_mb": 1975
+    }
+   ],
+   "prompt_set_sha256": "cb6eba771b53794d7d7e9568ec0637455f106c4b460c5e91900dec02b8d4bfe9"
+  },
+  "ctx4096-ollama-gguf-r2": {
+   "directory": "out-new2",
+   "engine": "ollama-gguf",
+   "note": "new default, round 2 (second)",
+   "short": {
+    "completed": 30,
+    "failed": 0,
+    "ttftMS": {
+     "n": 30,
+     "p50": 30.73858300001575,
+     "p95": 32.16656685013959
+    },
+    "decodeTokensPerSecond": {
+     "n": 30,
+     "p50": 173.01952360719488,
+     "p95": 182.63678491349506
+    }
+   },
+   "long": {
+    "completed": 30,
+    "failed": 0,
+    "ttftMS": {
+     "n": 30,
+     "p50": 319.0794790001519,
+     "p95": 347.08680814997024
+    },
+    "decodeTokensPerSecond": {
+     "n": 30,
+     "p50": 148.19653633152402,
+     "p95": 154.15742754381932
+    }
+   },
+   "idle_footprint": [
+    {
+     "process": "ollama",
+     "log": "footprints/out-new2-ollama-gguf-loaded-idle-footprint-84657.log",
+     "phys_footprint_mb": 13,
+     "phys_footprint_peak_mb": 13
+    },
+    {
+     "process": "llama-server",
+     "log": "footprints/out-new2-ollama-gguf-loaded-idle-footprint-84661.log",
+     "phys_footprint_mb": 560,
+     "phys_footprint_peak_mb": 560
+    }
+   ],
+   "post_generation_footprint": [
+    {
+     "process": "ollama",
+     "log": "footprints/out-new2-ollama-gguf-post-generation-footprint-84657.log",
+     "phys_footprint_mb": 13,
+     "phys_footprint_peak_mb": 14
+    },
+    {
+     "process": "llama-server",
+     "log": "footprints/out-new2-ollama-gguf-post-generation-footprint-84661.log",
+     "phys_footprint_mb": 732,
+     "phys_footprint_peak_mb": 1096
+    }
+   ],
+   "prompt_set_sha256": "cb6eba771b53794d7d7e9568ec0637455f106c4b460c5e91900dec02b8d4bfe9"
+  }
+ },
+ "chart": {
+  "rule": "GGUF values are the mean of the two ctx4096 rounds p50 (opposite run order); MLX is one earlier round (memory-sized context, 3072)",
+  "values": {
+   "decode_short_tok_s": {
+    "noodle_mlx": 180.1,
+    "noodle_gguf": 128.9,
+    "ollama_gguf": 169.0
+   },
+   "first_content_long_ms": {
+    "noodle_mlx": 395.2,
+    "noodle_gguf": 312.4,
+    "ollama_gguf": 327.9
+   },
+   "post_generation_footprint_mb": {
+    "noodle_mlx": 1809,
+    "noodle_gguf": 1974,
+    "ollama_gguf_runner": 926,
+    "ollama_gguf_server": 13
+   }
+  },
+  "history_values_8192_default": {
+   "decode_short_tok_s": {
+    "noodle_mlx": 180.1,
+    "noodle_gguf": 152.1,
+    "ollama_gguf": 155.2
+   },
+   "first_content_long_ms": {
+    "noodle_mlx": 395.2,
+    "noodle_gguf": 340.6,
+    "ollama_gguf": 421.9
+   },
+   "post_generation_footprint_mb": {
+    "noodle_mlx": 1809,
+    "noodle_gguf": 3768,
+    "ollama_gguf_runner": 854,
+    "ollama_gguf_server": 14
+   }
+  }
+ },
+ "history": "Runs without the ctx4096 prefix used mlx-serve default context (4 sequences x 8192 for GGUF) and are kept as history; runs with the ctx4096 prefix use Noodle with --ctx-size 4096 (4 sequences x 4096)."
+}

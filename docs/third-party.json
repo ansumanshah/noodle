@@ -1,0 +1,950 @@
+{
+  "schema": 1,
+  "components": [
+    {
+      "id": "swift-atomics",
+      "version": "1.3.1",
+      "license": "Apache-2.0",
+      "source": "https://github.com/apple/swift-atomics",
+      "use": "Linked host dependency",
+      "pin": {
+        "kind": "swift"
+      }
+    },
+    {
+      "id": "swift-collections",
+      "version": "1.7.6",
+      "license": "Apache-2.0",
+      "source": "https://github.com/apple/swift-collections",
+      "use": "Linked host dependency",
+      "pin": {
+        "kind": "swift"
+      }
+    },
+    {
+      "id": "swift-nio",
+      "version": "2.105.0",
+      "license": "Apache-2.0",
+      "source": "https://github.com/apple/swift-nio",
+      "use": "Linked host dependency",
+      "pin": {
+        "kind": "swift"
+      }
+    },
+    {
+      "id": "swift-system",
+      "version": "1.9.0",
+      "license": "Apache-2.0",
+      "source": "https://github.com/apple/swift-system",
+      "use": "Linked host dependency",
+      "pin": {
+        "kind": "swift"
+      }
+    },
+    {
+      "id": "linux",
+      "version": "6.18.63",
+      "license": "GPL-2.0-only",
+      "source": "https://www.kernel.org/",
+      "use": "Guest kernel",
+      "pin": {
+        "kind": "regex",
+        "path": "scripts/build-kernel.sh",
+        "pattern": "version=\\$\\{KERNEL_VERSION:-([^}]+)\\}"
+      }
+    },
+    {
+      "id": "e2fsprogs",
+      "version": "1.47.4",
+      "license": "GPL-2.0-or-later; LGPL-2.0-or-later; BSD; MIT (see upstream NOTICE)",
+      "source": "https://www.kernel.org/pub/linux/kernel/people/tytso/e2fsprogs/",
+      "use": "Disk utilities; upstream notice bundled, source archive published with each release",
+      "pin": {
+        "kind": "regex",
+        "path": "scripts/build-mke2fs.sh",
+        "pattern": "^version=([^\\s]+)"
+      }
+    },
+    {
+      "id": "tini",
+      "version": "0.19.0",
+      "license": "MIT",
+      "source": "https://github.com/krallin/tini",
+      "use": "Guest init",
+      "pin": {
+        "kind": "regex",
+        "path": "scripts/fetch-init.sh",
+        "pattern": "releases/download/v([^/]+)/"
+      }
+    },
+    {
+      "id": "docker",
+      "version": "29.9.3",
+      "license": "Apache-2.0",
+      "source": "https://github.com/docker/cli",
+      "use": "On-demand Docker CLI",
+      "pin": {
+        "kind": "regex",
+        "path": "scripts/fetch-tools.sh",
+        "pattern": "^DOCKER_VERSION=([^\\s]+)"
+      }
+    },
+    {
+      "id": "docker-compose",
+      "version": "5.7.1",
+      "license": "Apache-2.0",
+      "source": "https://github.com/docker/compose",
+      "use": "On-demand Docker Compose plugin",
+      "pin": {
+        "kind": "regex",
+        "path": "scripts/fetch-tools.sh",
+        "pattern": "^COMPOSE_VERSION=([^\\s]+)"
+      }
+    },
+    {
+      "id": "docker-buildx",
+      "version": "0.39.0",
+      "license": "Apache-2.0",
+      "source": "https://github.com/docker/buildx",
+      "use": "On-demand Docker Buildx plugin",
+      "pin": {
+        "kind": "regex",
+        "path": "scripts/fetch-tools.sh",
+        "pattern": "^BUILDX_VERSION=([^\\s]+)"
+      }
+    },
+    {
+      "id": "docker-model",
+      "version": "1.2.9",
+      "license": "Apache-2.0",
+      "source": "https://github.com/docker/model-runner",
+      "use": "On-demand upstream Docker Model Runner CLI plugin",
+      "pin": {
+        "kind": "regex",
+        "path": "scripts/fetch-tools.sh",
+        "pattern": "^MODEL_VERSION=([^\\s]+)"
+      }
+    },
+    {
+      "id": "mlx-serve/llama.cpp",
+      "version": "26.11.4",
+      "license": "MIT",
+      "source": "https://github.com/ggml-org/llama.cpp",
+      "use": "Embedded GGUF engine in the unmodified mlx-serve release",
+      "pin": {
+        "kind": "regex",
+        "path": "Sources/NoodleCore/MLXServeRuntime.swift",
+        "pattern": "static let version = \"([^\"]+)\""
+      }
+    },
+    {
+      "id": "gemma-4-e2b-qat-gguf",
+      "version": "347eef722ec7f151f37d1ef0b5c7c77d8de4efcb",
+      "license": "Apache-2.0",
+      "source": "https://huggingface.co/google/gemma-4-E2B-it-qat-q4_0-gguf",
+      "use": "On-demand catalog model, Q4_0 GGUF weights",
+      "pin": {
+        "kind": "regex",
+        "path": "Sources/noodle/Commands/Models/ModelCatalog.swift",
+        "pattern": "gemma-4-E2B-it-qat-q4_0-gguf/resolve/([a-f0-9]{40})/"
+      }
+    },
+    {
+      "id": "grype",
+      "version": "0.121.3",
+      "license": "Apache-2.0",
+      "source": "https://github.com/anchore/grype",
+      "use": "On-demand vulnerability scanner",
+      "pin": {
+        "kind": "regex",
+        "path": "Sources/noodle/Commands/Scan/ScanTools.swift",
+        "pattern": "name: \"grype\", version: \"([^\"]+)\""
+      }
+    },
+    {
+      "id": "syft",
+      "version": "1.57.1",
+      "license": "Apache-2.0",
+      "source": "https://github.com/anchore/syft",
+      "use": "On-demand SBOM generator",
+      "pin": {
+        "kind": "regex",
+        "path": "Sources/noodle/Commands/Scan/ScanTools.swift",
+        "pattern": "name: \"syft\", version: \"([^\"]+)\""
+      }
+    },
+    {
+      "id": "cloudflared",
+      "version": "2026.11.0",
+      "license": "Apache-2.0",
+      "source": "https://github.com/cloudflare/cloudflared",
+      "use": "On-demand tunnel helper",
+      "pin": {
+        "kind": "regex",
+        "path": "Sources/NoodleEngine/PublicLinks/PublicLinkBinary.swift",
+        "pattern": "cloudflaredPinnedVersion = \"([^\"]+)\""
+      }
+    },
+    {
+      "id": "act",
+      "version": "0.2.98",
+      "license": "MIT",
+      "source": "https://github.com/nektos/act",
+      "use": "Optional local GitHub Actions runner, installed only on request",
+      "pin": {
+        "kind": "regex",
+        "path": "Sources/NoodleCore/Tools/ToolPins.swift",
+        "pattern": "name: \"act\", version: \"([^\"]+)\""
+      }
+    },
+    {
+      "id": "actions-runner",
+      "version": "2.338.2",
+      "license": "MIT",
+      "source": "https://github.com/actions/runner",
+      "use": "GitHub Actions runner for Noodle Runners, downloaded on first use",
+      "pin": {
+        "kind": "regex",
+        "path": "Sources/NoodleCore/Runners/GitHubRunnersAPI.swift",
+        "pattern": "enum RunnerPin \\{\\n\\s+public static let version = \"([^\"]+)\""
+      }
+    },
+    {
+      "id": "kubectl",
+      "version": "1.37.2",
+      "license": "Apache-2.0",
+      "source": "https://github.com/kubernetes/kubernetes",
+      "use": "Kubernetes CLI, installed by setup when none is on PATH",
+      "pin": {
+        "kind": "regex",
+        "path": "Sources/NoodleCore/Tools/ToolPins.swift",
+        "pattern": "name: \"kubectl\", version: \"([^\"]+)\""
+      }
+    },
+    {
+      "id": "github.com/containerd/containerd/api",
+      "version": "v1.12.0",
+      "license": "Apache-2.0",
+      "source": "https://github.com/containerd/containerd",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-07 against LICENSE in the module zip at v1.12.0 (proxy.golang.org); sha256 4bbe3b885e8cd1907ab4cf9a41e862e74e24b5422297a4f2fe524e6a30ada2b4."
+    },
+    {
+      "id": "github.com/moby/buildkit",
+      "version": "v0.35.0",
+      "license": "Apache-2.0",
+      "source": "https://github.com/moby/buildkit",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-14 against LICENSE in the module zip at v0.35.0 (proxy.golang.org); sha256 c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4."
+    },
+    {
+      "id": "github.com/siderolabs/grpc-proxy",
+      "version": "v0.5.2",
+      "license": "Apache-2.0",
+      "source": "https://github.com/siderolabs/grpc-proxy",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-07 against LICENSE.txt in the module zip at v0.5.2 (proxy.golang.org); sha256 1f81d44e1506aef37184653d2d31d00ae6e4f453d431de971c2879be960665b8."
+    },
+    {
+      "id": "golang.org/x/net",
+      "version": "v0.62.0",
+      "license": "BSD-3-Clause",
+      "source": "https://go.googlesource.com/net",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-14 against LICENSE in the module zip at v0.62.0 (proxy.golang.org); sha256 911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad."
+    },
+    {
+      "id": "golang.org/x/sys",
+      "version": "v0.50.0",
+      "license": "BSD-3-Clause",
+      "source": "https://go.googlesource.com/sys",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-14 against LICENSE in the module zip at v0.50.0 (proxy.golang.org); sha256 911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad."
+    },
+    {
+      "id": "google.golang.org/grpc",
+      "version": "v1.85.0",
+      "license": "Apache-2.0",
+      "source": "https://google.golang.org/grpc",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-07 against LICENSE in the module zip at v1.85.0 (proxy.golang.org); sha256 cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30."
+    },
+    {
+      "id": "github.com/Microsoft/go-winio",
+      "version": "v0.6.4",
+      "license": "MIT",
+      "source": "https://github.com/Microsoft/go-winio",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-14 against LICENSE in the module zip at v0.6.4 (proxy.golang.org); sha256 cf248820bf1178370bb4f1670a59f8748d46bc96d0f64080cd631511c6046409."
+    },
+    {
+      "id": "github.com/cespare/xxhash/v2",
+      "version": "v2.3.0",
+      "license": "MIT",
+      "source": "https://github.com/cespare/xxhash",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-07 against LICENSE.txt in the module zip at v2.3.0 (proxy.golang.org); sha256 f566a9f97bacdaf00d9f21dd991e81dc11201c4e016c86b470799429a1c9a79c."
+    },
+    {
+      "id": "github.com/containerd/containerd/v2",
+      "version": "v2.4.2",
+      "license": "Apache-2.0",
+      "source": "https://github.com/containerd/containerd",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-07 against LICENSE in the module zip at v2.4.2 (proxy.golang.org); sha256 4bbe3b885e8cd1907ab4cf9a41e862e74e24b5422297a4f2fe524e6a30ada2b4."
+    },
+    {
+      "id": "github.com/containerd/continuity",
+      "version": "v0.5.0",
+      "license": "Apache-2.0",
+      "source": "https://github.com/containerd/continuity",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-07 against LICENSE in the module zip at v0.5.0 (proxy.golang.org); sha256 4bbe3b885e8cd1907ab4cf9a41e862e74e24b5422297a4f2fe524e6a30ada2b4."
+    },
+    {
+      "id": "github.com/containerd/log",
+      "version": "v0.2.0",
+      "license": "Apache-2.0",
+      "source": "https://github.com/containerd/log",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-07 against LICENSE in the module zip at v0.2.0 (proxy.golang.org); sha256 4bbe3b885e8cd1907ab4cf9a41e862e74e24b5422297a4f2fe524e6a30ada2b4."
+    },
+    {
+      "id": "github.com/containerd/ttrpc",
+      "version": "v1.2.10",
+      "license": "Apache-2.0",
+      "source": "https://github.com/containerd/ttrpc",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-07 against LICENSE in the module zip at v1.2.10 (proxy.golang.org); sha256 c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4."
+    },
+    {
+      "id": "github.com/containerd/typeurl/v2",
+      "version": "v2.3.0",
+      "license": "Apache-2.0",
+      "source": "https://github.com/containerd/typeurl",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-07 against LICENSE in the module zip at v2.3.0 (proxy.golang.org); sha256 4bbe3b885e8cd1907ab4cf9a41e862e74e24b5422297a4f2fe524e6a30ada2b4."
+    },
+    {
+      "id": "github.com/felixge/httpsnoop",
+      "version": "v1.1.0",
+      "license": "MIT",
+      "source": "https://github.com/felixge/httpsnoop",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-07 against LICENSE.txt in the module zip at v1.1.0 (proxy.golang.org); sha256 8108e14b5cb2b6bcd51583d3849ef0c2b5c4de61758256c20308bc70d1775dbb."
+    },
+    {
+      "id": "github.com/go-logr/logr",
+      "version": "v1.4.4",
+      "license": "Apache-2.0",
+      "source": "https://github.com/go-logr/logr",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-07 against LICENSE in the module zip at v1.4.4 (proxy.golang.org); sha256 b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1."
+    },
+    {
+      "id": "github.com/go-logr/stdr",
+      "version": "v1.2.2",
+      "license": "Apache-2.0",
+      "source": "https://github.com/go-logr/stdr",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-07 against LICENSE in the module zip at v1.2.2 (proxy.golang.org); sha256 c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4."
+    },
+    {
+      "id": "github.com/google/uuid",
+      "version": "v1.6.0",
+      "license": "BSD-3-Clause",
+      "source": "https://github.com/google/uuid",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-07 against LICENSE in the module zip at v1.6.0 (proxy.golang.org); sha256 0a8d61ed3cbfd5312326e8126c31ce9c627a283adc99131b56896d29ada04b2d."
+    },
+    {
+      "id": "github.com/hashicorp/errwrap",
+      "version": "v1.1.0",
+      "license": "MPL-2.0",
+      "source": "https://github.com/hashicorp/errwrap",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-07 against LICENSE in the module zip at v1.1.0 (proxy.golang.org); sha256 bef1747eda88b9ed46e94830b0d978c3499dad5dfe38d364971760881901dadd."
+    },
+    {
+      "id": "github.com/hashicorp/go-multierror",
+      "version": "v1.1.1",
+      "license": "MPL-2.0",
+      "source": "https://github.com/hashicorp/go-multierror",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-07 against LICENSE in the module zip at v1.1.1 (proxy.golang.org); sha256 a830016911a348a54e89bd54f2f8b0d8fffdeac20aecfba8e36ebbf38a03f5ff."
+    },
+    {
+      "id": "github.com/moby/patternmatcher",
+      "version": "v0.6.1",
+      "license": "Apache-2.0",
+      "source": "https://github.com/moby/patternmatcher",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-07 against LICENSE in the module zip at v0.6.1 (proxy.golang.org); sha256 7c87873291f289713ac5df48b1f2010eb6963752bbd6b530416ab99fc37914a8."
+    },
+    {
+      "id": "github.com/opencontainers/go-digest",
+      "version": "v1.0.0",
+      "license": "Apache-2.0",
+      "source": "https://github.com/opencontainers/go-digest",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-07 against LICENSE in the module zip at v1.0.0 (proxy.golang.org); sha256 aceb55133c41c50c2e170c5918e301fe74f592d0f28724bf2f7a7bfdcff1fc5f."
+    },
+    {
+      "id": "github.com/opencontainers/image-spec",
+      "version": "v1.1.1",
+      "license": "Apache-2.0",
+      "source": "https://github.com/opencontainers/image-spec",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-07 against LICENSE in the module zip at v1.1.1 (proxy.golang.org); sha256 b0a3f39513927db306adabea11d14c23f079d4febcea241d123a68d1a0d45418."
+    },
+    {
+      "id": "github.com/pkg/errors",
+      "version": "v0.9.1",
+      "license": "BSD-2-Clause",
+      "source": "https://github.com/pkg/errors",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-07 against LICENSE in the module zip at v0.9.1 (proxy.golang.org); sha256 8d427fd87bc9579ea368fde3d49f9ca22eac857f91a9dec7e3004bdfab7dee86. Corrects earlier upstream classification MIT."
+    },
+    {
+      "id": "github.com/planetscale/vtprotobuf",
+      "version": "v0.6.1-0.20240319094008-0393e58bdf10",
+      "license": "BSD-3-Clause",
+      "source": "https://github.com/planetscale/vtprotobuf",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-07 against LICENSE in the module zip at v0.6.1-0.20240319094008-0393e58bdf10 (proxy.golang.org); sha256 c108a2604f8958f647b56b83b11a31ae85648a77cb9aa0f093c0ab9ffffe2222. Corrects earlier upstream classification Apache-2.0."
+    },
+    {
+      "id": "github.com/sirupsen/logrus",
+      "version": "v1.10.2",
+      "license": "MIT",
+      "source": "https://github.com/sirupsen/logrus",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-07 against LICENSE in the module zip at v1.10.2 (proxy.golang.org); sha256 51a0c9ec7f8b7634181b8d4c03e5b5d204ac21d6e72f46c313973424664b2e6b."
+    },
+    {
+      "id": "github.com/tonistiigi/fsutil",
+      "version": "v0.0.0-20261103125000-e075fd9305eb",
+      "license": "MIT",
+      "source": "https://github.com/tonistiigi/fsutil",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-14 against LICENSE in the module zip at v0.0.0-20261103125000-e075fd9305eb (proxy.golang.org); sha256 5fd05bdc4791a1ca9366222f7e26ca631a9d3aa575974900959b9f23cd2eb331."
+    },
+    {
+      "id": "github.com/tonistiigi/units",
+      "version": "v0.0.0-20180711220420-6950e57a87ea",
+      "license": "MIT",
+      "source": "https://github.com/tonistiigi/units",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-07 against LICENSE in the module zip at v0.0.0-20180711220420-6950e57a87ea (proxy.golang.org); sha256 a747ff93424cdf513c4e27338e0ddd0c4c759e44982bc4e642badbe6c72d65a5."
+    },
+    {
+      "id": "go.opentelemetry.io/auto/sdk",
+      "version": "v1.2.1",
+      "license": "Apache-2.0",
+      "source": "https://go.opentelemetry.io/auto/sdk",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-07 against LICENSE in the module zip at v1.2.1 (proxy.golang.org); sha256 c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4."
+    },
+    {
+      "id": "go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc",
+      "version": "v0.72.0",
+      "license": "Apache-2.0",
+      "source": "https://go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-14 against LICENSE in the module zip at v0.72.0 (proxy.golang.org); sha256 1ae07514be1d7bb33f0698f8d91fb51b8b9fe1463157ec1c72081a49b9bc6f40."
+    },
+    {
+      "id": "go.opentelemetry.io/contrib/instrumentation/net/http/httptrace/otelhttptrace",
+      "version": "v0.72.0",
+      "license": "Apache-2.0",
+      "source": "https://go.opentelemetry.io/contrib/instrumentation/net/http/httptrace/otelhttptrace",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-14 against LICENSE in the module zip at v0.72.0 (proxy.golang.org); sha256 1ae07514be1d7bb33f0698f8d91fb51b8b9fe1463157ec1c72081a49b9bc6f40."
+    },
+    {
+      "id": "go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp",
+      "version": "v0.72.0",
+      "license": "Apache-2.0",
+      "source": "https://go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-14 against LICENSE in the module zip at v0.72.0 (proxy.golang.org); sha256 1ae07514be1d7bb33f0698f8d91fb51b8b9fe1463157ec1c72081a49b9bc6f40."
+    },
+    {
+      "id": "go.opentelemetry.io/otel",
+      "version": "v1.47.0",
+      "license": "Apache-2.0",
+      "source": "https://go.opentelemetry.io/otel",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-14 against LICENSE in the module zip at v1.47.0 (proxy.golang.org); sha256 1ae07514be1d7bb33f0698f8d91fb51b8b9fe1463157ec1c72081a49b9bc6f40."
+    },
+    {
+      "id": "go.opentelemetry.io/otel/metric",
+      "version": "v1.47.0",
+      "license": "Apache-2.0",
+      "source": "https://go.opentelemetry.io/otel/metric",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-14 against LICENSE in the module zip at v1.47.0 (proxy.golang.org); sha256 1ae07514be1d7bb33f0698f8d91fb51b8b9fe1463157ec1c72081a49b9bc6f40."
+    },
+    {
+      "id": "go.opentelemetry.io/otel/log",
+      "version": "v1.47.0",
+      "license": "Apache-2.0 AND BSD-3-Clause",
+      "source": "https://go.opentelemetry.io/otel/log",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-14 against LICENSE in the module zip at v1.47.0 (proxy.golang.org); sha256 1ae07514be1d7bb33f0698f8d91fb51b8b9fe1463157ec1c72081a49b9bc6f40."
+    },
+    {
+      "id": "go.opentelemetry.io/otel/sdk",
+      "version": "v1.47.0",
+      "license": "Apache-2.0",
+      "source": "https://go.opentelemetry.io/otel/sdk",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-14 against LICENSE in the module zip at v1.47.0 (proxy.golang.org); sha256 1ae07514be1d7bb33f0698f8d91fb51b8b9fe1463157ec1c72081a49b9bc6f40."
+    },
+    {
+      "id": "go.opentelemetry.io/otel/trace",
+      "version": "v1.47.0",
+      "license": "Apache-2.0",
+      "source": "https://go.opentelemetry.io/otel/trace",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-14 against LICENSE in the module zip at v1.47.0 (proxy.golang.org); sha256 1ae07514be1d7bb33f0698f8d91fb51b8b9fe1463157ec1c72081a49b9bc6f40."
+    },
+    {
+      "id": "golang.org/x/sync",
+      "version": "v0.24.0",
+      "license": "BSD-3-Clause",
+      "source": "https://go.googlesource.com/sync",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-14 against LICENSE in the module zip at v0.24.0 (proxy.golang.org); sha256 911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad."
+    },
+    {
+      "id": "golang.org/x/text",
+      "version": "v0.43.0",
+      "license": "BSD-3-Clause",
+      "source": "https://go.googlesource.com/text",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-14 against LICENSE in the module zip at v0.43.0 (proxy.golang.org); sha256 911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad."
+    },
+    {
+      "id": "google.golang.org/genproto/googleapis/rpc",
+      "version": "v0.0.0-20261012220534-4341edf3f941",
+      "license": "Apache-2.0",
+      "source": "https://google.golang.org/genproto/googleapis/rpc",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-14 against LICENSE in the module zip at v0.0.0-20261012220534-4341edf3f941 (proxy.golang.org); sha256 cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30."
+    },
+    {
+      "id": "google.golang.org/protobuf",
+      "version": "v1.36.12",
+      "license": "BSD-3-Clause",
+      "source": "https://google.golang.org/protobuf",
+      "use": "On-demand BuildKit adapter dependency",
+      "pin": {
+        "kind": "go"
+      },
+      "licenseVerification": "Confirmed 2026-11-07 against LICENSE in the module zip at v1.36.12 (proxy.golang.org); sha256 4835612df0098ca95f8e7d9e3bffcb02358d435dbb38057c844c99d7f725eb20."
+    },
+    {
+      "id": "swiftterm",
+      "version": "1.99.3",
+      "license": "MIT",
+      "source": "https://github.com/migueldeicaza/SwiftTerm",
+      "use": "Terminal panel in the app. Linked into NoodleApp only, not noodled or noodle."
+    },
+    {
+      "id": "h",
+      "version": "1.0.1",
+      "license": "Apache-2.0",
+      "source": "https://github.com/rarestype/h",
+      "use": "Resolved through SwiftTerm for the app only."
+    },
+    {
+      "id": "swift-argument-parser",
+      "version": "1.8.2",
+      "license": "Apache-2.0",
+      "source": "https://github.com/apple/swift-argument-parser",
+      "use": "Resolved through SwiftTerm for the app only."
+    },
+    {
+      "id": "swift-png",
+      "version": "4.5.2",
+      "license": "Apache-2.0",
+      "source": "https://github.com/tayloraswift/swift-png",
+      "use": "Image support in SwiftTerm, app only."
+    },
+    {
+      "id": "website/fumadocs-core",
+      "version": "16.19.3",
+      "license": "MIT",
+      "source": "https://github.com/fuma-nama/fumadocs",
+      "use": "Website docs engine, search index and llms.txt generation",
+      "licenseVerification": "Read from the installed package metadata matching website/bun.lock on 2026-11-15."
+    },
+    {
+      "id": "website/fumadocs-mdx",
+      "version": "15.6.2",
+      "license": "MIT",
+      "source": "https://github.com/fuma-nama/fumadocs",
+      "use": "Website MDX content loader",
+      "licenseVerification": "Read from the installed package metadata matching website/bun.lock on 2026-11-15."
+    },
+    {
+      "id": "website/fumadocs-ui",
+      "version": "16.19.3",
+      "license": "MIT",
+      "source": "https://github.com/fuma-nama/fumadocs",
+      "use": "Website docs layout, search dialog and code blocks",
+      "licenseVerification": "Read from the installed package metadata matching website/bun.lock on 2026-11-15."
+    },
+    {
+      "id": "website/motion",
+      "version": "14.14.0",
+      "license": "MIT",
+      "source": "https://github.com/motiondivision/motion",
+      "use": "Website scroll-reveal springs",
+      "licenseVerification": "Read from the installed package metadata matching website/bun.lock on 2026-11-15."
+    },
+    {
+      "id": "website/next",
+      "version": "16.4.6",
+      "license": "MIT",
+      "source": "https://github.com/vercel/next.js",
+      "use": "Website framework and static export",
+      "licenseVerification": "Read from the installed package metadata matching website/bun.lock on 2026-11-15."
+    },
+    {
+      "id": "website/react",
+      "version": "19.3.1",
+      "license": "MIT",
+      "source": "https://github.com/react/react",
+      "use": "Website UI runtime",
+      "licenseVerification": "Read from the installed package metadata matching website/bun.lock on 2026-11-15."
+    },
+    {
+      "id": "website/react-dom",
+      "version": "19.3.1",
+      "license": "MIT",
+      "source": "https://github.com/react/react",
+      "use": "Website UI runtime",
+      "licenseVerification": "Read from the installed package metadata matching website/bun.lock on 2026-11-15."
+    },
+    {
+      "id": "mlx-serve",
+      "version": "26.11.4",
+      "license": "MIT",
+      "source": "https://github.com/ddalcu/mlx-serve",
+      "use": "On-demand macOS MLX model runtime; the upstream release binary, downloaded on first use and run unmodified",
+      "pin": {
+        "kind": "regex",
+        "path": "Sources/NoodleCore/MLXServeRuntime.swift",
+        "pattern": "static let version = \"([^\"]+)\""
+      }
+    },
+    {
+      "id": "mlx-serve/apache-2.0-notice",
+      "version": "26.11.4",
+      "license": "Apache-2.0",
+      "source": "https://github.com/ddalcu/mlx-serve/blob/v26.11.4/NOTICE",
+      "use": "Apache-2.0 Metal kernels and jinja.cpp inside the mlx-serve release; its LICENSE, LICENSE-APACHE-2.0 and NOTICE stay beside the installed binary",
+      "pin": {
+        "kind": "regex",
+        "path": "Sources/NoodleCore/MLXServeRuntime.swift",
+        "pattern": "static let version = \"([^\"]+)\""
+      }
+    },
+    {
+      "id": "qwen3-0.6b-mlx",
+      "version": "73e3e38d981303bc594367cd910ea6eb48349da8",
+      "license": "Apache-2.0",
+      "source": "https://huggingface.co/mlx-community/Qwen3-0.6B-4bit",
+      "use": "On-demand 4-bit MLX catalog model",
+      "pin": {
+        "kind": "regex",
+        "path": "Sources/noodle/Commands/Models/ModelCatalog.swift",
+        "pattern": "static let qwenRevision = \"([a-f0-9]{40})\""
+      }
+    },
+    {
+      "id": "qwen3.5-2b",
+      "version": "93760be4f1f69842a46bc13dbdc0f19e291392a3",
+      "license": "Apache-2.0",
+      "source": "https://huggingface.co/mlx-community/Qwen3.5-2B-MLX-4bit",
+      "use": "On-demand 4-bit MLX catalog model",
+      "pin": {
+        "kind": "regex",
+        "path": "Sources/noodle/Commands/Models/ModelCatalog.swift",
+        "pattern": "huggingface\\.co/mlx-community/Qwen3\\.5-2B-MLX-4bit/resolve/([a-f0-9]{40})/"
+      }
+    },
+    {
+      "id": "qwen3.5-4b",
+      "version": "32f3e8ecf65426fc3306969496342d504bfa13f3",
+      "license": "Apache-2.0",
+      "source": "https://huggingface.co/mlx-community/Qwen3.5-4B-MLX-4bit",
+      "use": "On-demand 4-bit MLX catalog model",
+      "pin": {
+        "kind": "regex",
+        "path": "Sources/noodle/Commands/Models/ModelCatalog.swift",
+        "pattern": "huggingface\\.co/mlx-community/Qwen3\\.5-4B-MLX-4bit/resolve/([a-f0-9]{40})/"
+      }
+    },
+    {
+      "id": "qwen3-embedding-0.6b",
+      "version": "6c3ae70858513f1a78e9cdca3cae330d9075cd2a",
+      "license": "Apache-2.0",
+      "source": "https://huggingface.co/mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ",
+      "use": "On-demand 4-bit MLX embedding model, served as API only",
+      "pin": {
+        "kind": "regex",
+        "path": "Sources/noodle/Commands/Models/ModelCatalog.swift",
+        "pattern": "huggingface\\.co/mlx-community/Qwen3-Embedding-0\\.6B-4bit-DWQ/resolve/([a-f0-9]{40})/"
+      }
+    },
+    {
+      "id": "qwen3-asr-0.6b",
+      "version": "313d850181767edf09f00a9c289becca70e58cd0",
+      "license": "Apache-2.0",
+      "source": "https://huggingface.co/mlx-community/Qwen3-ASR-0.6B-4bit",
+      "use": "On-demand 4-bit MLX speech-to-text model, served as API only",
+      "pin": {
+        "kind": "regex",
+        "path": "Sources/noodle/Commands/Models/ModelCatalog.swift",
+        "pattern": "huggingface\\.co/mlx-community/Qwen3-ASR-0\\.6B-4bit/resolve/([a-f0-9]{40})/"
+      }
+    },
+    {
+      "id": "kokoro-82m",
+      "version": "b5899d2ddd130ad8e3d81ea95e6346c7d88779bd",
+      "license": "Apache-2.0",
+      "source": "https://huggingface.co/ddalcu/Kokoro-82M-MLX-Serve",
+      "use": "On-demand text-to-speech model in the layout mlx-serve loads, served as API only",
+      "pin": {
+        "kind": "regex",
+        "path": "Sources/noodle/Commands/Models/ModelCatalog.swift",
+        "pattern": "huggingface\\.co/ddalcu/Kokoro-82M-MLX-Serve/resolve/([a-f0-9]{40})/"
+      }
+    },
+    {
+      "id": "mlx-serve-ui",
+      "version": "9a173773649218b866089dbe9851b2ba594f34f9",
+      "license": "MIT",
+      "source": "https://github.com/ddalcu/mlx-serve/tree/9a173773649218b866089dbe9851b2ba594f34f9",
+      "use": "Portions of the Models chat interface; app only",
+      "scope": "app"
+    },
+    {
+      "id": "website/font-geist",
+      "version": "next/font/google 16.4.6",
+      "license": "OFL-1.1",
+      "source": "https://github.com/vercel/geist-font",
+      "use": "Website code face (Geist Mono), self-hosted at build time",
+      "licenseVerification": "Google Fonts lists both families under the SIL Open Font License 1.1, checked 2026-11-21."
+    },
+    {
+      "id": "website/font-bricolage-grotesque",
+      "version": "next/font/google 16.4.6",
+      "license": "OFL-1.1",
+      "source": "https://github.com/ateliertriay/bricolage",
+      "use": "Website text face, self-hosted at build time",
+      "licenseVerification": "Google Fonts lists the family under the SIL Open Font License 1.1, checked 2026-11-21."
+    },
+    {
+      "id": "website/font-fraunces",
+      "version": "next/font/google 16.4.6",
+      "license": "OFL-1.1",
+      "source": "https://github.com/undercasetype/Fraunces",
+      "use": "Website heading face, self-hosted at build time",
+      "licenseVerification": "Google Fonts lists the family under the SIL Open Font License 1.1, checked 2026-11-24."
+    },
+    {
+      "id": "flux2-klein-4b",
+      "version": "7ee1b3aa8178a1240050490072196a57da2bf2a9",
+      "license": "Apache-2.0",
+      "source": "https://huggingface.co/Runpod/FLUX.2-klein-4B-mflux-4bit",
+      "use": "On-demand text-to-image model for Models > Create",
+      "pin": {
+        "kind": "regex",
+        "path": "Sources/noodle/Commands/Models/ModelCatalog.swift",
+        "pattern": "huggingface\\.co/Runpod/FLUX\\.2\\-klein\\-4B\\-mflux\\-4bit/resolve/([a-f0-9]{40})/"
+      }
+    },
+    {
+      "id": "bonsai2-27b",
+      "version": "24b5937a4a104a44f790b6ccbd0c79b6fabd4299",
+      "license": "Apache-2.0",
+      "source": "https://huggingface.co/prism-ml/Ternary-Bonsai-2-27B-mlx-2bit",
+      "use": "On-demand chat model with image input, the largest that loads on a 16 GB Mac",
+      "pin": {
+        "kind": "regex",
+        "path": "Sources/noodle/Commands/Models/ModelCatalog.swift",
+        "pattern": "huggingface\\.co/prism\\-ml/Ternary\\-Bonsai\\-2\\-27B\\-mlx\\-2bit/resolve/([a-f0-9]{40})/"
+      }
+    },
+    {
+      "id": "inkling2-mini-2.5bit",
+      "version": "d4a4f3f555fdf6f06102de1865d07e8ac5effe6d",
+      "license": "Apache-2.0",
+      "source": "https://huggingface.co/mlx-community/Inkling-2-Mini-oQ2.5e-mtp",
+      "use": "On-demand chat model with image input, the smallest Inkling 2 Mini pack",
+      "pin": {
+        "kind": "regex",
+        "path": "Sources/noodle/Commands/Models/ModelCatalog.swift",
+        "pattern": "huggingface\\.co/mlx\\-community/Inkling\\-2\\-Mini\\-oQ2\\.5e\\-mtp/resolve/([a-f0-9]{40})/"
+      }
+    },
+    {
+      "id": "inkling2-mini",
+      "version": "3eea042751cd296b7266628a8342c1749242e1fe",
+      "license": "Apache-2.0",
+      "source": "https://huggingface.co/mlx-community/Inkling-2-Mini-oQ4e-mtp",
+      "use": "On-demand chat model with image input, for Macs with 32 GB or more",
+      "pin": {
+        "kind": "regex",
+        "path": "Sources/noodle/Commands/Models/ModelCatalog.swift",
+        "pattern": "huggingface\\.co/mlx\\-community/Inkling\\-2\\-Mini\\-oQ4e\\-mtp/resolve/([a-f0-9]{40})/"
+      }
+    },
+    {
+      "id": "inkling-small",
+      "version": "f8a0af554e168077bdaf48e1fb6682fb395c807c",
+      "license": "Apache-2.0",
+      "source": "https://huggingface.co/mlx-community/Inkling-Small-mlx-2bit",
+      "use": "On-demand chat model for Macs with 128 GB or more",
+      "pin": {
+        "kind": "regex",
+        "path": "Sources/noodle/Commands/Models/ModelCatalog.swift",
+        "pattern": "huggingface\\.co/mlx\\-community/Inkling\\-Small\\-mlx\\-2bit/resolve/([a-f0-9]{40})/"
+      }
+    },
+    {
+      "id": "ltx-2.5-video",
+      "version": "e8f8c97cd6e4ff9c997e0d382c027ad9b61776bb",
+      "license": "LicenseRef-LTX-2-Community",
+      "source": "https://huggingface.co/ddalcu/LTX-2.5-MLX-Serve-4bit",
+      "use": "On-demand text-to-video model for Models > Create; listed as too big on 16 GB Macs",
+      "pin": {
+        "kind": "regex",
+        "path": "Sources/noodle/Commands/Models/ModelCatalog.swift",
+        "pattern": "huggingface\\.co/ddalcu/LTX\\-2\\.5\\-MLX\\-Serve\\-4bit/resolve/([a-f0-9]{40})/"
+      },
+      "note": "Not open source. LTX-2 Community License: free for entities under 10 million USD yearly revenue, larger companies need a paid license except for non-commercial use. LICENSE.md ships in the pack."
+    }
+  ]
+}

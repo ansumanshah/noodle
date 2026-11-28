@@ -1,0 +1,23 @@
+name: Bug report
+description: Something in Noodle does not work
+labels: [bug]
+body:
+  - type: input
+    id: version
+    attributes: {label: Noodle version, description: "Output of `noodle --version`"}
+    validations: {required: true}
+  - type: input
+    id: macos
+    attributes: {label: macOS version and chip}
+    validations: {required: true}
+  - type: textarea
+    id: steps
+    attributes: {label: Steps to reproduce, description: Commands you ran, ideally the shortest that fails}
+    validations: {required: true}
+  - type: textarea
+    id: expected
+    attributes: {label: Expected and actual behaviour}
+    validations: {required: true}
+  - type: textarea
+    id: diag
+    attributes: {label: "`noodle doctor` output", render: shell}

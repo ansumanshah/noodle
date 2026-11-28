@@ -1,0 +1,247 @@
+{
+ "_comment": "Single source for the site benchmark section. The home page section stays hidden until published is true and a metric has a number for Noodle and for at least one other engine. Leave unmeasured values null. Never paste another project's numbers or estimates.",
+ "published": false,
+ "updated": null,
+ "machine": null,
+ "engines": [
+  {
+   "id": "noodle",
+   "name": "Noodle"
+  },
+  {
+   "id": "orbstack",
+   "name": "OrbStack"
+  },
+  {
+   "id": "docker-desktop",
+   "name": "Docker Desktop"
+  },
+  {
+   "id": "podman",
+   "name": "Podman"
+  }
+ ],
+ "versions": {
+  "noodle": null,
+  "orbstack": null,
+  "docker-desktop": null,
+  "podman": null
+ },
+ "metrics": [
+  {
+   "id": "npm-install",
+   "group": "Daily work",
+   "label": "Install npm dependencies on a Mac bind mount",
+   "unit": "s",
+   "stat": "median of per-pass medians",
+   "lower_is_better": true,
+   "values": {
+    "noodle": null,
+    "orbstack": null,
+    "docker-desktop": null,
+    "podman": null
+   }
+  },
+  {
+   "id": "edit-rebuild-warm",
+   "group": "Edit loop",
+   "label": "Rebuild after a one-line change, warm cache",
+   "unit": "s",
+   "stat": "median of per-pass medians",
+   "lower_is_better": true,
+   "values": {
+    "noodle": null,
+    "orbstack": null,
+    "docker-desktop": null,
+    "podman": null
+   }
+  },
+  {
+   "id": "edit-compose-swap",
+   "group": "Edit loop",
+   "label": "Rebuild and swap the running Compose service",
+   "unit": "s",
+   "stat": "median of per-pass medians",
+   "lower_is_better": true,
+   "values": {
+    "noodle": null,
+    "orbstack": null,
+    "docker-desktop": null,
+    "podman": null
+   }
+  },
+  {
+   "id": "edit-bind-mount",
+   "group": "Edit loop",
+   "label": "Save a file on the Mac, read it in the container",
+   "unit": "ms",
+   "stat": "median of per-pass medians",
+   "lower_is_better": true,
+   "values": {
+    "noodle": null,
+    "orbstack": null,
+    "docker-desktop": null,
+    "podman": null
+   }
+  },
+  {
+   "id": "compose-up",
+   "group": "Daily work",
+   "label": "Start three Compose services",
+   "unit": "s",
+   "stat": "median of per-pass medians",
+   "lower_is_better": true,
+   "values": {
+    "noodle": null,
+    "orbstack": null,
+    "docker-desktop": null,
+    "podman": null
+   }
+  },
+  {
+   "id": "cli-run",
+   "group": "Start",
+   "label": "docker run --rm alpine true",
+   "unit": "ms",
+   "stat": "median of per-pass medians",
+   "lower_is_better": true,
+   "values": {
+    "noodle": null,
+    "orbstack": null,
+    "docker-desktop": null,
+    "podman": null
+   }
+  },
+  {
+   "id": "cli-exec",
+   "group": "Start",
+   "label": "docker exec into a running container",
+   "unit": "ms",
+   "stat": "median of per-pass medians",
+   "lower_is_better": true,
+   "values": {
+    "noodle": null,
+    "orbstack": null,
+    "docker-desktop": null,
+    "podman": null
+   }
+  },
+  {
+   "id": "idle-memory",
+   "group": "Memory",
+   "label": "Resident memory with no containers",
+   "unit": "MB",
+   "stat": "footprint of every process the engine owns, 60 s idle",
+   "lower_is_better": true,
+   "values": {
+    "noodle": null,
+    "orbstack": null,
+    "docker-desktop": null,
+    "podman": null
+   }
+  }
+ ],
+ "recorded_noodle_runs": [
+  {
+   "source": "maintainer run record, not part of the source release",
+   "revision": "6004b38",
+   "note": "Noodle only, two passes on one Mac, 2 CPU and 2 GiB guest, 30 samples after 5 warm-ups. System load was between 4 and 6 during the run. Taken before the disk and build recovery changes.",
+   "rows": [
+    {
+     "label": "Daemon footprint, fresh, VM not started",
+     "unit": "MiB",
+     "value": 2.89
+    },
+    {
+     "label": "Docker API container run, --network none, p50",
+     "unit": "ms",
+     "value": 3.79
+    },
+    {
+     "label": "Docker API container run, bridge network, p50",
+     "unit": "ms",
+     "value": 2.89
+    },
+    {
+     "label": "docker run --rm alpine true through the CLI, p50",
+     "unit": "ms",
+     "value": 33.81
+    },
+    {
+     "label": "docker exec through the CLI, p50",
+     "unit": "ms",
+     "value": 12.58
+    },
+    {
+     "label": "First container after daemon start",
+     "unit": "s",
+     "value": 4.6
+    },
+    {
+     "label": "Container start after the VM slept",
+     "unit": "ms",
+     "value": 1255.7
+    },
+    {
+     "label": "Daemon footprint with the VM up",
+     "unit": "MiB",
+     "value": 12.0
+    },
+    {
+     "label": "Apple VM helper footprint, fresh",
+     "unit": "MB",
+     "value": 115
+    }
+   ]
+  },
+  {
+   "rows": [
+    {
+     "label": "Daemon footprint, fresh, VM not started",
+     "unit": "MiB",
+     "value": 3.06
+    },
+    {
+     "label": "Docker API container run, --network none, p50",
+     "unit": "ms",
+     "value": 2.67
+    },
+    {
+     "label": "Docker API container run, bridge network, p50",
+     "unit": "ms",
+     "value": 7.22
+    },
+    {
+     "label": "docker run --rm alpine true through the CLI, p50",
+     "unit": "ms",
+     "value": 35.76
+    },
+    {
+     "label": "docker exec through the CLI, p50",
+     "unit": "ms",
+     "value": 15.39
+    },
+    {
+     "label": "First container after daemon start",
+     "unit": "s",
+     "value": 0.75
+    },
+    {
+     "label": "Container start after the VM slept",
+     "unit": "ms",
+     "value": 671.4
+    },
+    {
+     "label": "Daemon footprint with the VM up",
+     "unit": "MiB",
+     "value": 8.28
+    },
+    {
+     "label": "Apple VM helper footprint, fresh",
+     "unit": "MB",
+     "value": 103
+    }
+   ]
+  }
+ ]
+}

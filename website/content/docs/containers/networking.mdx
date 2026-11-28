@@ -1,0 +1,99 @@
+---
+title: "Networking"
+description: "Publish ports, use local container names and HTTPS, and manage host dev servers, public links and Finder access."
+---
+
+A container with a web port is served at `<name>.localhost` on port 80, with no port to publish or remember. `noodle names` lists the names. Publish a port only for a non-web service or a fixed address. Bind to loopback for a local-only service.
+
+```sh
+docker --context noodle run -d --name web -p 127.0.0.1:8080:80 nginx:alpine
+curl http://web.localhost/
+```
+
+Noodle supports TCP and UDP publishing, DNS on user networks, and IPv6 networks. An ordinary container on a non-internal network reaches a Mac service bound only to `127.0.0.1` through `host.docker.internal`, by a TCP relay. Internal networks, UDP and privileged containers do not use the relay.
+
+<span id="names"></span>
+
+## Local names
+
+Every running container that has a web port gets a `*.localhost` name served by the daemon on loopback. `noodle names` lists them.
+
+```sh
+noodle names
+noodle names --json
+```
+
+- A container needs a published port, an `EXPOSE`, or the label `app.noodle.http.port`.
+- Name a process already running on your Mac with `noodle names add NAME PORT`, for example `noodle names add api.myapp 3000`. It answers at `api.myapp.localhost` and `api.myapp.noodle.local` over HTTP and HTTPS, WebSockets included. `noodle names remove NAME` drops it. The name survives a daemon restart, needs no root and edits no system file. A container with the same name always wins, and `add` tells you when that happens. `noodle names --json` marks each name as `host` or `container`.
+- A request to a name with no route, or to an app that is not listening, gets a JSON body (`error`, `name`, `hint`) with 404 or 502 unless the client asks for HTML, as a browser does. A request that has already passed through Noodle is refused with 508.
+- HTTP uses port 80 and HTTPS port 443 on loopback, without root and without editing system files. If another app holds one, Noodle uses 10080 or 10443 instead and `noodle names` says why. `NOODLE_LOCAL_NAMES=0` turns names off.
+- HTTPS is served from a local certificate authority that Noodle creates. A certificate is chosen by the name the client asks for.
+- Browsers distrust the authority until you add it. `noodle names ca` prints the certificate path. `noodle names trust` adds it to your login keychain as a trusted root for SSL, and macOS asks for your password. `noodle names untrust` removes it. Noodle never runs `trust` by itself.
+- HTTPS names accept TLS 1.3 and HTTP/2, and fall back to HTTP/1.1 for clients that do not offer h2. WebSocket upgrades pass through.
+
+**Checked:** these end-to-end cases passed: `names-container-name-serves-http`, `names-standard-port-taken-falls-back-with-message`, `names-https-selects-certificate-by-sni`, `names-dev-https-uses-noodle-ca`, `names-dev-tls13-and-h2-falls-back-to-http11`, `names-dev-websocket-upgrade-echo`.
+
+**Not verified:** `names trust` and `names untrust` change the keychain and were not run for this page.
+
+<span id="dev"></span>
+
+## noodle dev
+
+Runs a dev server on your Mac, not in a container, under a name like `myapp.localhost`.
+
+```sh
+noodle dev api.myapp -- node server.js
+```
+
+- Noodle reserves a free loopback port and starts your command with `PORT` set to it and `HOST=127.0.0.1`. Your server must listen on `$PORT`.
+- It prints the HTTPS URL, then runs the command in the foreground. The name exists only while the command runs. SIGINT, SIGTERM, SIGHUP and SIGQUIT are forwarded to the command's process group, and the exit code is the command's.
+- The name comes from the first argument if it is not an executable. Put `--` before the command to infer the name, or after a name that is also an executable. A name may be several dot-separated lowercase labels such as `api.myapp`.
+- Inferred names use the `name` in `package.json` (the part after a scope), then the Git root folder, then the current folder. In a linked Git worktree the branch's last segment is prefixed, so `fix-login` in a worktree of `myapp` becomes `fix-login.myapp.localhost`. A detached worktree uses the short commit.
+- A dev name and a container name can collide. The container stays reachable and the later arrival gets a suffixed alias. If the owning `noodle dev` process is killed, the daemon removes its route.
+- The daemon must be running.
+
+**Checked:** these end-to-end cases passed: `dev-explicit-name-exports-free-loopback-port`, `dev-concurrent-processes-get-distinct-free-ports`, `dev-default-package-name-and-executable-ambiguity`, `dev-default-git-root-name`, `dev-default-folder-name`, `dev-worktree-prefix-uses-sanitized-last-branch-segment`, `dev-explicit-separator-allows-executable-name`, `dev-exit-status-and-registration-removal`, `dev-term-forwards-signal-and-removes-name`, `dev-int-forwards-signal-and-removes-name`, `dev-term-ignored-by-child-still-unregisters-route`, `dev-killed-owner-is-reaped`, `dev-last-route-removal-closes-both-listeners`, `names-dev-and-container-collision-keeps-container-reachable`, `names-container-after-dev-collision-gets-suffixed-alias`, `names-dev-and-container-have-independent-lifetimes`.
+
+<span id="link"></span>
+
+## noodle link
+
+Publishes one container's HTTP service at a temporary `https://…trycloudflare.com` address through a Cloudflare quick tunnel. Anyone with the URL can reach the service. Read the exposure and consent rules before running the command.
+
+```sh
+noodle link web:8080
+noodle link list
+noodle link stop --all
+```
+
+- Every HTTP path on that port becomes reachable by anyone who has the URL. The URL is not authentication, and Noodle adds none. Cloudflare terminates HTTPS and can read headers, cookies, credentials and bodies.
+- Each create prints the container, its address and port and these warnings, then asks for `yes`. `--yes` skips the question. Without a terminal and without `--yes` the command fails before anything starts. Consent is never remembered.
+- With no `:PORT` the container must declare exactly one TCP port. UDP and Docker API ports (2375, 2376) are refused. Host networking, no networking, `container:` network mode, and mounts of the Docker socket or the Noodle home are refused. A privileged container, or one with `seccomp=unconfined`, needs `--allow-privileged`.
+- `--json` prints one status object. `link list` shows state and URL. `link stop ID` or `--all` closes the tunnel.
+- A link ends when the container stops, is removed, paused, restarted or leaves its network. No link survives a daemon restart or a reboot.
+- The first use downloads cloudflared 2026.11.0 from GitHub and checks its SHA-256 before extraction. A Cloudflare account is not required.
+
+**Checked:** these end-to-end cases passed: `link-requires-explicit-confirmation`, `link-json-and-helper-arguments-pin-one-service`, `link-invalid-targets-fail-without-starting-helper`, `link-docker-api-port-and-host-network-are-refused`, `link-privileged-container-requires-separate-consent`, `link-stop-reaps-helper-and-closes-relay`, `link-container-stop-reaps-helper`, `link-daemon-restart-does-not-restore-public-access`, `link-download-archive-mismatch-is-refused`. Those cases run against a stand-in for cloudflared.
+
+**Not verified:** no real tunnel has been opened. `link-real-tunnel-reaches-selected-container` was skipped in the recorded run, and the pinned cloudflared download has not been fetched.
+
+<span id="finder"></span>
+
+## noodle finder
+
+Serves container and volume files read-only over WebDAV on loopback, and optionally mounts them where Finder can see them.
+
+```sh
+noodle finder mount
+noodle finder mount ~/noodle-files
+noodle finder mount --serve-only
+noodle finder status
+noodle finder unmount
+```
+
+- The default mount point is `~/.noodle/run/finder`. A mount point you name must be an empty, real directory that you own, with no symlinks and no `..`. It is created if the last component is missing.
+- The mount uses `/sbin/mount_webdav` with `rdonly,nosuid,nodev,noexec`. Writes, path traversal and symlink escapes are rejected. Browsing a stopped container does not start it.
+- `--serve-only` starts the server without mounting. `status` prints JSON with `url`, `mounted` and `mountpoint`.
+- `unmount` runs `umount` and then stops the server. If the mount is busy the server stays up, and you can retry.
+
+**Checked:** these end-to-end cases passed: `finder-real-mount-is-read-only-and-unmounts`, `finder-cli-repeated-operations-and-invalid-mountpoint`, `finder-rejects-writes-traversal-and-symlinks`, `finder-stopped-container-browsing-does-not-start-it`, `finder-live-container-and-volume-reads`, `finder-listener-rejects-non-loopback`, `finder-unmount-closes-listener-and-rotates-token`, `finder-range-reads-large-file`.

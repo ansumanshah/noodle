@@ -1,0 +1,66 @@
+---
+title: "Install"
+description: "Check Mac requirements, install the app, set up Docker tools and remove Noodle."
+---
+
+Open Noodle. It opens on Models, which needs no further setup: pick a model, press Run and start chatting. See the [Models quickstart](/docs/models/quickstart/).
+
+The first time you open Containers, the setup sheet appears. It finds Docker tools, asks which engine to use, offers to copy existing Docker data and runs a test container. You can skip it and reopen it from **Noodle > Set Up Noodle…**.
+
+[Download Noodle 26.11.7](https://github.com/ansumanshah/noodle/releases/download/v26.11.7/Noodle-26.11.7.dmg) (`Noodle-26.11.7.dmg`), open the disk image and drag Noodle to Applications. Or install it with Homebrew:
+
+```sh
+brew install --cask ansumanshah/tap/noodle
+```
+
+Homebrew 7 asks you to trust a third-party tap first. If it refuses, run `brew trust ansumanshah/tap` and repeat the install.
+
+## Requirements
+
+- An Apple silicon Mac running macOS 26 or later.
+- Models need disk space for each model you download, from 0.35 GB for the smallest to 3.06 GB for the default chat model. See the [catalog](/docs/models/catalog/).
+- Setup downloads the Docker CLI automatically when no compatible CLI is installed (19.6 MB).
+
+Setup reuses compatible tools already on the Mac. Compose and Buildx download on the first `docker compose`, `docker buildx` or `docker build` command. Setup leaves existing plugins in place. Each download is the real upstream tool, verified against its pinned checksum. For offline preparation, `noodle setup --tools` prefetches missing clients, including deferred plugins; `noodle tools install` installs all the pinned clients. See [first-use downloads](/docs/containers/images/#downloads) for sizes.
+
+<span id="build"></span>
+
+## Availability
+
+Noodle 26.11.7 is on [GitHub releases](https://github.com/ansumanshah/noodle/releases). Follow the [release feed](/releases.xml) for new versions.
+
+<span id="setup"></span>
+
+## Set up
+
+The app handles setup, starts Noodle and checks its first container. After **Hello from Noodle**, copy the Compose command to start your own project.
+
+For terminal setup, `noodle setup` adds a `noodle` Docker context and a LaunchAgent. Setup makes Noodle your Docker context when no other engine is running; otherwise add `--context noodle` or run `noodle setup --use`. `noodle setup --no-use` never switches it.
+
+```sh
+noodle setup --no-use
+noodle start
+noodle status --startup
+```
+
+Use [Quickstart](/docs/containers/quickstart/) to run a container. See [CLI status for scripts](/docs/cli/#status) for JSON status.
+
+## Uninstall
+
+Choose **Noodle > Uninstall Noodle…**, or open **Settings > Diagnostics > Uninstall Noodle…**. It stops Noodle, removes its LaunchAgents, Docker context, owned CLI copies and links, PATH block, socket and setup receipt. If Noodle is selected, the app restores the context saved by app setup when it still exists, otherwise `default`. Data stays unless you check **Also delete containers, images and volumes**, which also deletes downloaded tools and models. Review the result, quit, then move the app to the Trash. The other panes are in [Settings](/docs/settings/).
+
+From the terminal:
+
+```sh
+noodle uninstall
+```
+
+This removes Noodle-owned setup items and keeps data. If Noodle was selected, the CLI returns Docker to its default context. To delete Noodle data too, use `noodle uninstall --delete-data --yes`. This deletes every file in the displayed data folder, including files you placed there. Files outside it and keychain trust stay in place.
+
+Stop Linux machines before uninstalling. Data deletion requires Noodle’s data-folder marker and refuses your home directory, its parents and `/`. For an older unmarked installation, run `noodle setup` before retrying data deletion. If shell-profile cleanup fails, fix the reported file and retry. Noodle keeps the cleanup receipt until that succeeds.
+
+<span id="old-disks"></span>
+
+## Old experimental disks
+
+Noodle leaves older data disks without an ext4 journal untouched. Follow the [disk migration guide](/docs/troubleshooting/#migrate-disk) to check the disk and keep a backup.

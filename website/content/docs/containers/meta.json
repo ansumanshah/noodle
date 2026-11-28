@@ -1,0 +1,6 @@
+{
+  "title": "Noodle Containers",
+  "description": "Docker-compatible containers, Compose, machines and Kubernetes",
+  "root": true,
+  "pages": ["index", "quickstart", "migrating", "images", "networking", "machines", "mac-machines", "overview", "volumes-networks"]
+}

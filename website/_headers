@@ -1,0 +1,26 @@
+# Cloudflare Pages rules, carried over from the Astro site.
+# script-src allows inline scripts here because Next.js inlines its page payload. The build
+# (scripts/postbuild.mjs) adds a <meta> Content-Security-Policy to every HTML page that lists the
+# SHA-256 of each inline script. Browsers enforce both policies, so only those exact scripts run.
+/*
+  Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+/assets/*
+  Cache-Control: public, max-age=3600, must-revalidate
+/brand/*
+  Cache-Control: public, max-age=3600, must-revalidate
+/data/*
+  Cache-Control: no-cache
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+# Share cards from opengraph-image.tsx export without an extension; nosniff would block them as octet-stream.
+/opengraph-image
+  Content-Type: image/png
+/models/opengraph-image-*
+  Content-Type: image/png
+/containers/opengraph-image-*
+  Content-Type: image/png
+/runners/opengraph-image-*
+  Content-Type: image/png

@@ -1,0 +1,19 @@
+virtio_pci: poll the reset status without a timer-tick sleep
+
+vp_reset() waits for the device to read back status 0. On
+Virtualization.framework the first read is usually still nonzero, so
+each device costs one msleep(1), which is two jiffies: 8 ms at HZ=250.
+With eight virtio devices that is 65 ms of a 90 ms kernel boot.
+Measured on a Mac mini M4, 2026-11-07.
+
+--- a/drivers/virtio/virtio_pci_modern.c
++++ b/drivers/virtio/virtio_pci_modern.c
+@@ -556,7 +556,7 @@ static void vp_reset(struct virtio_device *vdev)
+ 	 * including MSI-X interrupts, if any.
+ 	 */
+ 	while (vp_modern_get_status(mdev))
+-		msleep(1);
++		usleep_range(20, 100);
+
+ 	vp_modern_avq_cleanup(vdev);
+

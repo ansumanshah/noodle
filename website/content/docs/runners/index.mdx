@@ -1,0 +1,32 @@
+---
+title: Noodle Runners
+description: Run your GitHub Actions jobs on your own Mac. Each job gets a fresh runner that is removed when it ends.
+---
+
+Change one line in a workflow and its jobs run on your Mac instead of a GitHub-hosted machine:
+
+```yaml
+jobs:
+  test:
+    runs-on: [self-hosted, noodle]
+```
+
+Noodle Runners uses GitHub's official runner, one single-use runner per job. When GitHub queues a job that asks for `noodle`, Noodle registers a runner, the job runs, and the runner is unregistered and deleted. Right after a job, one fresh runner waits for 5 minutes so a quick follow-up push does not wait for registration.
+
+- **Linux jobs** run in a container on Noodle's engine, arm64.
+- **macOS jobs** run directly on your Mac with the Xcode you have installed. Turn them on per repo.
+- **Nothing runs while idle.** With runners off there is no process, no timer and no network traffic. With runners on, the helper asks GitHub about each added repo every 10 seconds, and a warm runner stays up for 5 minutes after a job.
+- **Care for the Mac.** Before it starts a runner, the helper checks free disk on the volume holding the Noodle home and the system's memory pressure. Below 10 GB free, or when the Mac reports critical memory pressure, it starts no new runner and the job stays queued on GitHub. A job already running is never stopped. It resumes by itself once there is 15 GB free and memory is back to normal. `noodle runners status` and `noodle runners list` show a line such as `Holding new jobs: 6 GB free on the Noodle volume, needs 10 GB`.
+- **Fast follow-ups.** After a job, one runner per repo and kind stays registered for 5 minutes, so the next push skips registration. A repo's first job starts on the first poll, within about 10 seconds.
+- **Toolchains stay installed.** Each repo keeps one cache volume. `~/.cache` (with the runner tool cache inside it) and `.bun`, `.cargo`, `.rustup`, `.npm`, `.gradle`, `.m2`, `.nuget`, `.deno` and `.local` live there, so `setup-*` steps are near instant on the next job.
+- **Your Mac stays awake** while a job runs, and sleeps normally once the last one ends.
+
+<Callout type="warn" title="Private repos by default">
+On a public repo, a pull request from a fork can start a job on your Mac. Noodle refuses public repos unless you pass `--allow-public`. Read [Security](/docs/runners/security/) first.
+</Callout>
+
+## Next
+
+- [Quickstart](/docs/runners/quickstart/): sign in, add a repo, push.
+- [Labels](/docs/runners/labels/): which `runs-on` lines Noodle picks up.
+- [macOS jobs](/docs/runners/macos/): Xcode builds on your Mac.

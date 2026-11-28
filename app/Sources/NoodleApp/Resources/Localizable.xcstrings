@@ -1,0 +1,3352 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+
+    },
+    " · " : {
+
+    },
+    "#%lld %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "#%1$lld %2$@"
+          }
+        }
+      }
+    },
+    "$" : {
+
+    },
+    "%@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
+    "%@ (%lld)" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ (%2$lld)"
+          }
+        }
+      }
+    },
+    "%@ (⌘%@)" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ (⌘%2$@)"
+          }
+        }
+      }
+    },
+    "%@ Run “%@” in Terminal for details." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ Run “%2$@” in Terminal for details."
+          }
+        }
+      }
+    },
+    "%@ Showing the last loaded containers." : {
+
+    },
+    "%@ URL copied" : {
+
+    },
+    "%@ didn't finish for %@. %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ didn't finish for %2$@. %3$@"
+          }
+        }
+      }
+    },
+    "%@ didn't finish. %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ didn't finish. %2$@"
+          }
+        }
+      }
+    },
+    "%@ is not running" : {
+
+    },
+    "%@ is running" : {
+
+    },
+    "%@ started" : {
+
+    },
+    "%@ is set in this environment. A shell with it set ignores the saved context until you unset it." : {
+
+    },
+    "%@ needs more memory than this Mac has. Pick a smaller model." : {
+
+    },
+    "%@ of %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ of %2$@"
+          }
+        }
+      }
+    },
+    "%@ prefers %@, which isn't installed. Get it from Library, or keep chatting with the current model." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ prefers %2$@, which isn't installed. Get it from Library, or keep chatting with the current model."
+          }
+        }
+      }
+    },
+    "%@ received" : {
+
+    },
+    "%@ reclaimable" : {
+
+    },
+    "%@ s" : {
+
+    },
+    "%@ s to first word" : {
+
+    },
+    "%@ setup copied" : {
+
+    },
+    "%@ used" : {
+
+    },
+    "%@ words/s" : {
+
+    },
+    "%@ · %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ · %2$@"
+          }
+        }
+      }
+    },
+    "%@ · %@ · %@ · %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ · %2$@ · %3$@ · %4$@"
+          }
+        }
+      }
+    },
+    "%@, %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@, %2$@"
+          }
+        }
+      }
+    },
+    "%@, %@, %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@, %2$@, %3$@"
+          }
+        }
+      }
+    },
+    "%@, %lld running" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@, %2$lld running"
+          }
+        }
+      }
+    },
+    "%@, done" : {
+
+    },
+    "%@. %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@. %2$@"
+          }
+        }
+      }
+    },
+    "%@. Choose who answers in this chat" : {
+
+    },
+    "%@. Names that already exist in Noodle are skipped." : {
+
+    },
+    "%@/%@ · %@ · %@ ready · %lld restarts" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@/%2$@ · %3$@ · %4$@ ready · %5$lld restarts"
+          }
+        }
+      }
+    },
+    "%@/s in · %@/s out" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@/s in · %2$@/s out"
+          }
+        }
+      }
+    },
+    "%lld" : {
+
+    },
+    "%lld CPUs · %llu GiB RAM" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld CPUs · %2$llu GiB RAM"
+          }
+        }
+      }
+    },
+    "%lld apps, %lld running. Each runs on your Mac and can use your local model." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld apps, %2$lld running. Each runs on your Mac and can use your local model."
+          }
+        }
+      }
+    },
+    "%lld containers running" : {
+
+    },
+    "%lld installed" : {
+
+    },
+    "%lld of %lld containers counted" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld of %2$lld containers counted"
+          }
+        }
+      }
+    },
+    "%lld of %lld lines" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld of %2$lld lines"
+          }
+        }
+      }
+    },
+    "%lld of %lld recent lines" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld of %2$lld recent lines"
+          }
+        }
+      }
+    },
+    "%lld of %lld running" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld of %2$lld running"
+          }
+        }
+      }
+    },
+    "%lld of %lld services running" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld of %2$lld services running"
+          }
+        }
+      }
+    },
+    "%lld of %lld steps cached" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld of %2$lld steps cached"
+          }
+        }
+      }
+    },
+    "%lld packages" : {
+
+    },
+    "%lld pt" : {
+
+    },
+    "%lld running" : {
+
+    },
+    "%lld running · %lld total" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld running · %2$lld total"
+          }
+        }
+      }
+    },
+    "%lld steps, %lld stored layers. Base first." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld steps, %2$lld stored layers. Base first."
+          }
+        }
+      }
+    },
+    "%lld steps. Base first." : {
+
+    },
+    "%lld/%lld running" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld/%2$lld running"
+          }
+        }
+      }
+    },
+    "/" : {
+
+    },
+    "1 container running" : {
+
+    },
+    "2 seconds" : {
+
+    },
+    "4 seconds" : {
+
+    },
+    "A GitHub star helps other developers find Noodle." : {
+
+    },
+    "A machine named %@ already exists." : {
+
+    },
+    "A model that has not been used for this long is unloaded to free memory, and the next request loads it again. A change applies the next time a model starts; a model that is running keeps its current setting until you unload it." : {
+
+    },
+    "A running container with a web port gets a name ending in .localhost, over HTTP and HTTPS. For HTTPS without a browser warning, run noodle names trust once." : {
+
+    },
+    "API Key Copied" : {
+
+    },
+    "API key hidden" : {
+
+    },
+    "Add" : {
+
+    },
+    "Add Context Only" : {
+
+    },
+    "Add Folder…" : {
+
+    },
+    "Add Repo" : {
+
+    },
+    "Add Repo…" : {
+
+    },
+    "Add a Repo" : {
+
+    },
+    "Add a private repo and its jobs run on this Mac." : {
+
+    },
+    "Add a repo" : {
+
+    },
+    "Add assistant" : {
+
+    },
+    "Added" : {
+
+    },
+    "Address" : {
+
+    },
+    "Adds a marked PATH block to ~/%@" : {
+
+    },
+    "Adds the noodle context and keeps %@ as the default." : {
+
+    },
+    "Advanced" : {
+
+    },
+    "After this" : {
+
+    },
+    "All" : {
+
+    },
+    "All Levels" : {
+
+    },
+    "All containers in this Compose project are removed. Volumes and images are kept." : {
+
+    },
+    "Allow a public repo (a pull request from a fork can run code on this Mac)" : {
+
+    },
+    "Allow other devices to use my models" : {
+
+    },
+    "Alpine 3.22" : {
+
+    },
+    "Also copy from %@" : {
+
+    },
+    "Also delete containers, images and volumes" : {
+
+    },
+    "Also run macOS jobs (Xcode builds) on this Mac" : {
+
+    },
+    "Also use for git clone and runners" : {
+
+    },
+    "Answers with no special instructions. Add your own assistant to give the model a role." : {
+
+    },
+    "Anyone with the link can connect, and Noodle adds no sign-in. Traffic passes through Cloudflare, which can read it, passwords included. The app behind a link keeps its mounted folders and network access." : {
+
+    },
+    "Appearance" : {
+
+    },
+    "Apple VM worker CPU. 100% equals one host core." : {
+
+    },
+    "Applies to docker buildx build. Plain docker build uses the engine’s default builder." : {
+
+    },
+    "Approved folders" : {
+
+    },
+    "Apps" : {
+
+    },
+    "Ask Noodle" : {
+
+    },
+    "Ask a question…" : {
+
+    },
+    "Ask anything. It stays on this Mac." : {
+
+    },
+    "Ask the local model running in Noodle and get the answer as text." : {
+
+    },
+    "Asleep" : {
+
+    },
+    "Assistants could not be saved. They are still available in this window." : {
+
+    },
+    "Attach file" : {
+
+    },
+    "Attached audio, %@" : {
+
+    },
+    "Attached image %lld of %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Attached image %1$lld of %2$lld"
+          }
+        }
+      }
+    },
+    "Attached video, %@" : {
+
+    },
+    "Automatic forwarding for LoadBalancer and NodePort services" : {
+
+    },
+    "Back" : {
+
+    },
+    "Back to Files" : {
+
+    },
+    "Back to files" : {
+
+    },
+    "Beta" : {
+
+    },
+    "Binary file, %@. Save it to Downloads to open it." : {
+
+    },
+    "Browse Images" : {
+
+    },
+    "Browse Library" : {
+
+    },
+    "Browse container files and volumes through a read-only mount. Browsing a stopped container does not start it." : {
+
+    },
+    "Browsing runs a command inside the container." : {
+
+    },
+    "Build an image and Noodle records its steps, cache use and logs here." : {
+
+    },
+    "Build cache" : {
+
+    },
+    "Build log" : {
+
+    },
+    "Builder" : {
+
+    },
+    "Builds" : {
+
+    },
+    "Buildx builder" : {
+
+    },
+    "CPU" : {
+
+    },
+    "CPU %@" : {
+
+    },
+    "CPU and memory changes apply the next time the VM starts." : {
+
+    },
+    "CPU and memory configured for the next Linux VM start." : {
+
+    },
+    "CPUs" : {
+
+    },
+    "CPUs: %lld" : {
+
+    },
+    "Cache" : {
+
+    },
+    "Cache sizes are unavailable" : {
+
+    },
+    "Cache sizes are unavailable until the engine runs." : {
+
+    },
+    "Caches" : {
+
+    },
+    "Cancel" : {
+
+    },
+    "Cancel Copy" : {
+
+    },
+    "Cancel Installation" : {
+
+    },
+    "Cancel Pull" : {
+
+    },
+    "Cancel response" : {
+
+    },
+    "Cancelling response…" : {
+
+    },
+    "Can’t list this folder" : {
+
+    },
+    "Change…" : {
+
+    },
+    "Chat" : {
+
+    },
+    "Chat settings" : {
+
+    },
+    "Chat with AI that runs on your Mac" : {
+
+    },
+    "Chatting with %@" : {
+
+    },
+    "Check Cache Usage" : {
+
+    },
+    "Check Now" : {
+
+    },
+    "Check Workflows" : {
+
+    },
+    "Check and Save" : {
+
+    },
+    "Check for updates automatically" : {
+
+    },
+    "Check the spelling or try another search." : {
+
+    },
+    "Check your connection and refresh, or bring your own model file." : {
+
+    },
+    "Checking" : {
+
+    },
+    "Checking Compose…" : {
+
+    },
+    "Checking Docker…" : {
+
+    },
+    "Checking GitHub every 10 seconds" : {
+
+    },
+    "Checking for a newer version…" : {
+
+    },
+    "Checking for newer images…" : {
+
+    },
+    "Checking restore image" : {
+
+    },
+    "Checking the file’s checksum…" : {
+
+    },
+    "Checking…" : {
+
+    },
+    "Checks every six hours while the Noodle window is open and downloads a verified update in the background. When off, only Check Now contacts the update server." : {
+
+    },
+    "Choose Folder…" : {
+
+    },
+    "Choose IPSW…" : {
+
+    },
+    "Choose a builder" : {
+
+    },
+    "Choose what to copy" : {
+
+    },
+    "Choose who answers in this chat" : {
+
+    },
+    "Clean Up" : {
+
+    },
+    "Clean up?" : {
+
+    },
+    "Clear" : {
+
+    },
+    "Clear Scan Database…" : {
+
+    },
+    "Clear Unused Cache" : {
+
+    },
+    "Clear Unused Cache…" : {
+
+    },
+    "Clear search" : {
+
+    },
+    "Clear the cache of %@?" : {
+
+    },
+    "Clear the scan database?" : {
+
+    },
+    "Clear unused Noodle build cache?" : {
+
+    },
+    "Close" : {
+
+    },
+    "Close %@" : {
+
+    },
+    "Close Details" : {
+
+    },
+    "Close Pull" : {
+
+    },
+    "Close a few apps or pick a smaller model." : {
+
+    },
+    "Close details" : {
+
+    },
+    "Close pane" : {
+
+    },
+    "Close panel and end its sessions (⌃`)" : {
+
+    },
+    "Close terminal panel" : {
+
+    },
+    "Collapsed" : {
+
+    },
+    "Command" : {
+
+    },
+    "Compose" : {
+
+    },
+    "Compose and Buildx download on first use with docker compose or docker build." : {
+
+    },
+    "Compose and k3s" : {
+
+    },
+    "Compose needs attention" : {
+
+    },
+    "Confirm the shutdown inside macOS if prompted." : {
+
+    },
+    "Connected" : {
+
+    },
+    "Connecting" : {
+
+    },
+    "Connecting to Noodle…" : {
+
+    },
+    "Connecting…" : {
+
+    },
+    "Connection lost" : {
+
+    },
+    "Connections" : {
+
+    },
+    "Connect…" : {
+
+    },
+    "Container" : {
+
+    },
+    "Container logs" : {
+
+    },
+    "Container name (optional)" : {
+
+    },
+    "Containers" : {
+
+    },
+    "Containers in this project appear here once Compose creates them." : {
+
+    },
+    "Containers running in it stop. Run `noodle kubernetes start` afterwards to bring the cluster back with the new setting." : {
+
+    },
+    "Context" : {
+
+    },
+    "Continue" : {
+
+    },
+    "Conversation history: %@" : {
+
+    },
+    "Copied" : {
+
+    },
+    "Copies a short setup with this server’s address and key." : {
+
+    },
+    "Copy" : {
+
+    },
+    "Copy %@" : {
+
+    },
+    "Copy %@ URL" : {
+
+    },
+    "Copy %@ setup" : {
+
+    },
+    "Copy API Key" : {
+
+    },
+    "Copy Address" : {
+
+    },
+    "Copy All" : {
+
+    },
+    "Copy Command" : {
+
+    },
+    "Copy ID" : {
+
+    },
+    "Copy Link" : {
+
+    },
+    "Copy Name" : {
+
+    },
+    "Copy Path" : {
+
+    },
+    "Copy Request" : {
+
+    },
+    "Copy Shell Command" : {
+
+    },
+    "Copy URL" : {
+
+    },
+    "Copy address" : {
+
+    },
+    "Copy all visible lines (respects the filter). Select lines to copy part of it with Command-C." : {
+
+    },
+    "Copy from %@" : {
+
+    },
+    "Copy public URL for %@" : {
+
+    },
+    "Copy the full image ID" : {
+
+    },
+    "Copy to Noodle" : {
+
+    },
+    "Copying from %@…" : {
+
+    },
+    "Couldn’t copy the API key" : {
+
+    },
+    "Couldn’t import the model" : {
+
+    },
+    "Couldn’t make this" : {
+
+    },
+    "Couldn’t read file" : {
+
+    },
+    "Couldn’t read logs" : {
+
+    },
+    "Couldn’t read the build history. Update Noodle so the app and command line tool match, then try again." : {
+
+    },
+    "Couldn’t refresh Models" : {
+
+    },
+    "Couldn’t save the video: %@" : {
+
+    },
+    "Couldn’t search Docker Hub. Check your internet connection and search again, or type the image name below." : {
+
+    },
+    "Couldn’t send message" : {
+
+    },
+    "Create" : {
+
+    },
+    "Create an isolated Ubuntu or Alpine environment with its own IP and home folder." : {
+
+    },
+    "Created" : {
+
+    },
+    "Creating machine. The first download can take minutes." : {
+
+    },
+    "Creativity" : {
+
+    },
+    "Credential helper sign-ins may not be shown." : {
+
+    },
+    "Custom" : {
+
+    },
+    "Custom image" : {
+
+    },
+    "Default" : {
+
+    },
+    "Delete" : {
+
+    },
+    "Delete %@’s data too?" : {
+
+    },
+    "Delete %lld containers?" : {
+
+    },
+    "Delete %lld images?" : {
+
+    },
+    "Delete %lld networks?" : {
+
+    },
+    "Delete %lld volumes?" : {
+
+    },
+    "Delete (⌘⌫)" : {
+
+    },
+    "Delete Container %@" : {
+
+    },
+    "Delete Conversation…" : {
+
+    },
+    "Delete Project" : {
+
+    },
+    "Delete Project %@" : {
+
+    },
+    "Delete Project…" : {
+
+    },
+    "Delete assistant" : {
+
+    },
+    "Delete container %@" : {
+
+    },
+    "Delete conversation" : {
+
+    },
+    "Delete conversation?" : {
+
+    },
+    "Delete data" : {
+
+    },
+    "Delete machine “%@”?" : {
+
+    },
+    "Delete project %@" : {
+
+    },
+    "Delete project “%@”?" : {
+
+    },
+    "Delete this image?" : {
+
+    },
+    "Delete this network?" : {
+
+    },
+    "Delete volume “%@”?" : {
+
+    },
+    "Delete “%@”?" : {
+
+    },
+    "Delete…" : {
+
+    },
+    "Describe a picture" : {
+
+    },
+    "Describe a short scene" : {
+
+    },
+    "Describe the change" : {
+
+    },
+    "Diagnostics" : {
+
+    },
+    "Didn’t finish" : {
+
+    },
+    "Disk" : {
+
+    },
+    "Disk size is used only when Noodle creates a new data disk. An existing disk keeps its size." : {
+
+    },
+    "Disk: %lld GiB" : {
+
+    },
+    "Dismiss" : {
+
+    },
+    "Dismiss error" : {
+
+    },
+    "Distribution" : {
+
+    },
+    "Docker" : {
+
+    },
+    "Docker CLI" : {
+
+    },
+    "Docker CLI commands will need a new sign-in to access this registry." : {
+
+    },
+    "Docker command line tool not found. Run noodle tools install." : {
+
+    },
+    "Docker commands go to" : {
+
+    },
+    "Docker has no noodle context yet, so docker --context noodle fails. Add it, or make Noodle the default." : {
+
+    },
+    "Docker tools" : {
+
+    },
+    "Docker, as you know it, faster" : {
+
+    },
+    "Done" : {
+
+    },
+    "Don’t copy anything" : {
+
+    },
+    "Double-click to open. Save to Downloads exports it as a .tar." : {
+
+    },
+    "Down" : {
+
+    },
+    "Download" : {
+
+    },
+    "Download a model to start chatting." : {
+
+    },
+    "Download a model to start. Everything runs on this Mac." : {
+
+    },
+    "Download complete" : {
+
+    },
+    "Download failed" : {
+
+    },
+    "Download from Apple" : {
+
+    },
+    "Download scanner and database?" : {
+
+    },
+    "Download the package lister?" : {
+
+    },
+    "Downloading" : {
+
+    },
+    "Downloading model" : {
+
+    },
+    "Downloading the app. The first time takes a few minutes." : {
+
+    },
+    "Downloading the starter model" : {
+
+    },
+    "Downloading…" : {
+
+    },
+    "Downloads from download.docker.com" : {
+
+    },
+    "Downloads on first use" : {
+
+    },
+    "Driver" : {
+
+    },
+    "Duration" : {
+
+    },
+    "Each job gets a fresh runner. Linux jobs keep a per-repo cache between runs; macOS jobs use this Mac's Xcode and its caches." : {
+
+    },
+    "Each one is optional. Nothing changes until you press its button." : {
+
+    },
+    "Edit and resend" : {
+
+    },
+    "Editing the dropped picture" : {
+
+    },
+    "Editing your message. Sending replaces the replies after it." : {
+
+    },
+    "Enable" : {
+
+    },
+    "Enable Finder view" : {
+
+    },
+    "Enable Kubernetes" : {
+
+    },
+    "Enable downloads k3s and creates a local cluster." : {
+
+    },
+    "Enclosing folder" : {
+
+    },
+    "End Kubernetes access to this folder now?" : {
+
+    },
+    "Engine" : {
+
+    },
+    "Engine running" : {
+
+    },
+    "Engine stopped" : {
+
+    },
+    "Environment (%lld)" : {
+
+    },
+    "Errors Only" : {
+
+    },
+    "Estimated guest working memory and its configured limit" : {
+
+    },
+    "Exit code" : {
+
+    },
+    "Expanded" : {
+
+    },
+    "Export" : {
+
+    },
+    "Failed" : {
+
+    },
+    "Failing" : {
+
+    },
+    "File Sharing" : {
+
+    },
+    "Files" : {
+
+    },
+    "Files reload when the engine reconnects." : {
+
+    },
+    "Filter" : {
+
+    },
+    "Filter logs" : {
+
+    },
+    "Find" : {
+
+    },
+    "Find Apple Restore Image" : {
+
+    },
+    "Find in logs" : {
+
+    },
+    "Find in scrollback" : {
+
+    },
+    "Finder view" : {
+
+    },
+    "Finding a model that suits this Mac." : {
+
+    },
+    "Finished" : {
+
+    },
+    "Fixed in %@" : {
+
+    },
+    "Folder" : {
+
+    },
+    "Folder unknown" : {
+
+    },
+    "Follow" : {
+
+    },
+    "Follow new output" : {
+
+    },
+    "Font size" : {
+
+    },
+    "Force Stop" : {
+
+    },
+    "Force Stop…" : {
+
+    },
+    "Force stop macOS?" : {
+
+    },
+    "Format" : {
+
+    },
+    "Freed %@" : {
+
+    },
+    "From %@" : {
+
+    },
+    "Get" : {
+
+    },
+    "Get things ready" : {
+
+    },
+    "Getting ready…" : {
+
+    },
+    "GitHub Actions jobs on this Mac" : {
+
+    },
+    "GitHub Sign-In" : {
+
+    },
+    "Go Back" : {
+
+    },
+    "HTTP proxy URL" : {
+
+    },
+    "HTTPS proxy" : {
+
+    },
+    "Hide Sidebar" : {
+
+    },
+    "Hide Sidebar (⌃⌘S)" : {
+
+    },
+    "Hide containers" : {
+
+    },
+    "Hide options" : {
+
+    },
+    "History kept (tokens)" : {
+
+    },
+    "Holding" : {
+
+    },
+    "Holding new jobs: %@" : {
+
+    },
+    "Host memory %@" : {
+
+    },
+    "ID" : {
+
+    },
+    "Image" : {
+
+    },
+    "Image reference" : {
+
+    },
+    "Images" : {
+
+    },
+    "Images used by a container can’t be deleted until the container is removed." : {
+
+    },
+    "Import" : {
+
+    },
+    "Import Model" : {
+
+    },
+    "Import from another engine" : {
+
+    },
+    "Import the original model file or folder to use this model." : {
+
+    },
+    "Imported from your own model files." : {
+
+    },
+    "In use" : {
+
+    },
+    "In your workflow" : {
+
+    },
+    "Info" : {
+
+    },
+    "Info and Up" : {
+
+    },
+    "Install macOS" : {
+
+    },
+    "Install macOS from an Apple restore image (.ipsw) into an isolated APFS virtual disk." : {
+
+    },
+    "Install the selected model from Library first" : {
+
+    },
+    "Installing" : {
+
+    },
+    "Installing macOS" : {
+
+    },
+    "Instructions" : {
+
+    },
+    "Isolated kubeconfig at ~/.local/share/noodle/kubernetes/kubeconfig" : {
+
+    },
+    "It exited without being asked to. Start it again to keep using this model." : {
+
+    },
+    "Its GitHub Actions jobs run here." : {
+
+    },
+    "Its containers and network are removed. Images and your project files are kept." : {
+
+    },
+    "Its disk and everything stored inside it are removed for good. Folders shared from your Mac are not touched." : {
+
+    },
+    "Its jobs stop running on this Mac, and its cache is deleted." : {
+
+    },
+    "Job logs" : {
+
+    },
+    "Jobs" : {
+
+    },
+    "Jobs show up here once a workflow runs on this Mac. Push a commit to try it." : {
+
+    },
+    "Keep a model loaded for" : {
+
+    },
+    "Keep it and your chats and files are back if you get the app again. Deleting cannot be undone." : {
+
+    },
+    "Keep my data" : {
+
+    },
+    "Keep the current model" : {
+
+    },
+    "Keeping this Mac awake until the job ends" : {
+
+    },
+    "Keeps the Noodle data folder, including containers, images, volumes, downloaded tools and models." : {
+
+    },
+    "Key" : {
+
+    },
+    "Keychain trust stays in place. Stop running Linux machines before uninstalling." : {
+
+    },
+    "Kubeconfig" : {
+
+    },
+    "Kubernetes" : {
+
+    },
+    "Kubernetes · %@" : {
+
+    },
+    "Last chat request" : {
+
+    },
+    "Later" : {
+
+    },
+    "Latest scan" : {
+
+    },
+    "Learn more" : {
+
+    },
+    "Leave a field empty to use what the model suggests. History kept only trims what the app sends." : {
+
+    },
+    "Length" : {
+
+    },
+    "Let Kubernetes use your shared folders" : {
+
+    },
+    "Let new Terminal windows find docker" : {
+
+    },
+    "Library" : {
+
+    },
+    "Lightweight local Kubernetes" : {
+
+    },
+    "Linux" : {
+
+    },
+    "Linux + macOS" : {
+
+    },
+    "Linux VM" : {
+
+    },
+    "Linux jobs" : {
+
+    },
+    "Linux jobs keep one cache per repo between runs. Clearing it frees the space; the next job fills it again." : {
+
+    },
+    "Linux machine" : {
+
+    },
+    "Linux machine %@ · %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Linux machine %1$@ · %2$@"
+          }
+        }
+      }
+    },
+    "Linux machine · none" : {
+
+    },
+    "List Packages" : {
+
+    },
+    "Listing packages may download the Syft first." : {
+
+    },
+    "LoadBalancer and NodePort services are forwarded to this Mac on these ports%@" : {
+
+    },
+    "Loading" : {
+
+    },
+    "Loading Kubernetes status…" : {
+
+    },
+    "Loading build details" : {
+
+    },
+    "Loading build history" : {
+
+    },
+    "Loading details…" : {
+
+    },
+    "Loading layers…" : {
+
+    },
+    "Loading logs…" : {
+
+    },
+    "Loading machines…" : {
+
+    },
+    "Loading the model" : {
+
+    },
+    "Loading the model. Chat will be ready when the server is running." : {
+
+    },
+    "Loading…" : {
+
+    },
+    "Local cluster" : {
+
+    },
+    "Local names" : {
+
+    },
+    "Local server" : {
+
+    },
+    "Location" : {
+
+    },
+    "Log" : {
+
+    },
+    "Logs" : {
+
+    },
+    "Logs for %@" : {
+
+    },
+    "Logs keep the last %lld jobs, %@ at most." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Logs keep the last %1$lld jobs, %2$@ at most."
+          }
+        }
+      }
+    },
+    "Logs resume when the engine reconnects." : {
+
+    },
+    "Logs: %@" : {
+
+    },
+    "Longest reply (tokens)" : {
+
+    },
+    "Looking" : {
+
+    },
+    "Looking Up…" : {
+
+    },
+    "Looking up models…" : {
+
+    },
+    "Looking…" : {
+
+    },
+    "Machines" : {
+
+    },
+    "Make Noodle my default" : {
+
+    },
+    "Make a request" : {
+
+    },
+    "Make pictures, voices and clips" : {
+
+    },
+    "Manage assistants…" : {
+
+    },
+    "Measured from the most recent request in Chat. Token counts appear when supplied by the server." : {
+
+    },
+    "Memory" : {
+
+    },
+    "Memory: %@" : {
+
+    },
+    "Message is too long" : {
+
+    },
+    "Mode" : {
+
+    },
+    "Model" : {
+
+    },
+    "Model %@, running" : {
+
+    },
+    "Model %@, stopped" : {
+
+    },
+    "Model ID" : {
+
+    },
+    "Model download" : {
+
+    },
+    "Model location" : {
+
+    },
+    "Model server" : {
+
+    },
+    "Model · %lld" : {
+
+    },
+    "Models" : {
+
+    },
+    "More Options" : {
+
+    },
+    "More options" : {
+
+    },
+    "Mount" : {
+
+    },
+    "Mounting a single file shares its whole folder with the VM, including the files next to it, so Noodle asks you to approve that folder first. Removing a folder affects new containers. Stop running ones to end their access." : {
+
+    },
+    "Mounts" : {
+
+    },
+    "Move Left" : {
+
+    },
+    "Move Right" : {
+
+    },
+    "Name" : {
+
+    },
+    "Namespace" : {
+
+    },
+    "Needs attention" : {
+
+    },
+    "Needs attention: %@" : {
+
+    },
+    "Network" : {
+
+    },
+    "Networks" : {
+
+    },
+    "Networks with attached containers can’t be deleted." : {
+
+    },
+    "New Chat" : {
+
+    },
+    "New Key" : {
+
+    },
+    "New Machine" : {
+
+    },
+    "New data disk" : {
+
+    },
+    "New downloads and imports go to this folder, which can be on an external drive. Models already installed stay in their old folder." : {
+
+    },
+    "New lines appear here as the container writes them." : {
+
+    },
+    "New login shell" : {
+
+    },
+    "New terminal" : {
+
+    },
+    "Next Terminal Tab" : {
+
+    },
+    "No Buildx builders found. Install the Docker CLI and Buildx to choose one." : {
+
+    },
+    "No Compose projects" : {
+
+    },
+    "No Linux machines" : {
+
+    },
+    "No approved folders" : {
+
+    },
+    "No builds yet" : {
+
+    },
+    "No cache matches “%@”" : {
+
+    },
+    "No chats yet" : {
+
+    },
+    "No commands run yet" : {
+
+    },
+    "No container uses this image." : {
+
+    },
+    "No containers" : {
+
+    },
+    "No containers in this project" : {
+
+    },
+    "No failed containers" : {
+
+    },
+    "No file selected" : {
+
+    },
+    "No fix listed" : {
+
+    },
+    "No images found." : {
+
+    },
+    "No jobs yet" : {
+
+    },
+    "No known vulnerabilities found." : {
+
+    },
+    "No log was kept for this job." : {
+
+    },
+    "No matches" : {
+
+    },
+    "No models" : {
+
+    },
+    "No models yet" : {
+
+    },
+    "No other running engine has images, volumes, or stopped containers to copy." : {
+
+    },
+    "No output yet" : {
+
+    },
+    "No packages found." : {
+
+    },
+    "No pods in this cluster." : {
+
+    },
+    "No pods match." : {
+
+    },
+    "No ports published" : {
+
+    },
+    "No preview" : {
+
+    },
+    "No projects or containers running. Start a container from your terminal to see it here:" : {
+
+    },
+    "No public links. Create one with noodle link CONTAINER." : {
+
+    },
+    "No repo has a cache yet. Linux jobs create one on their first run." : {
+
+    },
+    "No repos" : {
+
+    },
+    "No repos yet" : {
+
+    },
+    "No restore image chosen" : {
+
+    },
+    "No results for “%@”" : {
+
+    },
+    "No running containers" : {
+
+    },
+    "No service ports forwarded." : {
+
+    },
+    "No stopped containers" : {
+
+    },
+    "No stored registry sign-ins found." : {
+
+    },
+    "No terminal open" : {
+
+    },
+    "None" : {
+
+    },
+    "Noodle" : {
+
+    },
+    "Noodle can't find this project's compose file, so Up and Pull are off." : {
+
+    },
+    "Noodle checks the files before adding this model to your library." : {
+
+    },
+    "Noodle lives in the menu bar. Start with one of these." : {
+
+    },
+    "Noodle updates" : {
+
+    },
+    "Noodle · %@" : {
+
+    },
+    "Not Now" : {
+
+    },
+    "Not installed" : {
+
+    },
+    "Not running" : {
+
+    },
+    "Not scanned yet." : {
+
+    },
+    "Not set up" : {
+
+    },
+    "Nothing downloading" : {
+
+    },
+    "Nothing runs and nothing polls while off" : {
+
+    },
+    "Nothing to save" : {
+
+    },
+    "Off" : {
+
+    },
+    "Off: only this Mac can use your models." : {
+
+    },
+    "Official" : {
+
+    },
+    "Offline" : {
+
+    },
+    "On" : {
+
+    },
+    "On this Mac" : {
+
+    },
+    "One-off commands run without a terminal. For an interactive shell:" : {
+
+    },
+    "Open" : {
+
+    },
+    "Open %@" : {
+
+    },
+    "Open Chat" : {
+
+    },
+    "Open Compose File" : {
+
+    },
+    "Open Container" : {
+
+    },
+    "Open Existing…" : {
+
+    },
+    "Open Folder" : {
+
+    },
+    "Open Library" : {
+
+    },
+    "Open Machine" : {
+
+    },
+    "Open Models chat with Control-Option-Space" : {
+
+    },
+    "Open Noodle" : {
+
+    },
+    "Open Noodle Chat" : {
+
+    },
+    "Open Noodle's Models chat with the message box ready." : {
+
+    },
+    "Open Runners" : {
+
+    },
+    "Open Shell" : {
+
+    },
+    "Open a Noodle window to use the embedded terminal." : {
+
+    },
+    "Open a login shell to run commands." : {
+
+    },
+    "Open a shell in %@. A stopped machine starts first." : {
+
+    },
+    "Open in Browser" : {
+
+    },
+    "Open in Finder" : {
+
+    },
+    "Open in Terminal" : {
+
+    },
+    "Open in browser" : {
+
+    },
+    "Open localhost:%lld" : {
+
+    },
+    "Open on GitHub" : {
+
+    },
+    "Open shell" : {
+
+    },
+    "Open shell in %@" : {
+
+    },
+    "Optional, replaces the distro" : {
+
+    },
+    "Or by IP address" : {
+
+    },
+    "Other devices on your network can chat with and use the models on this Mac with this key. Their prompts run on this Mac. Turn this off or make a new key to cut access. A new key restarts a running model." : {
+
+    },
+    "Overview" : {
+
+    },
+    "PID" : {
+
+    },
+    "Packages" : {
+
+    },
+    "Pass proxy to new containers" : {
+
+    },
+    "Paste the token here" : {
+
+    },
+    "Pause" : {
+
+    },
+    "Paused" : {
+
+    },
+    "Permanently deletes everything in this folder, including any files you placed there." : {
+
+    },
+    "Physical memory charged to the Apple VM worker, including its overhead." : {
+
+    },
+    "Pick a model under All and choose Download." : {
+
+    },
+    "Pick a repo and its jobs run here." : {
+
+    },
+    "Pick a repo, then change one line in its workflow. Jobs start here in seconds, with warm caches, and cost nothing." : {
+
+    },
+    "Pick what you want on this Mac. You can add the rest later." : {
+
+    },
+    "Plain docker commands go to another engine. See what changes before you switch." : {
+
+    },
+    "Play" : {
+
+    },
+    "Pods and privileged containers can read and write the approved folders above through hostPath at the same path. Changing this restarts the VM that runs them." : {
+
+    },
+    "Pods · All namespaces" : {
+
+    },
+    "Ports" : {
+
+    },
+    "Prefer the terminal?" : {
+
+    },
+    "Preparing download" : {
+
+    },
+    "Preview" : {
+
+    },
+    "Preview only. Network settings are unchanged." : {
+
+    },
+    "Preview truncated at 256 KB" : {
+
+    },
+    "Previous Terminal Tab" : {
+
+    },
+    "Private only" : {
+
+    },
+    "Privileged containers VM" : {
+
+    },
+    "Processes" : {
+
+    },
+    "Projects" : {
+
+    },
+    "Prompt" : {
+
+    },
+    "Proxy" : {
+
+    },
+    "Public allowed" : {
+
+    },
+    "Public links" : {
+
+    },
+    "Pull" : {
+
+    },
+    "Pull Image" : {
+
+    },
+    "Quit Noodle" : {
+
+    },
+    "Random seed" : {
+
+    },
+    "Reading…" : {
+
+    },
+    "Ready" : {
+
+    },
+    "Received" : {
+
+    },
+    "Reconnecting" : {
+
+    },
+    "Reconnecting…" : {
+
+    },
+    "Refresh" : {
+
+    },
+    "Refresh (⌘R)" : {
+
+    },
+    "Refresh Builds" : {
+
+    },
+    "Refresh Models" : {
+
+    },
+    "Refresh Registries" : {
+
+    },
+    "Refresh Sources" : {
+
+    },
+    "Refresh models and server status" : {
+
+    },
+    "Refusing to save outside Downloads" : {
+
+    },
+    "Regenerate" : {
+
+    },
+    "Remove" : {
+
+    },
+    "Remove %@?" : {
+
+    },
+    "Remove Kubernetes?" : {
+
+    },
+    "Remove audio" : {
+
+    },
+    "Remove image" : {
+
+    },
+    "Remove image %lld" : {
+
+    },
+    "Remove model?" : {
+
+    },
+    "Remove the Noodle copy of this model" : {
+
+    },
+    "Remove this repo's cache volume" : {
+
+    },
+    "Remove video" : {
+
+    },
+    "Remove volumes (deletes the project's data)" : {
+
+    },
+    "Removes %@ and frees about %@. " : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Removes %1$@ and frees about %2$@. "
+          }
+        }
+      }
+    },
+    "Removes the downloaded vulnerability database. Saved results are kept." : {
+
+    },
+    "Remove…" : {
+
+    },
+    "Removing" : {
+
+    },
+    "Removing…" : {
+
+    },
+    "Repo caches" : {
+
+    },
+    "Repos" : {
+
+    },
+    "Request Copied" : {
+
+    },
+    "Request language" : {
+
+    },
+    "Requires at least 40 GiB free" : {
+
+    },
+    "Reset" : {
+
+    },
+    "Reset Kubernetes?" : {
+
+    },
+    "Resource snapshot" : {
+
+    },
+    "Resources" : {
+
+    },
+    "Resources: %lld CPUs, %@ memory, %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Resources: %1$lld CPUs, %2$@ memory, %3$@"
+          }
+        }
+      }
+    },
+    "Responding…" : {
+
+    },
+    "Response cancelled" : {
+
+    },
+    "Response interrupted" : {
+
+    },
+    "Restart" : {
+
+    },
+    "Restart (⇧⌘R)" : {
+
+    },
+    "Restart Container %@" : {
+
+    },
+    "Restart Now" : {
+
+    },
+    "Restart Project" : {
+
+    },
+    "Restart Project %@" : {
+
+    },
+    "Restart container %@" : {
+
+    },
+    "Restart project %@" : {
+
+    },
+    "Restart the VM for Kubernetes and privileged containers?" : {
+
+    },
+    "Restart to Update" : {
+
+    },
+    "Restart to update?" : {
+
+    },
+    "Restarting" : {
+
+    },
+    "Restarting…" : {
+
+    },
+    "Restarts" : {
+
+    },
+    "Restore image" : {
+
+    },
+    "Resume" : {
+
+    },
+    "Retry Connection" : {
+
+    },
+    "Retry Shutdown" : {
+
+    },
+    "Return to send · Shift-Return for a new line" : {
+
+    },
+    "Revert" : {
+
+    },
+    "Review the error before reinstalling Compose." : {
+
+    },
+    "Run" : {
+
+    },
+    "Run Docker containers, Compose and Kubernetes on this Mac." : {
+
+    },
+    "Run GitHub Actions on this Mac" : {
+
+    },
+    "Run GitHub jobs on this Mac" : {
+
+    },
+    "Run Image" : {
+
+    },
+    "Run a Mac inside Noodle" : {
+
+    },
+    "Run a command in %@" : {
+
+    },
+    "Run a container" : {
+
+    },
+    "Run a test container" : {
+
+    },
+    "Run docker compose up in a project folder. It appears here as soon as it starts." : {
+
+    },
+    "Run one from your terminal, or start a Compose project. It appears here as soon as it starts." : {
+
+    },
+    "Runners" : {
+
+    },
+    "Runners are off" : {
+
+    },
+    "Runners off" : {
+
+    },
+    "Runners on" : {
+
+    },
+    "Running" : {
+
+    },
+    "Running %lld job(s)" : {
+
+    },
+    "Running containers are stopped first. Their writable layers are removed. Volumes are kept." : {
+
+    },
+    "Running containers, tagged images and volumes are kept." : {
+
+    },
+    "Running model: %@" : {
+
+    },
+    "Running model: %@ (%@)" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Running model: %1$@ (%2$@)"
+          }
+        }
+      }
+    },
+    "Running now" : {
+
+    },
+    "Runs the image’s default command with no published ports." : {
+
+    },
+    "Runs well" : {
+
+    },
+    "Runtime" : {
+
+    },
+    "Same as running " : {
+
+    },
+    "Save" : {
+
+    },
+    "Save Report…" : {
+
+    },
+    "Save and Restart" : {
+
+    },
+    "Save the list as CycloneDX JSON" : {
+
+    },
+    "Save to Downloads" : {
+
+    },
+    "Saved" : {
+
+    },
+    "Saved assistants could not be opened. Changes will stay in memory; the existing file has been kept." : {
+
+    },
+    "Saved chats could not be opened. New chats will stay in memory; the existing file has been kept." : {
+
+    },
+    "Saves logs, settings and versions with secrets removed. Nothing is uploaded." : {
+
+    },
+    "Save…" : {
+
+    },
+    "Saving" : {
+
+    },
+    "Scan" : {
+
+    },
+    "Scan Again" : {
+
+    },
+    "Scan history" : {
+
+    },
+    "Scans run on this Mac. The first scan downloads a database that uses about 3.2 GB on disk." : {
+
+    },
+    "Scope" : {
+
+    },
+    "Seamless integration with your local Docker images and containers" : {
+
+    },
+    "Search" : {
+
+    },
+    "Search %@" : {
+
+    },
+    "Search Docker Hub" : {
+
+    },
+    "Search models" : {
+
+    },
+    "Search your repos or type owner/repo" : {
+
+    },
+    "Searching Docker Hub…" : {
+
+    },
+    "Sections" : {
+
+    },
+    "See Details" : {
+
+    },
+    "Seed" : {
+
+    },
+    "Select" : {
+
+    },
+    "Select a build" : {
+
+    },
+    "Select a file to preview it.\nDouble-click a folder to open it." : {
+
+    },
+    "Select a job" : {
+
+    },
+    "Selected model" : {
+
+    },
+    "Send" : {
+
+    },
+    "Send (Return)" : {
+
+    },
+    "Send a message to your local model." : {
+
+    },
+    "Sent" : {
+
+    },
+    "Server is starting" : {
+
+    },
+    "Server is stopped" : {
+
+    },
+    "Server running" : {
+
+    },
+    "Server starting…" : {
+
+    },
+    "Server status: %@" : {
+
+    },
+    "Server stopped" : {
+
+    },
+    "Service" : {
+
+    },
+    "Set NOODLE_API_KEY to the session key copied above." : {
+
+    },
+    "Set Up Noodle…" : {
+
+    },
+    "Set up" : {
+
+    },
+    "Set up Noodle" : {
+
+    },
+    "Sets where plain docker commands go. DOCKER_HOST or DOCKER_CONTEXT set in a shell still wins. Containers stay on the engine that started them." : {
+
+    },
+    "Setting Up…" : {
+
+    },
+    "Setting things up…" : {
+
+    },
+    "Settings" : {
+
+    },
+    "Settings (⌘,)" : {
+
+    },
+    "Settings for this chat" : {
+
+    },
+    "Settings request failed (HTTP %lld)." : {
+
+    },
+    "Settings…" : {
+
+    },
+    "Setup did not finish. Delete this machine and create it again." : {
+
+    },
+    "Share and Restart" : {
+
+    },
+    "Shells are off in demo mode" : {
+
+    },
+    "Shift-Return for a new line" : {
+
+    },
+    "Shortcut" : {
+
+    },
+    "Shorten this message before sending it." : {
+
+    },
+    "Show %@" : {
+
+    },
+    "Show %@ in Finder" : {
+
+    },
+    "Show All" : {
+
+    },
+    "Show All %lld" : {
+
+    },
+    "Show All Models" : {
+
+    },
+    "Show Sidebar" : {
+
+    },
+    "Show Sidebar (⌃⌘S)" : {
+
+    },
+    "Show all %lld" : {
+
+    },
+    "Show containers" : {
+
+    },
+    "Show details for %@" : {
+
+    },
+    "Show fewer" : {
+
+    },
+    "Show in Finder" : {
+
+    },
+    "Show timestamps" : {
+
+    },
+    "Shows what will be removed before anything is deleted" : {
+
+    },
+    "Shut Down" : {
+
+    },
+    "Shutdown requested" : {
+
+    },
+    "Sign Out" : {
+
+    },
+    "Sign Out…" : {
+
+    },
+    "Sign in" : {
+
+    },
+    "Sign in below or with docker login in Terminal. Sign out removes credentials from the Docker CLI configuration used by Noodle." : {
+
+    },
+    "Sign in to GitHub in Settings to pick from your repos, or type owner/repo above." : {
+
+    },
+    "Sign in with browser" : {
+
+    },
+    "Sign out of %@?" : {
+
+    },
+    "Signed-in registries" : {
+
+    },
+    "Single-node k3s cluster running directly inside the Noodle Linux VM." : {
+
+    },
+    "Size" : {
+
+    },
+    "Skip for Now" : {
+
+    },
+    "Skip proxy for (comma separated)" : {
+
+    },
+    "Slower, and can help with harder questions" : {
+
+    },
+    "Source data stays in place. Volumes are read through temporary containers that Noodle removes when the copy finishes." : {
+
+    },
+    "Source engine" : {
+
+    },
+    "Speech" : {
+
+    },
+    "Split side by side" : {
+
+    },
+    "Split top and bottom" : {
+
+    },
+    "Standalone" : {
+
+    },
+    "Star on GitHub" : {
+
+    },
+    "Start" : {
+
+    },
+    "Start %@" : {
+
+    },
+    "Start (⇧⌘S)" : {
+
+    },
+    "Start Kubernetes to create its isolated kubeconfig." : {
+
+    },
+    "Start Kubernetes to see pods." : {
+
+    },
+    "Start Noodle Containers" : {
+
+    },
+    "Start Noodle Containers to enable Kubernetes" : {
+
+    },
+    "Start Noodle Containers to manage Kubernetes." : {
+
+    },
+    "Start Project" : {
+
+    },
+    "Start Project %@" : {
+
+    },
+    "Start a chat" : {
+
+    },
+    "Start a model from the sidebar. Its addresses and key appear here once it is ready." : {
+
+    },
+    "Start a model with the Start button to chat." : {
+
+    },
+    "Start a model with the Start button, then say hello." : {
+
+    },
+    "Start a new conversation" : {
+
+    },
+    "Start from Nothing" : {
+
+    },
+    "Start macOS" : {
+
+    },
+    "Start project %@" : {
+
+    },
+    "Start the cluster to resume containers." : {
+
+    },
+    "Start the container to browse files" : {
+
+    },
+    "Start the container to run commands." : {
+
+    },
+    "Start the containers engine" : {
+
+    },
+    "Start the source engine first. Noodle copies the selected items and skips names that already exist. Source data stays in place." : {
+
+    },
+    "Start your project from the folder containing compose.yaml." : {
+
+    },
+    "Started" : {
+
+    },
+    "Starter model" : {
+
+    },
+    "Starting" : {
+
+    },
+    "Starting container…" : {
+
+    },
+    "Starting engine…" : {
+
+    },
+    "Starting the project…" : {
+
+    },
+    "Starting…" : {
+
+    },
+    "Starts in about a second. Nothing runs at login." : {
+
+    },
+    "Stats" : {
+
+    },
+    "Stats are live, so they only exist while the container runs." : {
+
+    },
+    "Stats disconnected" : {
+
+    },
+    "Stats resume when the engine reconnects." : {
+
+    },
+    "Status" : {
+
+    },
+    "Step %lld of %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Step %1$lld of %2$lld"
+          }
+        }
+      }
+    },
+    "Steps" : {
+
+    },
+    "Steps %lld" : {
+
+    },
+    "Stop" : {
+
+    },
+    "Stop %@" : {
+
+    },
+    "Stop (⇧⌘X)" : {
+
+    },
+    "Stop Containers and Update" : {
+
+    },
+    "Stop Copy" : {
+
+    },
+    "Stop Noodle" : {
+
+    },
+    "Stop Project" : {
+
+    },
+    "Stop Project %@" : {
+
+    },
+    "Stop Sharing and Restart" : {
+
+    },
+    "Stop project %@" : {
+
+    },
+    "Stop running GitHub jobs on this Mac" : {
+
+    },
+    "Stop the containers engine" : {
+
+    },
+    "Stop the model before removing its files" : {
+
+    },
+    "Stop the response (Esc)" : {
+
+    },
+    "Stop the running model before starting another" : {
+
+    },
+    "Stopped" : {
+
+    },
+    "Stopped after a problem" : {
+
+    },
+    "Stopping" : {
+
+    },
+    "Stopping and removing…" : {
+
+    },
+    "Stopping engine…" : {
+
+    },
+    "Stopping…" : {
+
+    },
+    "Storage folder" : {
+
+    },
+    "Subnet" : {
+
+    },
+    "Switch Context" : {
+
+    },
+    "System" : {
+
+    },
+    "Take down “%@”?" : {
+
+    },
+    "Target from Docker’s saved context and this app’s environment. A shell can override it." : {
+
+    },
+    "Temperature" : {
+
+    },
+    "Terminal" : {
+
+    },
+    "Terminal can’t find docker yet. Add this to your shell profile:" : {
+
+    },
+    "Terminal needs one line from you" : {
+
+    },
+    "Test Connection" : {
+
+    },
+    "The VM for Kubernetes and privileged containers keeps access to %@ until it restarts. Restarting stops containers in it; run `noodle kubernetes start` afterwards to recreate the cluster node without the folder." : {
+
+    },
+    "The app stays in Applications. Move it to the Trash after quitting." : {
+
+    },
+    "The app stops and disappears from this list." : {
+
+    },
+    "The chat could not be saved. It is still available in this window." : {
+
+    },
+    "The command stopped with status %d." : {
+
+    },
+    "The command timed out. Try again." : {
+
+    },
+    "The command was cancelled or took too long. Try again when ready." : {
+
+    },
+    "The connection dropped before Gemma 4 E2B finished downloading." : {
+
+    },
+    "The data inside is permanently removed." : {
+
+    },
+    "The file ended early; nothing was saved" : {
+
+    },
+    "The first scan downloads a scanner and a vulnerability database that uses about 3.2 GB on disk. This can take several minutes. Clear Scan Database removes it again." : {
+
+    },
+    "The first start sets things up. Allow a few GB of free disk space." : {
+
+    },
+    "The first start sets up what this model needs. Allow a few GB of free disk space." : {
+
+    },
+    "The key belongs to this server session. Copy it into your app’s API key field." : {
+
+    },
+    "The local model address has characters that can't be used. Restart Noodle's engine and try again." : {
+
+    },
+    "The macOS virtual machine is running." : {
+
+    },
+    "The model server isn’t answering. Start it again from the sidebar." : {
+
+    },
+    "The model server stopped" : {
+
+    },
+    "The model stopped with an error." : {
+
+    },
+    "The next build may take longer. Images and containers stay in place." : {
+
+    },
+    "The next job starts cold and downloads its dependencies again." : {
+
+    },
+    "The next scan downloads the database again. Saved results are kept." : {
+
+    },
+    "The noodle command line tool was not found." : {
+
+    },
+    "The noodle command line tool was not found. Choose Set Up Noodle… to install it." : {
+
+    },
+    "The selected model can’t hear audio. Install a speech-to-text model such as Qwen 3 ASR to transcribe it first." : {
+
+    },
+    "The software bill of materials: every package in the image." : {
+
+    },
+    "Theme" : {
+
+    },
+    "There are no entries to show." : {
+
+    },
+    "Think before answering" : {
+
+    },
+    "This Mac" : {
+
+    },
+    "This Mac has %@ of memory" : {
+
+    },
+    "This backs up ~/.kube/config, adds the noodle context, and makes it current for kubectl." : {
+
+    },
+    "This cuts power to the virtual machine. Unsaved changes may be lost." : {
+
+    },
+    "This deletes all cluster containers and data, then creates a fresh cluster using the same ports. This cannot be undone." : {
+
+    },
+    "This deletes the cluster, containers, data, and isolated kubeconfig. Your ~/.kube/config is kept. This cannot be undone." : {
+
+    },
+    "This folder is empty" : {
+
+    },
+    "This folder is not available. Connect its drive or choose another folder." : {
+
+    },
+    "This model needs more memory than this Mac has." : {
+
+    },
+    "This removes the Noodle copy of %@." : {
+
+    },
+    "This removes the conversation from this Mac." : {
+
+    },
+    "This volume's repo is unknown; remove it with docker volume rm %@." : {
+
+    },
+    "Tight on memory" : {
+
+    },
+    "To undo" : {
+
+    },
+    "Toggle Terminal" : {
+
+    },
+    "Toggle terminal (⌃`)" : {
+
+    },
+    "Too big for this Mac" : {
+
+    },
+    "Try Again" : {
+
+    },
+    "Try uname -a or ls /." : {
+
+    },
+    "Turn this on before Sign in with browser, so the token page asks for repository access too, which GitHub Actions runners need." : {
+
+    },
+    "Type what the voice should say" : {
+
+    },
+    "Ubuntu 24.04" : {
+
+    },
+    "Unavailable" : {
+
+    },
+    "Uninstall Noodle" : {
+
+    },
+    "Uninstall Noodle…" : {
+
+    },
+    "Uninstall could not finish. Review the result and try again." : {
+
+    },
+    "Uninstalling…" : {
+
+    },
+    "Unknown" : {
+
+    },
+    "Unload Now" : {
+
+    },
+    "Unsafe file name" : {
+
+    },
+    "Unsafe path in archive" : {
+
+    },
+    "Untagged" : {
+
+    },
+    "Up" : {
+
+    },
+    "Update" : {
+
+    },
+    "Updates" : {
+
+    },
+    "Updates are signed by the developer and checked before they are installed. Nothing installs until you choose Restart to Update." : {
+
+    },
+    "Use Builder" : {
+
+    },
+    "Use Context" : {
+
+    },
+    "Use Context adds noodle to ~/.kube/config and makes it current." : {
+
+    },
+    "Use Default" : {
+
+    },
+    "Use Folder" : {
+
+    },
+    "Use Noodle" : {
+
+    },
+    "Use Noodle for docker?" : {
+
+    },
+    "Use Noodle for docker…" : {
+
+    },
+    "Use Noodle with " : {
+
+    },
+    "Use defaults" : {
+
+    },
+    "Use docker and Compose with Noodle." : {
+
+    },
+    "Use in Chat" : {
+
+    },
+    "Use lowercase letters, digits and dashes." : {
+
+    },
+    "Use noodle Context" : {
+
+    },
+    "Use the local server with any app that supports an OpenAI-compatible API." : {
+
+    },
+    "Use the noodle context?" : {
+
+    },
+    "Use with a coding app" : {
+
+    },
+    "Used for image pulls and pushes. Custom takes one http:// proxy for both HTTP and HTTPS. The skip list takes hosts, domain suffixes and IPv4 ranges. Passing the proxy to containers affects new containers only, and is refused for a proxy with a password or one on loopback. Test Connection asks Docker Hub about one small image with the saved settings and downloads nothing." : {
+
+    },
+    "User" : {
+
+    },
+    "Uses your local model" : {
+
+    },
+    "VM memory usage" : {
+
+    },
+    "Verifying download" : {
+
+    },
+    "Version" : {
+
+    },
+    "Video" : {
+
+    },
+    "View" : {
+
+    },
+    "Voice" : {
+
+    },
+    "Volumes" : {
+
+    },
+    "Vulnerabilities" : {
+
+    },
+    "Waiting" : {
+
+    },
+    "Waiting for Noodle" : {
+
+    },
+    "Waiting for first sample…" : {
+
+    },
+    "Waiting for jobs" : {
+
+    },
+    "Waiting for memory…" : {
+
+    },
+    "Waiting for the model…" : {
+
+    },
+    "Warnings and Up" : {
+
+    },
+    "Welcome to Noodle" : {
+
+    },
+    "What you make shows up here, saved on this Mac." : {
+
+    },
+    "What’s on your mind?" : {
+
+    },
+    "Working" : {
+
+    },
+    "Working directory" : {
+
+    },
+    "Works from any app, including when Noodle's window is closed." : {
+
+    },
+    "Your Mac is short on memory right now" : {
+
+    },
+    "Your data is kept on this Mac until you delete it." : {
+
+    },
+    "Your first repo" : {
+
+    },
+    "Your local model address is not available yet. Start Noodle Containers and try again." : {
+
+    },
+    "Your models. On your Mac." : {
+
+    },
+    "You’re set" : {
+
+    },
+    "alpine:latest" : {
+
+    },
+    "built-in" : {
+
+    },
+    "dev" : {
+
+    },
+    "docker goes to" : {
+
+    },
+    "docker in your terminal goes to %@, so containers you start there appear in %@, not here." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "docker in your terminal goes to %1$@, so containers you start there appear in %2$@, not here."
+          }
+        }
+      }
+    },
+    "exit %lld" : {
+
+    },
+    "from cache" : {
+
+    },
+    "from command to exit" : {
+
+    },
+    "localhost:%lld" : {
+
+    },
+    "macOS %@ (%@)" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "macOS %1$@ (%2$@)"
+          }
+        }
+      }
+    },
+    "macOS VM" : {
+
+    },
+    "macOS VM · %@" : {
+
+    },
+    "macOS installation progress" : {
+
+    },
+    "macOS jobs" : {
+
+    },
+    "macOS jobs run as you, outside any sandbox. Enable this only for repos you trust." : {
+
+    },
+    "macOS runner install" : {
+
+    },
+    "macOS runs as you" : {
+
+    },
+    "not published" : {
+
+    },
+    "of %@" : {
+
+    },
+    "t" : {
+
+    },
+    "the other engine" : {
+
+    },
+    "v" : {
+
+    },
+    "·" : {
+
+    },
+    "••••••••••••••••••••" : {
+
+    }
+  },
+  "version" : "1.0"
+}

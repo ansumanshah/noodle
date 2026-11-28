@@ -1,0 +1,59 @@
+---
+title: "Settings"
+description: "Every pane of the Settings window and its defaults: resources, folders, Docker, network, models, import, appearance, diagnostics and updates."
+---
+
+Open Settings with Command-comma. Panes are listed in the order the window shows them.
+
+## Resources
+
+Sizes for the Linux VM that runs your containers.
+
+- **CPUs.** From 1 up to the CPUs on your Mac. Default: half your CPUs, at least 2 and at most 8.
+- **Memory.** From 512 MiB up to half your RAM, in 256 MiB steps. Default: a quarter of your RAM, between 1 GiB and 4 GiB.
+- **New data disk.** Default 64 GiB. It applies only when Noodle creates a new data disk; an existing disk keeps its size.
+- **Save**, **Save and Restart**, **Revert.** CPU and memory changes apply the next time the VM starts.
+
+## File Sharing
+
+- **Approved folders.** Mac folders you approve for single-file binds and, when the Kubernetes option below is on, for privileged and Kubernetes containers. An ordinary container can bind any directory without approval. None by default. **Add Folder…** and **Remove** match `noodle share add` and `noodle share remove`. A removed folder affects new containers; stop running ones to end their access.
+- **Let Kubernetes use your shared folders.** Lets pods and privileged containers reach the approved folders through `hostPath`. Off until the first `noodle kubernetes start` turns it on. Changing it restarts the workload VM. See [Kubernetes](/docs/containers/#kubernetes).
+
+## Docker
+
+- **Docker CLI.** Shows where plain `docker` commands go. **Context** and **Switch Context** pick the Docker context. `DOCKER_HOST` or `DOCKER_CONTEXT` set in a shell still wins.
+- **Builder.** Picks the Buildx builder for the current context. It affects `docker buildx build`; plain `docker build` uses the engine's default builder.
+- **Signed-in registries.** Lists the sign-ins found in your Docker configuration, with **Sign Out…** for each. Sign-ins held by a credential helper may not appear.
+- **Sign in.** Opens the token page for GitHub Container Registry or Hugging Face, checks the token you paste and saves it. For GitHub, a switch adds repository access so the token also serves `git clone` and [runners](/docs/runners/). Amazon ECR has no token page, so the pane shows the `aws ecr get-login-password` command to copy.
+- **Build cache.** **Check Cache Usage** and **Clear Unused Cache…** run `buildx du` and `buildx prune` on the engine's default builder. Images and containers stay.
+
+## Network
+
+- **Local names.** Shows `noodle names`. A running container with a web port gets a `.localhost` name. See [networking](/docs/containers/networking/).
+- **Public links.** Lists links made with `noodle link CONTAINER`, with **Copy URL** and **Stop**. Anyone with a link can connect.
+- **Finder view.** Switch for the read-only Finder mount of container files and volumes, like `noodle finder mount`. Shows the status, **Open in Finder** and **Mount**. Off by default.
+- **Proxy.** Mode **System** (default), **Custom** or **Off**. Custom takes one `http://` proxy URL and a comma-separated skip list. **Pass proxy to new containers** is off by default. **Test Connection** asks Docker Hub about one small image and downloads nothing. The same settings are available as `noodle proxy`.
+
+## Models
+
+Model folder, how long a model stays loaded (default 5 minutes), **Unload Now**, and the switch that lets other devices use your models (off by default), with its address and key. See [model settings](/docs/models/settings/).
+
+## Import
+
+Copies data from another running engine. Pick the **Source engine**, tick tagged images, volumes and stopped containers, then **Copy to Noodle**. Start the source engine first. Existing names are skipped and the source data stays in place. **Refresh Sources** rescans. The terminal form is `noodle import`; see [migrating](/docs/containers/migrating/).
+
+## Appearance
+
+- **Terminal theme.** Default GitHub.
+- **Container logs.** Font size 10 to 18 pt (default 12) and **Show timestamps** (on by default).
+- **Shortcut.** **Open Models chat with Control-Option-Space** works from any app. On by default.
+
+## Diagnostics
+
+- A log viewer for the engine, the Linux VM and the privileged containers VM, with search and **Refresh**. It shows the latest 200 lines with secrets removed.
+- **Save Report…** writes `Noodle Diagnostics.tar.gz` with logs, settings and versions, secrets removed. Nothing is uploaded. It runs `noodle diagnostics`.
+- **Uninstall Noodle…** See [Install](/docs/install/#uninstall).
+
+## Updates
+
+Shows the version and status. **Check Now** looks for an update, and **Restart to Update** installs a verified one. **Check for updates automatically** is on by default and checks every six hours while the Noodle window is open. When it is off, only **Check Now** contacts the update server. See [updates](/docs/troubleshooting/#updates).

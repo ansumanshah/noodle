@@ -1,0 +1,49 @@
+---
+title: Quickstart
+description: Sign in to GitHub, add a repo, change one line and push.
+---
+
+You need Noodle [installed](/docs/install/) and a repo you administer.
+
+## 1. Sign in to GitHub
+
+In the app, open **Settings → Docker**, choose **GitHub Container Registry** under **Service**, turn on **Also use for git clone and runners**, then sign in with the browser and save the token. That gives the token the `repo` scope that runner registration needs. Noodle reads the token through `git credential fill` and never writes it to a file or a log.
+
+## 2. Add a repo
+
+In the app, open **Runners**, pick a repo from the list and turn it on. Or from a terminal inside the repo:
+
+```sh
+noodle runners add
+```
+
+With no name, Noodle uses the folder's GitHub `origin`. You can also name it: `noodle runners add owner/repo`. Adding the first repo turns runners on.
+
+## 3. Change one line
+
+```yaml
+jobs:
+  test:
+    runs-on: [self-hosted, noodle]
+```
+
+Not sure which jobs fit? `noodle runners check owner/repo` reads the workflow files through the GitHub API and suggests a `runs-on` line per job. It never edits them. Its suggestions come from keyword matching, so treat them as hints.
+
+## 4. Push
+
+The first job shows up within about 10 seconds. For 5 minutes after a job, a warm runner waits, so the next push skips registration. Watch it in the app or with:
+
+```sh
+noodle runners status
+noodle runners list
+```
+
+`list` shows each repo's last job, its result and a link.
+
+## Turn it off
+
+```sh
+noodle runners stop
+```
+
+This ends idle runners, cancels a job in progress and removes their containers and folders. Off stays off after a restart. `noodle runners remove owner/repo` also deletes that repo's cache volume.

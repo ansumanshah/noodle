@@ -1,0 +1,75 @@
+---
+title: "Quick Start"
+description: "Run a container, start a Compose project, build an image and mount a folder with Noodle."
+---
+
+After [setting up Noodle](/docs/install/#setup), run your first container directly.
+
+## 1\. Start the daemon
+
+Skip this step if you finished setup in the app. It already started Noodle and ran a test container.
+
+```sh
+noodle setup
+noodle start
+```
+
+## 2\. Run a container
+
+Setup makes Noodle your Docker context when no other engine is running; otherwise add `--context noodle` or run `noodle setup --use`.
+
+```sh
+docker run --rm alpine echo hello
+docker run -d -p 127.0.0.1:8080:80 --name web nginx:alpine
+```
+
+Noodle does not wrap `docker`; `--context noodle` points the standard CLI at Noodle's socket. When Noodle is your default Docker context, plain `docker run` works identically.
+
+## 3\. Bring up a Compose project
+
+```sh
+docker compose up -d
+docker compose ps
+docker compose down
+```
+
+Run this from a folder with a `compose.yaml` or `docker-compose.yml` file. If another engine is your default, use `docker --context noodle compose up -d`.
+
+## 4\. Build an image
+
+```sh
+docker --context noodle build -t local/demo .
+docker --context noodle compose build
+```
+
+These build local arm64 Dockerfiles. Noodle automatically starts its BuildKit worker on the first build and stops it when idle.
+
+## 5\. Share a folder
+
+Noodle attaches no Mac folder by default. A directory bind explicitly attaches its directory:
+
+```sh
+noodle share add /Users/you/code/shop
+docker --context noodle run --rm -v /Users/you/code/shop:/src:ro alpine:3.22 ls /src
+noodle share list
+```
+
+## Name a dev server on your Mac
+
+Containers with a web port already answer at `http://NAME.localhost`, with no port to remember. A dev server running on the Mac itself (Vite, Next, Rails) can have a name too:
+
+```sh
+noodle names add api.myapp 3000
+noodle names remove api.myapp
+```
+
+`https://api.myapp.localhost` now reaches port 3000, WebSockets and hot reload included. The name survives a restart. Run `noodle names trust` once so browsers accept the HTTPS certificate. See [networking](/docs/containers/networking/) for the rules.
+
+Volumes and networks have pages in the app too. See [Volumes and networks](/docs/containers/volumes-networks/).
+
+## Stop
+
+```sh
+docker --context noodle rm -f web
+noodle stop
+```

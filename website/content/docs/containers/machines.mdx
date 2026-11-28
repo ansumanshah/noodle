@@ -1,0 +1,74 @@
+---
+title: "Machines"
+description: "Run persistent Ubuntu and Alpine VMs or execute a command in a disposable Linux VM."
+---
+
+A machine is a persistent Linux VM of its own. A raw VM runs one command and disappears. For a macOS guest, see [macOS machines](/docs/containers/mac-machines/).
+
+<span id="machine"></span>
+
+## noodle machine
+
+```sh
+noodle machine create dev --cpus 4 --memory 4G --disk 40 --share ~/Code
+noodle machine shell dev
+noodle machine shell dev -- uname -a
+noodle machine list
+noodle machine stop dev
+noodle machine delete dev --yes
+```
+
+| Command | What it does |
+| --- | --- |
+| `create NAME [--distro ubuntu\|alpine] [--image REF] [--cpus N] [--memory SIZE] [--disk GiB] [--share PATH] [--systemd]` | Names use lowercase letters, digits and dashes. Defaults: Ubuntu 24.04, 2 CPUs, 2 GiB memory, a 20 GiB sparse disk. Needs the Docker CLI, and starts the daemon, because the root filesystem is pulled and exported through the engine. |
+| `list [--json]`, `status NAME` | State, resources, and the helper's resident memory. |
+| `start`, `stop`, `restart NAME` | A stopped machine has no host process. |
+| `shell [NAME] [-- CMD…]` | A login shell, or one command, as your own Mac user name and uid with passwordless sudo. Starts the machine if it is stopped. The exit code is the command's. |
+| `delete NAME [--yes]` | Removes the machine and its disk. |
+
+- Distros are Ubuntu 24.04 and Alpine 3.22, pinned by digest. `--image REF` takes any image and is your choice; Noodle does not pin it.
+- No Mac folder is visible unless you pass `--share PATH`. That one folder appears at `/mnt/share`.
+- Each machine is its own VM with its own kernel, so a machine does not share a kernel with your containers.
+
+<span id="systemd"></span>
+
+### \--systemd
+
+`--systemd` makes systemd the machine's init, so `systemctl` and services work.
+
+- It installs systemd for `--distro ubuntu`. Alpine is refused.
+- With `--image REF` the image must already contain systemd, an executable `/sbin/init` that points to it, and `/usr/bin/systemctl` (glibc: Ubuntu, Debian or Fedora).
+- Without the flag the machine runs a small init instead, and `systemctl` does not work.
+- `stop` asks systemd to shut down. If it does not, Noodle forces the VM off and says so, pointing at `console.log` and `helper.log` in the machine's folder under `~/.noodle/machines`.
+
+### Memory
+
+Measured: an idle Ubuntu machine with `--memory 1G` had a helper footprint of 3505 KB and used 155 MiB of its sparse disk. Guest RAM is on top of that and is bounded by `--memory`. Those numbers predate `--systemd`.
+
+**Verification:** the cases are in `tests/machines.sh`, which is separate from the main end-to-end suite. The systemd block of that script alone passed 19 of 19 on the custom kernel after a boot-order fix. The full script (machines, systemd and the raw-run checks) then passed 97 of 97 on the custom kernel 6.18.60. The fixed guest was not run on Apple's kernel, and the 97 results are a count without per-case results. Networking inside a raw VM was not checked.
+
+<span id="raw"></span>
+
+## Raw run
+
+One throwaway VM, with no daemon and no Docker socket involved.
+
+```sh
+noodle debug run ./rootfs /bin/sh -c 'uname -a'
+noodle debug run alpine:3.22 /bin/echo hi
+```
+
+- Use `noodle debug run` for a disposable VM and `docker --context noodle run` for containers.
+- The first argument is a root filesystem directory, or an image already stored in your Noodle home (linux/arm64 only; it is not pulled). A command is required.
+- The VM has 2 CPUs, 2048 MiB of memory, a fresh 16 GiB sparse ext4 disk, runs as root, and shares no Mac folder. Everything is deleted when the command exits. SIGINT and SIGTERM end it with 128 plus the signal number.
+- It needs the signed `noodle-machine` helper next to `noodle`, which the app bundle has. Without it the command exits 127 with `signed VM executable not found next to noodle; reinstall Noodle`.
+
+**Checked:** the raw-run checks in `tests/machines.sh` (`raw-run-stored-image-output`, `raw-run-rootfs-unchanged` and the rest) are part of the 97 of 97 pass. **Not verified:** networking inside a raw VM.
+
+<span id="boot"></span>
+
+## Boot console
+
+`noodle debug boot-console` prints the last 256 KiB of the main VM's boot console. Capture is off by default. The first call turns it on for the next boot and says so. `--disable` turns it off. Reading it never starts the daemon.
+
+**Checked:** these end-to-end cases passed: `debug-boot-console`, `debug-boot-console-capture-opt-in-and-ring`.

@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+# Build a cpio "newc" initramfs containing the guest agent as /init plus the
+# empty mount points the agent expects. Usage:
+#   scripts/mkinitramfs [-i path/to/init] [-o out.cpio]
+# Defaults: guest/agent/zig-out/bin/init -> build/resources/initramfs.cpio and .cpio.gz
+# Uses macOS bsdtar (libarchive) so no root and no device nodes are needed:
+# the kernel mounts devtmpfs and the agent mounts everything else itself.
+set -euo pipefail
+
+root=$(cd "$(dirname "$0")/.." && pwd)
+init="$root/guest/agent/zig-out/bin/init"
+out="$root/build/resources/initramfs.cpio"
+
+while getopts "i:o:h" opt; do
+  case $opt in
+    i) init=$OPTARG ;;
+    o) out=$OPTARG ;;
+    *) sed -n '2,8p' "$0"; exit 2 ;;
+  esac
+done
+
+[[ -f $init ]] || { echo "mkinitramfs: init binary not found: $init (run 'just guest')" >&2; exit 1; }
+
+"$root/scripts/fetch-init.sh"
+tini="$root/build/tools/tini-static-arm64"
+
+stage=$(mktemp -d "${TMPDIR:-/tmp}/noodle-initramfs.XXXXXX")
+trap 'rm -rf "$stage"' EXIT
+
+# Directories required by protocol.md "Guest boot".
+for d in proc sys dev dev/pts run tmp etc root sbin \
+         var/lib/noodle mnt/host mnt/rosetta sys/fs/cgroup; do
+  mkdir -p "$stage/$d"
+done
+chmod 1777 "$stage/tmp"
+chmod 0700 "$stage/root"
+install -m 0755 "$init" "$stage/init"
+install -m 0755 "$tini" "$stage/sbin/docker-init"
+install -m 0644 "$root/docs/provenance/tini-LICENSE" "$stage/sbin/docker-init.LICENSE"
+
+mkdir -p "$(dirname "$out")"
+tmp_out="$out.tmp.$$"
+# Sorted names give a deterministic entry order; -n stops bsdtar from
+# recursing into directories it was already told about.
+(cd "$stage" && find . -mindepth 1 | LC_ALL=C sort | sed 's|^\./||' |
+  COPYFILE_DISABLE=1 bsdtar --format newc --uid 0 --gid 0 --numeric-owner \
+    --no-mac-metadata --no-xattrs -cnf "$tmp_out" -T -)
+mv "$tmp_out" "$out"
+# The host boots initramfs.cpio.gz (NoodlePaths.initramfs); keep both forms. The container VM's image is stored, not
+# gzipped, under that name: inflating it costs 3.5 ms of every wake, the kernel detects the format by content, and the
+# DMG compresses it anyway. Machines boot rarely and keep gzip.
+if [[ $(basename "$out") == initramfs.cpio ]]; then
+  cp "$out" "$out.gz.tmp.$$" && mv "$out.gz.tmp.$$" "$out.gz"
+else
+  gzip -9 -n -c "$out" >"$out.gz.tmp.$$" && mv "$out.gz.tmp.$$" "$out.gz"
+fi
+echo "mkinitramfs: $out ($(wc -c <"$out" | tr -d ' ') bytes, init $(wc -c <"$init" | tr -d ' ') bytes)"

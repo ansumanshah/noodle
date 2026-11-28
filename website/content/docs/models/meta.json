@@ -1,0 +1,14 @@
+{
+  "title": "Noodle Models",
+  "description": "Local models with an OpenAI-compatible API",
+  "root": true,
+  "pages": [
+    "index",
+    "quickstart",
+    "catalog",
+    "create",
+    "settings",
+    "apps",
+    "api"
+  ]
+}

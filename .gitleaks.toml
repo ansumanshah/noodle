@@ -1,0 +1,14 @@
+# Synthetic secrets used to test the redactor and diagnostics. None is a real credential.
+title = "Noodle"
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Synthetic canary fixtures for redaction tests"
+paths = [
+  '''tests/NoodleCoreTests/DiagnosticsPrivacyTests\.swift''',
+  '''tests/NoodleCoreTests/RedactorTests\.swift''',
+  '''tests/e2e/diagnostics\.sh''',
+  '''tests/e2e/host-development-processes-and-shared-names\.sh''',
+]

@@ -1,0 +1,36 @@
+---
+title: "Overview"
+description: "The Containers landing page: problems, projects, ports, memory, disk and Linux machines on one screen."
+---
+
+Overview is the first page of the Containers section. It reads from the engine while the Noodle window is visible and stops when you hide or close it. A card with nothing to show is not drawn.
+
+## Needs attention
+
+Up to three problems sit at the top, newest first:
+
+- a container that exited with a non-zero code in the last 24 hours (exit code 143, a plain stop, does not count),
+- a container that keeps restarting, or is dead,
+- a running container whose health check fails (shown as a warning).
+
+Each row has **Logs** and **Restart**. When the engine is stopped, the page shows the stopped state with a **Start** button.
+
+## Projects
+
+Compose projects and standalone containers. Each project row shows how many of its containers run, with **Logs**, **Stop** or **Start**, and **Restart**. The row's menu adds **Copy Name** and **Delete Project…**. Selecting a row opens it on the Containers page. A standalone container row has **Start** or **Stop** and a menu with **Copy Name** and **Copy ID**. The card lists five rows, with **Show All** for the rest. With nothing running it shows a `docker run` command and **Browse Images**.
+
+## Ports
+
+Each published port with the container or service that owns it. A web port (such as 80, 443, 3000, 8080) opens in your browser when you select it. Other ports, and all UDP ports, copy their address. Ports on data stores such as Postgres or Redis are copied rather than opened. The address is the container's `.localhost` name when Noodle serves one.
+
+## Memory
+
+The total memory used by running and paused containers and the three largest. Selecting a row opens the container. If some containers cannot be measured, the card says how many were counted.
+
+## Disk
+
+How much space images, volumes and container layers use, and how much **Clean Up** can free. Clean Up shows what it will remove before it deletes anything: stopped containers, images with no tag and no digest that no container uses, and unused networks. Running containers, tagged images and volumes stay. It is the same as Docker's standard prune.
+
+## Machines
+
+Your [Linux machines](/docs/containers/machines/) with their state. Selecting a row opens the machine. **Open Shell** starts a shell in the first running one.

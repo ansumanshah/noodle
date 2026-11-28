@@ -1,0 +1,132 @@
+# CI for the complete open-source tree. Runs on every push and pull request.
+#
+# Not covered here: the app tests (see the app step) and the VM suites (`just test-vm`, tests/e2e.sh, tests/machines.sh). They boot Linux guests
+# through Virtualization.framework, which hosted macOS runners cannot do (no nested virtualization).
+# Run them on a Mac with `just test` before sending changes that touch the daemon, the VM or the guest agent.
+#
+# Swift tests: DiskMigrationTests run the real e2fsprogs tools (mke2fs, e2fsck, tune2fs), so this job
+# builds the pinned e2fsprogs with scripts/build-mke2fs.sh and copies them into build/resources, where the
+# tests look. Nothing is skipped.
+name: ci
+
+# Pushes to main and pull requests only: a tag push would run the same commit a second time.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# A newer push to the same branch or pull request replaces the run in progress.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+# Runners: GitHub's hosted ones by default. Set the repository variable NOODLE_RUNNER to "on" and both jobs
+# move to a Mac running Noodle's own runners (noodle runners add <owner>/<repo> --macos). Pull requests from
+# forks always stay on hosted runners, so a stranger's code never runs on that Mac.
+
+jobs:
+  unit:
+    # Apple silicon, macOS 26: Package.swift requires macOS 26 and Swift 6.2.
+    runs-on: ${{ (vars.NOODLE_RUNNER == 'on' && (github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository)) && fromJSON('["self-hosted","noodle-macos"]') || 'macos-26' }}
+    env:
+      # A job gets a fresh folder, so mise has not seen this mise.toml before.
+      MISE_TRUSTED_CONFIG_PATHS: ${{ github.workspace }}
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      # On a Noodle macOS runner the job runs as the Mac's user: use the tools already there, install nothing.
+      - name: Use this Mac's tools
+        if: runner.environment != 'github-hosted'
+        run: echo "$HOME/.local/share/mise/shims" >> "$GITHUB_PATH"
+
+      - uses: jdx/mise-action@b44d12e7d0d8ee7461bb893e1b1993500433185b # v5.2.7
+        if: runner.environment == 'github-hosted'
+        with:
+          # Zig builds the guest agent. Go is only needed for the BuildKit adapter, which CI does not build.
+          install_args: zig
+
+      # just is not in mise.toml, so it needs a default version before its shim resolves.
+      - name: Install just
+        if: runner.environment == 'github-hosted'
+        run: mise use -g just
+
+      - name: Install shellcheck
+        if: runner.environment == 'github-hosted'
+        run: command -v shellcheck >/dev/null || brew install shellcheck
+
+      - name: Cache e2fsprogs
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: build/tools
+          key: e2fsprogs-${{ hashFiles('scripts/build-mke2fs.sh') }}
+
+      - name: Cache SwiftPM builds
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            .build
+            app/.build
+          key: swiftpm-${{ runner.os }}-${{ hashFiles('Package.swift', 'Package.resolved', 'app/Package.swift', 'app/Package.resolved') }}
+          restore-keys: swiftpm-${{ runner.os }}-
+
+      - name: Stage e2fsprogs for the Swift tests
+        run: |
+          scripts/build-mke2fs.sh
+          mkdir -p build/resources
+          for f in mke2fs e2fsck tune2fs mke2fs.conf; do
+            cp "build/tools/e2fsprogs-1.47.4/$f" "build/resources/$f"
+          done
+
+      - name: Build
+        run: swift build
+
+      # Same three checks as the test-unit recipe in the justfile.
+      # Hosted runners have three cores; the timing tests miss their deadlines when 760 tests share them.
+      - name: Unit tests, guest tests and shellcheck
+        run: just test-unit
+        env:
+          SWIFT_TEST_FLAGS: ${{ runner.environment == 'github-hosted' && '--no-parallel' || '' }}
+
+      # The app tests render pages and read them back with text recognition, which returns nothing on a
+      # hosted runner. There the app only has to compile; on a Noodle runner the tests run.
+      - name: Build the app
+        if: runner.environment == 'github-hosted'
+        run: swift build --package-path app
+
+      - name: App tests without window activation
+        if: runner.environment != 'github-hosted'
+        run: just test-app
+
+      - name: Notices and source packaging contracts
+        run: |
+          bash scripts/gen-notice.sh --check
+          just test-release-source
+          just test-source-preview
+
+  website:
+    # Noodle's Linux runners are arm64 containers.
+    runs-on: ${{ (vars.NOODLE_RUNNER == 'on' && (github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository)) && fromJSON('["self-hosted","noodle"]') || 'ubuntu-latest' }}
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      # Noodle's Linux jobs run in GitHub's own runner image, which is minimal. Node's arm64 build needs libatomic.
+      - name: Install libatomic for Node
+        if: runner.environment != 'github-hosted'
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends libatomic1
+      - uses: jdx/mise-action@b44d12e7d0d8ee7461bb893e1b1993500433185b # v5.2.7
+        with:
+          install: false
+      # Neither tool is in mise.toml, so each needs a default version before its shim resolves.
+      - name: Install node and bun
+        run: mise use -g node@26.13.0 bun@1.4.4
+      - name: Build website from its lockfile
+        working-directory: website
+        run: |
+          bun install --frozen-lockfile
+          bun run typecheck
+          bun run lint
+          bun run build

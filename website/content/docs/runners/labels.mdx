@@ -1,0 +1,29 @@
+---
+title: Labels
+description: Which runs-on lines Noodle picks up, and which it leaves alone.
+---
+
+GitHub gives a job to a runner that has every label in its `runs-on` list. Noodle only claims a job whose labels fit one of its runner kinds and include `noodle` or `noodle-macos`. Other self-hosted jobs are left alone.
+
+| Kind | Labels the runner has | Example `runs-on` |
+| --- | --- | --- |
+| Linux | `self-hosted`, `noodle`, `linux`, `arm64` | `[self-hosted, noodle]` |
+| macOS | `self-hosted`, `noodle-macos`, `macos`, `arm64`, `xcode-<major>` | `[self-hosted, noodle-macos]` |
+
+A plain `[self-hosted, noodle]` job can never land on the Mac itself, because the macOS runner does not carry the `noodle` label.
+
+To pin a Xcode version, add its label, for example `[self-hosted, noodle-macos, xcode-26]`. The job waits if this Mac has a different Xcode.
+
+## How many at once
+
+Noodle starts as many runners as there are queued jobs, up to two Linux runners and one macOS runner at a time. After a job, one runner per repo and kind stays registered for 5 minutes to take the next push. Runners that end or fail to start are unregistered, so none pile up offline on GitHub.
+
+## What a Linux job has
+
+Linux jobs run in GitHub's own runner image, `ghcr.io/actions/actions-runner`. It is smaller than the hosted `ubuntu-latest` image: a job installs the system packages it needs with `sudo apt-get`. Node's arm64 build, for example, needs `libatomic1`.
+
+## Not supported
+
+- Windows jobs.
+- x86-only Linux jobs. Linux runners are arm64.
+- Organisation-level runners. Add each repo.

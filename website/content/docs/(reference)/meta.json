@@ -1,0 +1,14 @@
+{
+  "title": "Reference",
+  "description": "Install, CLI, scripting, security and benchmarks",
+  "root": true,
+  "pages": [
+    "install",
+    "cli",
+    "agents",
+    "settings",
+    "security",
+    "troubleshooting",
+    "benchmarks"
+  ]
+}

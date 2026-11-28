@@ -1,0 +1,81 @@
+---
+title: "Migrate from Docker Desktop, OrbStack or Podman"
+description: "Copy images, volumes and stopped containers to Noodle from Docker Desktop, OrbStack or a Podman machine while keeping your existing setup."
+---
+
+Keep both engines installed and use their Docker contexts to choose where each command runs. Start with data you can recreate, then verify the destination before deleting anything from the source.
+
+## Import
+
+In the app’s setup assistant, keep your current engine selected if you want to try Noodle alongside it. When a running source has data to copy, choose the source and select tagged images, volumes, or stopped containers. Source data stays in place.
+
+From the terminal, use `docker context ls` to find the source context. Start your source engine and Noodle first.
+
+```sh
+noodle import SOURCE --list
+noodle import SOURCE --images
+```
+
+Replace `SOURCE` with the context name. For volumes, stop every container that writes to them first, and check the copy before you delete the source. Listing shows what the source holds. Use `--volumes` or `--containers` to copy other categories, or `--all` for all three. Container import covers stopped containers. The end-to-end checks `import-cross-engine` and `import-interrupted-transfer` used isolated engines. Migration from an actual Docker Desktop or OrbStack install still needs verification.
+
+## From Podman
+
+Start the Podman machine and Noodle, then use `podman` as the source name.
+
+```sh
+podman machine start
+noodle import podman --list
+noodle import podman --images
+```
+
+Noodle finds the running machine with `podman machine list`, then asks `podman machine inspect NAME` for its Docker-compatible socket. A named machine such as `noodle-bench` works the same as `podman-machine-default`. Without `podman` on your PATH it looks in `~/.local/share/containers/podman/machine` and in `$TMPDIR/podman`. If it finds nothing, pass the socket yourself: `noodle import unix:///path/to/podman.sock --list`. Rootless Podman images and volumes copy the same way as Docker ones. Before `--volumes`, stop every container that writes to those volumes: the import reads each volume while the source engine keeps running, so a database that writes mid-copy can land in Noodle with files from different moments, and the verification does not detect that. After the import, check the data in Noodle before you delete anything from Podman. Pods are not copied. Recreate them from the image.
+
+Podman commands you already type map to the `docker` CLI pointed at Noodle:
+
+| Podman | Against Noodle |
+|---|---|
+| `podman run`, `ps`, `stop`, `rm`, `logs`, `exec` | same subcommand with `docker` |
+| `podman build -t app .` | `docker build -t app .` |
+| `podman pull`, `push`, `images`, `rmi` | same subcommand with `docker` |
+| `podman volume create`, `ls`, `rm` | same subcommand with `docker` |
+| `podman network create`, `ls`, `rm` | same subcommand with `docker` |
+| `podman compose up` | `docker compose up` |
+| `podman machine start` | `noodle start` |
+
+Podman-only commands such as `podman pod` and `podman generate systemd` have no Noodle equivalent.
+
+## Keep both engines
+
+`noodle setup --no-use` adds the `noodle` context without selecting it. Address either engine per command with `--context`, or switch with `docker context use`.
+
+## Images
+
+```sh
+# replace OLD with your existing context name, see: docker context ls
+docker --context OLD save -o images.tar IMAGE:TAG [IMAGE:TAG ...]
+docker --context noodle load -i images.tar
+```
+
+Noodle runs arm64 and, through Rosetta, amd64 images. An image built only for another architecture will not start.
+
+## Volumes
+
+Stream each volume through a tar archive. Stop containers that write to it first.
+
+```sh
+docker --context OLD run --rm -v myvol:/v alpine:3.22 tar c -C /v . > myvol.tar
+docker --context noodle volume create myvol
+docker --context noodle run --rm -i -v myvol:/v alpine:3.22 tar x -C /v < myvol.tar
+```
+
+Check ownership and modes on a copy before you delete the original.
+
+## Containers and Compose projects
+
+Recreate them from the image and the Compose file. Run `docker --context noodle compose up`. For a single-file bind, approve its containing folder with `noodle share add` first.
+
+## What does not carry over
+
+- Running containers and Kubernetes workloads. Recreate them from the image or the manifest.
+- Privileged containers run in a separate VM, and their volumes are separate from ordinary containers' volumes. A Mac bind mount works for them only inside a folder approved with `noodle share add`, and only while `noodle kubernetes shared-folders` is on.
+- Swarm services.

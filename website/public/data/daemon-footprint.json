@@ -1,0 +1,11 @@
+{
+  "description": "noodled physical footprint in MB, read by footprint in the bench resources step (just bench, --warmup 5). One noodled process in every sample.",
+  "host": { "chip": "Apple M4", "memory_gib": 16, "guestCpus": 2, "guestMemoryGiB": 8 },
+  "target_mb": 9.0,
+  "samples_mb": [
+    { "run": "Full bench, before", "vm-up-empty": 9.63, "20-containers": 9.59, "after-idle-wait": 9.42 },
+    { "run": "Full bench, after", "vm-up-empty": 6.74, "20-containers": 6.67, "after-idle-wait": 6.47 },
+    { "run": "--suite lifecycle,resources, before", "vm-up-empty": 6.61, "20-containers": 6.80, "after-idle-wait": 6.50 },
+    { "run": "--suite lifecycle,resources, after", "vm-up-empty": 5.30, "20-containers": 5.19, "after-idle-wait": 4.86 }
+  ]
+}

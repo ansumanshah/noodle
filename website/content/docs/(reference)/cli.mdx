@@ -1,0 +1,197 @@
+---
+title: "CLI"
+description: "Find Noodle commands for setup, diagnostics, Docker commands, logs and runtime status."
+---
+
+`noodle` manages the runtime, models and runners. Docker commands go to the real `docker` CLI with `--context noodle`. Run `noodle help` for the groups, `noodle <group> help` for one group, or `noodle help --json` for the whole table as JSON. A group with no subcommand prints its help and exits 0, the same as `noodle <group> help`. `noodle names`, `proxy` and `link` run their own bare form instead. Each command here is generated from that table.
+
+{/* cli-commands:start */}
+| Command | What it does |
+| --- | --- |
+| `noodle setup [--use] [--no-use] [--tools] [--path] [--no-start]` | install clients and the Docker context |
+| `noodle doctor [--fix] [--json]` | report or repair stale installation items (`--json`) |
+| `noodle tools install [name...] [--no-link]` | download the pinned tools |
+| `noodle tools status [--json]` | show which tools are present (`--json`) |
+| `noodle tools remove` | remove the installed tools |
+| `noodle update check [--json]` | look for a newer signed app (`--json`) |
+| `noodle update stage` | download and verify an update |
+| `noodle update install [--yes]` | install the staged update (asks first; `--yes` skips) |
+| `noodle update confirm` | confirm a started update |
+| `noodle update rollback [--yes]` | return to the previous app (asks first; `--yes` skips) |
+| `noodle update status [--json]` | show the update state (`--json`) |
+| `noodle uninstall [--delete-data] [--yes]` | remove the installation; --delete-data also removes data (asks first; `--yes` skips) |
+| `noodle status [--json] [--startup]` | engine, socket and context summary (`--json`) |
+| `noodle start` | start the Noodle engine |
+| `noodle stop` | stop the Noodle engine |
+| `noodle kube play <file.yaml> [--down]` | run a Kubernetes YAML file as containers |
+| `noodle kube generate <container-or-pod>` | write Kubernetes YAML for a container or pod |
+| `noodle kubernetes start [--api-port N] [--ports LIST] [--timeout SECONDS] [--json]` | create or start the cluster (`--json`) |
+| `noodle kubernetes stop` | stop the cluster |
+| `noodle kubernetes status [--json]` | cluster state (`--json`) |
+| `noodle kubernetes delete [--yes]` | delete the cluster (asks first; `--yes` skips) |
+| `noodle kubernetes kubeconfig` | print the kubeconfig path |
+| `noodle kubernetes use-context [--remove] [--kubeconfig PATH]` | select the cluster in kubectl |
+| `noodle kubernetes shared-folders [on\|off]` | share approved folders with the cluster |
+| `noodle model catalog [--json]` | models you can pull (`--json`) |
+| `noodle model list [--json]` | installed models (`--json`) |
+| `noodle model pull <id> [--progress-json]` | download a model |
+| `noodle model import <file.gguf\|mlx-folder> <id>` | add a local model file or folder |
+| `noodle model run <id> [prompt] [--keep-alive DURATION]` | chat with a model; reads the prompt from stdin when none is given |
+| `noodle model serve <id> [--port PORT] [--workloads IPV4] [--keep-alive DURATION]` | serve a model over HTTP |
+| `noodle model stop` | stop the running model |
+| `noodle model status [--json]` | running model and URL (`--json`) |
+| `noodle model endpoint [--json]` | base URL and API key (`--json`) |
+| `noodle model rm <id>` | delete a model |
+| `noodle model logs` | model runtime logs |
+| `noodle model location [folder] [--reset]` | show or move the models folder |
+| `noodle model keep-alive [duration] [--reset]` | show or set the idle unload time |
+| `noodle model key [--rotate]` | print the API key |
+| `noodle model network [on\|off\|--json]` | show or set LAN access (`--json`) |
+| `noodle names list [--json]` | names the engine serves (same as `noodle names`) (`--json`) |
+| `noodle names add <name> <port>` | name a process on this Mac |
+| `noodle names remove <name>` | remove a host name |
+| `noodle names ca [localhost\|noodle.local]` | print the local CA path |
+| `noodle names trust [localhost\|noodle.local]` | trust the local CA (macOS asks for a password) |
+| `noodle names untrust [localhost\|noodle.local]` | remove trust for the local CA |
+| `noodle dev [name] [--] <command...>` | run a host dev server at a named localhost URL |
+| `noodle share list` | approved folders |
+| `noodle share add <absolute-folder>` | approve a folder |
+| `noodle share remove <absolute-folder> [--restart]` | revoke a folder |
+| `noodle runners add [owner/repo] [--macos] [--allow-public]` | add a repository |
+| `noodle runners remove <owner/repo>` | remove a repository |
+| `noodle runners list [--json]` | repositories and state (`--json`) |
+| `noodle runners pause <owner/repo>` | pause a repository |
+| `noodle runners resume <owner/repo>` | resume a repository |
+| `noodle runners cache [--json]` | cache sizes (`--json`) |
+| `noodle runners cache clear <owner/repo>` | clear a repository cache |
+| `noodle runners repos [--json]` | repositories you can add (`--json`) |
+| `noodle runners check <owner/repo> [--json]` | check a repository's setup (`--json`) |
+| `noodle runners start` | start the runner helper |
+| `noodle runners stop` | stop the runner helper |
+| `noodle runners status [--json]` | helper state, holds and start failures (`--json`) |
+| `noodle runners doctor [--json]` | check this Mac can run jobs, read-only (`--json`) |
+| `noodle runners clean [--dry-run] [--older-than DAYS] [--json]` | free disk Runners used (`--json`) |
+| `noodle runners toolchains [--json]` | build tools a macOS job sees (`--json`) |
+| `noodle proxy [--json]` | show the proxy settings (JSON) (`--json`) |
+| `noodle proxy set --stdin` | replace the proxy settings from JSON on stdin |
+| `noodle logs [engine\|linux\|privileged] [-n N] [--tail N] [--grep TEXT] [-f] [--follow] [--raw]` | component logs |
+| `noodle diagnostics [--list] [-o FILE] [--output FILE] [--json]` | write a scrubbed archive (`--json`) |
+| `noodle migrate-disk [--dry-run]` | back up and convert an old data disk |
+| `noodle import <source> [--list] [--images] [--volumes] [--containers] [--all] [--only a,b] [--on-conflict skip\|overwrite\|rename] [--retries N] [--dry-run] [--json]` | copy from another engine (`--json`) |
+| `noodle pod create [--name NAME] [--publish SPEC] [-p SPEC] [--label KEY=VALUE] [-l KEY=VALUE] [--share net] [--json]` | create a pod (`--json`) |
+| `noodle pod ps [--json]` | list pods (`--json`) |
+| `noodle pod inspect <pod> [--json]` | show a pod (`--json`) |
+| `noodle pod start <pod> [--json]` | start a pod (`--json`) |
+| `noodle pod stop <pod> [--json]` | stop a pod (`--json`) |
+| `noodle pod restart <pod> [--json]` | restart a pod (`--json`) |
+| `noodle pod rm <pod> [-f] [--force] [--json]` | remove a pod (`--json`) |
+| `noodle pod logs <pod> [--json]` | pod logs (`--json`) |
+| `noodle pod top <pod> [--json]` | pod processes (`--json`) |
+| `noodle container edit <name> [--env K=V] [--unset-env K] [--publish SPEC] [--unpublish SPEC] [--restart] [--dry-run]` | change env, ports or restart |
+| `noodle container ports <name> [--json]` | published ports (`--json`) |
+| `noodle machine create <name> [--distro ubuntu\|alpine] [--image REF] [--cpus N] [--memory SIZE] [--disk GiB] [--share PATH] [--systemd]` | create a machine |
+| `noodle machine list [--json]` | list machines (`--json`) |
+| `noodle machine start <name>` | start a machine |
+| `noodle machine stop <name>` | stop a machine |
+| `noodle machine restart <name>` | restart a machine |
+| `noodle machine shell [name] [-- command...]` | open a shell or run one command |
+| `noodle machine delete <name> [--yes]` | delete a machine (asks first; `--yes` skips) |
+| `noodle machine status <name> [--json]` | machine state (`--json`) |
+| `noodle builds list [--json]` | build history (`--json`) |
+| `noodle builds inspect <id>` | one build (JSON) |
+| `noodle builds logs <id>` | build logs |
+| `noodle builds rm <id>\|--all` | remove a build record |
+| `noodle image layers <image> [--json]` | image layers (`--json`) |
+| `noodle scan [image] [--json] [--fail-on SEVERITY] [--history] [--clear-cache]` | scan an image for vulnerabilities; the image is optional with --history and not allowed with --clear-cache (`--json`) |
+| `noodle sbom <image> [--output FILE]` | CycloneDX bill of materials (JSON) |
+| `noodle link <container[:port]> [--yes] [--allow-privileged] [--json]` | open a public HTTPS link (`--json`, asks first; `--yes` skips) |
+| `noodle link list [--json]` | active links (`--json`) |
+| `noodle link stop <id>\|--all` | stop a link |
+| `noodle finder mount [mountpoint\|--serve-only]` | mount the read-only view |
+| `noodle finder unmount` | unmount the view |
+| `noodle finder status` | mount state (JSON) |
+| `noodle debug boot-console [--disable]` | print the captured boot console |
+| `noodle debug run <rootfs-dir\|stored-image> <command> [args...]` | one throwaway VM |
+| `noodle debug bench [--run [IMAGE]]` | latency of the API, optionally of `docker run` |
+| `noodle version [--json]` | print the version (`--json`) |
+| `noodle help [command\|--json]` | print help, or the help of one command (`--json`) |
+{/* cli-commands:end */}
+
+## Notes on commands
+
+- **setup**: sets up clients, the Docker context and the LaunchAgent. It selects the Noodle context when no other engine is running; `--use` forces it and `--no-use` never does. `--tools` prefetches plugins.
+- **uninstall**: removes Noodle-owned setup items. Data is kept unless you pass `--delete-data`.
+- **status**: `noodle status --startup` reports Docker API, VM and guest readiness. See [Status for scripts](#status).
+- **tools**: manages the pinned Docker clients and BuildKit.
+- **model**: `location [<folder>]` or `location --reset` sets where models install. `keep-alive [<duration>]` or `keep-alive --reset` saves how long a model stays loaded. `key [--rotate]` prints or replaces the API key. `network [on]`, `network off` or `network --json` lets other devices use your models. GGUF `run` and `serve` accept `--keep-alive`; `serve` also accepts `--port` and `--workloads`.
+- **proxy**: reads or changes the registry proxy and the optional environment for new containers.
+- **import**: copies from a Docker context, a Unix socket or a running `podman` machine. Stop volume writers before copying.
+- **share**: manages approved absolute folders for file binds. `remove --restart` ends access for the privileged VM and the Kubernetes node now, instead of at their next restart.
+- **machine**: see [Machines and raw VMs](/docs/containers/machines/).
+- **pod**: add members with `docker run`, see [noodle pod](/docs/containers/#pod).
+- **runners**: see [Runners](/docs/runners/). `doctor` checks that this Mac is ready, see [Check this Mac](/docs/runners/doctor/). `clean` frees disk tier by tier and never asks; it exits 1 if a deletion failed.
+- **image**, **container**: `noodle image layers` and `noodle container edit|ports` are the only subcommands. Use `docker --context noodle image` and `docker --context noodle container` for the rest.
+- **logs**: `--raw` disables secret redaction. For a container's logs use `docker --context noodle logs NAME`.
+- **scan**: `--history [IMAGE]` shows scan history and `--clear-cache` clears it.
+
+Set VM CPUs and memory in the app, or in `~/.noodle/vm.json` with `cpus` and `memory_mib`. `NOODLE_HOME` changes that directory; `NOODLE_CPUS` and `NOODLE_MEMORY_MIB` override the file. Set `"host_loopback": false` in the same file to disable the relay at the next daemon start.
+
+<span id="docker"></span>
+
+## Docker commands
+
+Noodle does not wrap `docker`. An unknown `noodle` command points you to `docker --context noodle`. If you selected Noodle as the default context with `noodle setup --use`, plain `docker` commands also target it:
+
+```sh
+docker --context noodle run -d -p 8080:80 nginx
+docker run -d -p 8080:80 nginx
+```
+
+The socket path is printed by `noodle status`.
+
+<span id="logs"></span>
+
+## Container logs and the Mac
+
+Log rotation follows Docker. `--log-opt max-size=10k --log-opt max-file=3` keeps at most three files per container, `docker logs` reads them in order, `--tail` and `--follow` work across a rotation, and bad values are refused with exit 125. Without the options nothing is rotated. The `local` driver takes the same options.
+
+Inside an ordinary container on a non-internal network, `host.docker.internal` and `--add-host name:host-gateway` reach Mac loopback TCP services through a relay by default. Noodle's own loopback listeners are protected. Internal networks, UDP and privileged containers in the workload VM do not use the relay. Setting `host_loopback` to `false` restores NAT-only reach.
+
+<span id="exit-codes"></span>
+
+## Exit codes
+
+Every group uses the same codes. Usage and unknown-command text goes to stderr.
+
+{/* cli-exit-codes:start */}
+| Code | Meaning |
+| --- | --- |
+| `0` | success |
+| `1` | the operation failed |
+| `2` | usage error, a confirmation needed with no terminal and no --yes, or (scan --fail-on) a finding at or above the threshold |
+| `3` | the engine is not running or not reachable |
+{/* cli-exit-codes:end */}
+
+A declined confirmation, a timeout and a failed operation all exit 1. A command that needs a confirmation but has no terminal exits 2 and names the flag: pass `--yes` (`-y`, `-f` and `--force` also work). `noodle kubernetes status` and `noodle status` exit 3 when the engine or cluster is not running. The `--json` form of `kubernetes status` always exits 0 and reports the state in the document. `noodle scan --fail-on` exits 2 when a finding meets the threshold.
+
+A few exit codes come from outside Noodle. A command that runs `docker`, `kubectl` or `noodle-machine` exits 127 when that program is missing and 126 when it cannot be run. `noodle machine shell` exits 255 when it loses the connection to the machine. `noodle names trust` and `untrust` exit 1 when the macOS `security` tool fails.
+
+<span id="json"></span>
+
+## JSON output
+
+Without `--json`, output is for a person, on the same streams as always. With `--json`, stdout is one JSON document and progress, status chatter and failure messages go to stderr. These commands print a document with `schemaVersion: 1`: `version`, `status`, `status --startup`, `doctor`, `tools status`, `update check`, `update status`, `machine status NAME`, `kubernetes start` and `status`, `runners list`, `status`, `repos`, `check`, `cache`, `doctor`, `clean` and `toolchains`, `diagnostics` and `import`. `machine list`, `model list`, `status`, `endpoint`, `catalog` and `network`, `builds list`, `container ports`, `image layers`, `scan`, `proxy`, `names`, `link` and `pod` take `--json` too but keep the shape they had before, which may be a bare array or a shape the app reads, so they have no `schemaVersion`. An error with `--json` is still a non-zero exit with a message on stderr; there is no JSON error envelope.
+
+`noodle model run` reads prompts from piped standard input and answers on stdout, so it works in a pipe; it never prompts for a confirmation.
+
+<span id="status"></span>
+
+## Status for scripts
+
+`noodle status --json` prints one JSON object with `schemaVersion: 1` and never starts the daemon or the VM.
+
+- `daemon.reachable` is true when the socket answers `/_ping`. It does not say whether the VM is running.
+- `paths.data`, `paths.socket` and `paths.launchAgent` are the resolved paths.
+- `tools.docker.available` and `tools.docker.path` report whether a Docker CLI was found.
+
+It exits 0 when the socket answers, 3 when it does not, and 1 on an encoding error. An unreachable daemon is still a valid snapshot.

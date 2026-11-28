@@ -1,0 +1,121 @@
+---
+title: "Images and builds"
+description: "Build local arm64 images, inspect build history, scan images and see which tools download on first use."
+---
+
+Local image builds, build history, vulnerability scans, and a list of every file Noodle fetches after install, with what triggers it.
+
+<span id="builds"></span>
+
+## Building and BuildKit
+
+```sh
+docker --context noodle build -t local/demo .
+docker --context noodle compose build
+docker buildx build --load -t local/demo .
+```
+
+The first native build pulls `moby/buildkit` v0.35.0 (linux/arm64, pinned by digest, so the pull is checked) and starts it inside the VM. It stops after the last client disconnects. The image size was not measured. Builds produce local arm64 images. `DOCKER_BUILDKIT=0` selects the classic build API instead.
+
+BuildKit support (Noodle's build adapter) ships inside the app, with its
+licences, and runs in place from `Noodle.app/Contents/Helpers`. If a build has
+no bundled copy, the adapter is fetched on demand: its byte size and SHA-256
+are checked before it is unpacked under `~/.noodle/tools` (or
+`$NOODLE_HOME/tools`), and again before reuse.
+
+**Checked:** these end-to-end cases passed: `build-buildkit-default`, `build-native-gateway-secret`, `build-native-parallel-sessions`, `build-worker-cache-reuse`, `build-native-cancel-retry`, `buildx-load`, `compose-local-build`.
+
+<span id="history"></span>
+
+## noodle builds
+
+Every build leaves a record under `~/.noodle/builds`. These commands read those files and never start the daemon.
+
+```sh
+noodle builds list
+noodle builds inspect ID
+noodle builds logs ID
+noodle builds rm ID
+noodle builds rm --all
+noodle image layers IMAGE --json
+```
+
+- `list` prints `ID`, `STATUS`, `SECONDS`, `CACHED/TOTAL` steps and tags, newest first. `--json` prints the records without logs.
+- `inspect` and `logs` take an exact build ID, not a path or a prefix.
+- Logs have a size limit, and secrets passed to a build are redacted in them.
+
+**Checked:** these end-to-end cases passed: `noodle-cli-builds`, `build-history-success-cache-and-layers`, `build-history-failure-and-redaction`, `build-history-retention-restart-and-sleep`, `build-history-native-buildx-secret-and-cache`, `build-history-native-failed-secret`, `build-history-log-limit`, `build-history-cancelled`.
+
+<span id="scan"></span>
+
+## noodle scan and noodle sbom
+
+```sh
+noodle scan alpine:3.22
+noodle scan myapp:latest --fail-on high --json
+noodle scan --history myapp:latest
+noodle scan --clear-cache
+noodle sbom myapp:latest --output sbom.json
+```
+
+- The image is exported from the engine to a private temporary folder and scanned there. A missing image fails before anything is downloaded.
+- `scan` uses Grype 0.121.3. `sbom` uses Syft 1.57.1 and writes CycloneDX JSON to stdout or to `--output FILE`.
+- Both tools download from github.com/anchore on first use. The archive's SHA-256 is checked against a pin before extraction, and the executable's hash is checked on every later run.
+- The first scan also downloads the vulnerability database. Noodle prints a notice: about 3.2 GB on disk, several minutes. `scan --clear-cache` deletes it.
+- `--fail-on SEVERITY` (`negligible`, `low`, `medium`, `high`, `critical`) exits 2 when any match is at or above that level. Without it the exit code stays 0 even with findings.
+- `scan --history [IMAGE]` prints saved results as a JSON array. Noodle keeps the latest 50.
+
+**Checked:** these end-to-end cases passed: `scan-unused-and-missing-image`, `scan-known-cve-and-fail-on`, `scan-sbom-cyclonedx`, `scan-history-offline-and-clear-cache`, `scan-tampered-helper-refused`, `scan-tampered-archive-refused`.
+
+### In the app
+
+Select an image on the Images page to see the **Info**, **Layers** and **Security** tabs. The Security tab runs the same scan and package list on this Mac.
+
+- **Scan** (then **Scan Again**) lists vulnerabilities with counts per severity and, for each match, its ID, package and the fixed version or "No fix listed". The first scan asks before it downloads the scanner and the 3.2 GB database.
+- **Scan history** picks an earlier result, or "Latest scan".
+- **List Packages** shows every package in the image, as `noodle sbom` does. It may download Syft first. **Export** saves the list as CycloneDX.
+- **Clear Scan Database…** removes the database. Saved results stay.
+
+<span id="downloads"></span>
+
+## Everything Noodle downloads after install
+
+These downloads happen on demand. Noodle checks pinned executables and images against a checksum or digest. The vulnerability database comes from the scanner’s update service.
+
+| File | Trigger | Size |
+| --- | --- | --- |
+| Docker CLI 29.9.3 (`download.docker.com`) | setup, when no compatible CLI is installed | 19,641,900 bytes |
+| Docker Compose 5.7.1 (`github.com/docker/compose`) | first `docker compose` | 31,976,450 bytes |
+| Docker Buildx 0.39.0 (`github.com/docker/buildx`) | first `docker buildx` or `docker build` | 65,238,512 bytes |
+| Docker Model CLI 1.2.9 (Docker's registry) | first `docker model` | not measured |
+| kubectl 1.37.2 (`dl.k8s.io`) | setup, when no `kubectl` is on your PATH | not measured |
+| BuildKit v0.35.0 image | first native build | not measured |
+| Grype 0.121.3, Syft 1.57.1 | first `scan` or `sbom` | not measured |
+| Vulnerability database | first `scan` | about 3.2 GB on disk |
+| k3s image v1.37.2+k3s1 | `noodle kubernetes start` | not measured |
+| cloudflared 2026.11.0 | first `noodle link` | not measured |
+
+### Optional tools
+
+Two more tools are pinned. A bare `noodle tools install` skips them; name them to fetch one.
+
+- `kubectl` 1.37.2 is linked into `~/.local/bin` when that name is free. Setup fetches it only when no `kubectl` is on your PATH.
+- `act` 0.2.98 (`github.com/nektos/act`) runs GitHub Actions workflows locally. `noodle tools install act` downloads it and links it into `~/.local/bin` when that name is free. `--no-link` skips the link.
+
+`noodle tools status` lists them once installed.
+
+### The Docker tools
+
+- Setup downloads only a missing Docker CLI, about 19.6 MB. Compose and Buildx arrive on first use. Keep using `docker compose`, `docker buildx` and `docker build`.
+- Files go to `~/.noodle/tools`. Setup links lazy plugins into `~/.docker/cli-plugins` (or `$DOCKER_CONFIG/cli-plugins`) only when that name is absent. Docker Desktop's links and your own binaries are preserved. A lazy plugin answers Docker's metadata request locally, then replaces its link with the real upstream binary after the first verified download.
+- A download whose SHA-256 differs from the pin is discarded and nothing is installed.
+- `noodle tools status` lists what is installed. `noodle tools remove` unlinks only the links Noodle made and deletes `~/.noodle/tools`.
+- Before going offline, run `noodle setup --tools` to prefetch missing clients, including deferred plugins, or `noodle tools install` to install every pinned client: `docker`, `docker-compose`, `docker-buildx` and `docker-model`, plus BuildKit support when the app supplies it. Name tools to fetch only those, for example `noodle tools install docker-compose`. There is no combined size, because the Docker Model CLI size is not recorded. An offline first-use failure keeps the stub and prints the matching install command. `NOODLE_TOOLS_MIRROR` replaces the download host; the SHA-256 pins still apply.
+- `noodle uninstall` removes stubs and plugin links it created. Downloaded tools stay unless you remove them or delete Noodle data.
+
+BuildKit support also lives under `tools`. `noodle tools status` lists it as
+`buildkit` when the app supplies the download manifest. `noodle tools remove` deletes
+it, as does `noodle uninstall --delete-data --yes` along with all other
+Noodle data. The BuildKit archive includes `BuildKitAdapter-Licenses.txt`.
+
+**Checked:** `tests/tools.sh` passed with `TOOLS_OFFLINE=1` and cached pinned binaries. Its local `file://` fixture covers setup-created stubs, metadata without downloads, simultaneous first uses, stdin and environment forwarding, `docker build` dispatch and uninstall. **Not verified:** upstream network downloads were not repeated; the sizes above are those supplied for the pinned files.

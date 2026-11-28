@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="330 250 400 420">
+  <!-- Menu bar template glyph: the app icon's noodle strand (from GenerateAppIcon.swift) rising from a lid. Alpha only. -->
+  <path d="M370 630L690 630" stroke="#2F8FB0" stroke-width="62" stroke-linecap="round"/>
+  <path d="M457.13 600L457.13 476.63C457.13 424.98 472.56 374.51 501.45 331.69C515.95 310.19 537.98 294.91 563.2 288.85C588.42 282.8 614.99 286.42 637.67 298.99C660.35 311.56 677.5 332.18 685.72 356.77C693.95 381.36 692.67 408.15 682.12 431.84C675.83 445.97 664.18 457.02 649.74 462.57C635.3 468.11 619.25 467.69 605.12 461.4C590.99 455.11 579.94 443.46 574.39 429.02C568.85 414.58 569.27 398.53 575.56 384.4" fill="none" stroke="#2F8FB0" stroke-opacity="1" stroke-width="62" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

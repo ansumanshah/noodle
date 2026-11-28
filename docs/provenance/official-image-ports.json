@@ -1,0 +1,1501 @@
+{
+ "retrieved": "2026-11-06",
+ "endpoints": [
+  "https://hub.docker.com/v2/repositories/library/",
+  "https://auth.docker.io/token?service=registry.docker.io&scope=repository:library/{repo}:pull",
+  "https://registry-1.docker.io/v2/library/{repo}/{kind}/{ref}"
+ ],
+ "topN": 100,
+ "countMeaning": "per-port: number of listed images exposing that port",
+ "notWebCategories": [
+  "databases-and-storage",
+  "message-queues"
+ ],
+ "notWebNameHints": [
+  "sql",
+  "db",
+  "redis",
+  "memcache",
+  "mongo",
+  "cassandra",
+  "couch",
+  "elastic",
+  "solr",
+  "rabbit",
+  "mosquitto",
+  "nats",
+  "kafka",
+  "zookeeper",
+  "etcd",
+  "neo4j",
+  "influx",
+  "consul",
+  "arango",
+  "rethink"
+ ],
+ "portCounts": {
+  "80": 12,
+  "443": 1,
+  "1883": 1,
+  "2019": 1,
+  "2181": 1,
+  "2368": 1,
+  "2375": 2,
+  "2376": 1,
+  "2888": 1,
+  "3000": 2,
+  "3306": 3,
+  "3888": 1,
+  "4222": 2,
+  "4369": 2,
+  "5000": 1,
+  "5432": 1,
+  "5671": 1,
+  "5672": 1,
+  "5984": 1,
+  "6123": 1,
+  "6222": 1,
+  "6379": 1,
+  "7000": 1,
+  "7001": 1,
+  "7199": 1,
+  "7473": 1,
+  "7474": 1,
+  "7687": 1,
+  "8000": 1,
+  "8001": 1,
+  "8069": 1,
+  "8071": 1,
+  "8072": 1,
+  "8080": 7,
+  "8081": 2,
+  "8086": 1,
+  "8091": 1,
+  "8092": 2,
+  "8093": 1,
+  "8094": 2,
+  "8095": 1,
+  "8096": 1,
+  "8097": 1,
+  "8125": 1,
+  "8222": 2,
+  "8443": 1,
+  "8444": 1,
+  "8529": 1,
+  "8888": 1,
+  "8983": 1,
+  "9000": 2,
+  "9042": 1,
+  "9092": 1,
+  "9100": 1,
+  "9123": 1,
+  "9160": 1,
+  "9987": 1,
+  "10011": 1,
+  "11207": 1,
+  "11210": 1,
+  "11211": 1,
+  "11280": 1,
+  "15691": 1,
+  "15692": 1,
+  "18091": 1,
+  "18092": 1,
+  "18093": 1,
+  "18094": 1,
+  "18095": 1,
+  "18096": 1,
+  "18097": 1,
+  "25672": 1,
+  "27017": 1,
+  "28015": 1,
+  "29015": 1,
+  "30033": 1,
+  "33060": 1
+ },
+ "portClass": {
+  "80": "web",
+  "443": "web",
+  "1883": "notweb",
+  "2019": "web",
+  "2181": "notweb",
+  "2368": "web",
+  "2375": "web",
+  "2376": "web",
+  "2888": "notweb",
+  "3000": "web",
+  "3306": "notweb",
+  "3888": "notweb",
+  "4222": "notweb",
+  "4369": "notweb",
+  "5000": "notweb",
+  "5432": "notweb",
+  "5671": "notweb",
+  "5672": "notweb",
+  "5984": "notweb",
+  "6123": "web",
+  "6222": "notweb",
+  "6379": "notweb",
+  "7000": "notweb",
+  "7001": "notweb",
+  "7199": "notweb",
+  "7473": "notweb",
+  "7474": "notweb",
+  "7687": "notweb",
+  "8000": "web",
+  "8001": "web",
+  "8069": "web",
+  "8071": "web",
+  "8072": "web",
+  "8080": "web",
+  "8081": "web",
+  "8086": "notweb",
+  "8091": "notweb",
+  "8092": "web",
+  "8093": "notweb",
+  "8094": "web",
+  "8095": "notweb",
+  "8096": "notweb",
+  "8097": "notweb",
+  "8125": "web",
+  "8222": "notweb",
+  "8443": "web",
+  "8444": "web",
+  "8529": "notweb",
+  "8888": "web",
+  "8983": "notweb",
+  "9000": "web",
+  "9042": "notweb",
+  "9092": "web",
+  "9100": "notweb",
+  "9123": "notweb",
+  "9160": "notweb",
+  "9987": "web",
+  "10011": "web",
+  "11207": "notweb",
+  "11210": "notweb",
+  "11211": "notweb",
+  "11280": "notweb",
+  "15691": "notweb",
+  "15692": "notweb",
+  "18091": "notweb",
+  "18092": "notweb",
+  "18093": "notweb",
+  "18094": "notweb",
+  "18095": "notweb",
+  "18096": "notweb",
+  "18097": "notweb",
+  "25672": "notweb",
+  "27017": "notweb",
+  "28015": "notweb",
+  "29015": "notweb",
+  "30033": "web",
+  "33060": "notweb"
+ },
+ "images": [
+  {
+   "image": "nginx",
+   "category": [
+    "web-servers"
+   ],
+   "web": true,
+   "pulls": 13559025289,
+   "ports": [
+    80
+   ],
+   "count": {
+    "80": 12
+   }
+  },
+  {
+   "image": "memcached",
+   "category": [
+    "databases-and-storage"
+   ],
+   "web": false,
+   "pulls": 13435135038,
+   "ports": [
+    11211
+   ],
+   "count": {
+    "11211": 1
+   }
+  },
+  {
+   "image": "busybox",
+   "category": [
+    "operating-systems"
+   ],
+   "web": true,
+   "pulls": 12987101715,
+   "ports": [],
+   "count": {}
+  },
+  {
+   "image": "alpine",
+   "category": [
+    "operating-systems"
+   ],
+   "web": true,
+   "pulls": 12476641111,
+   "ports": [],
+   "count": {}
+  },
+  {
+   "image": "postgres",
+   "category": [
+    "databases-and-storage"
+   ],
+   "web": false,
+   "pulls": 12258852008,
+   "ports": [
+    5432
+   ],
+   "count": {
+    "5432": 1
+   }
+  },
+  {
+   "image": "redis",
+   "category": [
+    "databases-and-storage"
+   ],
+   "web": false,
+   "pulls": 11604038946,
+   "ports": [
+    6379
+   ],
+   "count": {
+    "6379": 1
+   }
+  },
+  {
+   "image": "ubuntu",
+   "category": [
+    "operating-systems"
+   ],
+   "web": true,
+   "pulls": 10153527649,
+   "ports": [],
+   "count": {}
+  },
+  {
+   "image": "python",
+   "category": [
+    "languages-and-frameworks"
+   ],
+   "web": true,
+   "pulls": 9567289018,
+   "ports": [],
+   "count": {}
+  },
+  {
+   "image": "node",
+   "category": [
+    "languages-and-frameworks"
+   ],
+   "web": true,
+   "pulls": 7324696826,
+   "ports": [],
+   "count": {}
+  },
+  {
+   "image": "mysql",
+   "category": [
+    "databases-and-storage"
+   ],
+   "web": false,
+   "pulls": 5241372507,
+   "ports": [
+    3306,
+    33060
+   ],
+   "count": {
+    "3306": 3,
+    "33060": 1
+   }
+  },
+  {
+   "image": "mongo",
+   "category": [
+    "databases-and-storage"
+   ],
+   "web": false,
+   "pulls": 4915120719,
+   "ports": [
+    27017
+   ],
+   "count": {
+    "27017": 1
+   }
+  },
+  {
+   "image": "httpd",
+   "category": [
+    "web-servers"
+   ],
+   "web": true,
+   "pulls": 4753516805,
+   "ports": [
+    80
+   ],
+   "count": {
+    "80": 12
+   }
+  },
+  {
+   "image": "rabbitmq",
+   "category": [
+    "message-queues"
+   ],
+   "web": false,
+   "pulls": 3910868529,
+   "ports": [
+    4369,
+    5671,
+    5672,
+    15691,
+    15692,
+    25672
+   ],
+   "count": {
+    "4369": 2,
+    "5671": 1,
+    "5672": 1,
+    "15691": 1,
+    "15692": 1,
+    "25672": 1
+   }
+  },
+  {
+   "image": "docker",
+   "category": [
+    "developer-tools"
+   ],
+   "web": true,
+   "pulls": 3657515724,
+   "ports": [
+    2375,
+    2376
+   ],
+   "count": {
+    "2375": 2,
+    "2376": 1
+   }
+  },
+  {
+   "image": "traefik",
+   "category": [
+    "networking"
+   ],
+   "web": true,
+   "pulls": 3595752240,
+   "ports": [
+    80
+   ],
+   "count": {
+    "80": 12
+   }
+  },
+  {
+   "image": "hello-world",
+   "category": [],
+   "web": true,
+   "pulls": 3387281973,
+   "ports": [],
+   "count": {}
+  },
+  {
+   "image": "mariadb",
+   "category": [
+    "databases-and-storage"
+   ],
+   "web": false,
+   "pulls": 3246163497,
+   "ports": [
+    3306
+   ],
+   "count": {
+    "3306": 3
+   }
+  },
+  {
+   "image": "golang",
+   "category": [
+    "languages-and-frameworks"
+   ],
+   "web": true,
+   "pulls": 2760583008,
+   "ports": [],
+   "count": {}
+  },
+  {
+   "image": "openjdk",
+   "category": [],
+   "web": true,
+   "pulls": 2617307470,
+   "ports": [],
+   "error": "HTTP Error 404: Not Found",
+   "count": {}
+  },
+  {
+   "image": "debian",
+   "category": [
+    "operating-systems"
+   ],
+   "web": true,
+   "pulls": 1792984936,
+   "ports": [],
+   "count": {}
+  },
+  {
+   "image": "registry",
+   "category": [
+    "databases-and-storage"
+   ],
+   "web": false,
+   "pulls": 1789679809,
+   "ports": [
+    5000
+   ],
+   "count": {
+    "5000": 1
+   }
+  },
+  {
+   "image": "ruby",
+   "category": [
+    "languages-and-frameworks"
+   ],
+   "web": true,
+   "pulls": 1589946081,
+   "ports": [],
+   "count": {}
+  },
+  {
+   "image": "wordpress",
+   "category": [
+    "content-management-system"
+   ],
+   "web": true,
+   "pulls": 1507335285,
+   "ports": [
+    80
+   ],
+   "count": {
+    "80": 12
+   }
+  },
+  {
+   "image": "php",
+   "category": [
+    "languages-and-frameworks"
+   ],
+   "web": true,
+   "pulls": 1398136617,
+   "ports": [],
+   "count": {}
+  },
+  {
+   "image": "sonarqube",
+   "category": [
+    "integration-and-delivery"
+   ],
+   "web": true,
+   "pulls": 1229851282,
+   "ports": [
+    9000
+   ],
+   "count": {
+    "9000": 2
+   }
+  },
+  {
+   "image": "centos",
+   "category": [],
+   "web": true,
+   "pulls": 1186855356,
+   "ports": [],
+   "error": "HTTP Error 404: Not Found",
+   "count": {}
+  },
+  {
+   "image": "haproxy",
+   "category": [
+    "web-servers"
+   ],
+   "web": true,
+   "pulls": 1137144645,
+   "ports": [],
+   "count": {}
+  },
+  {
+   "image": "influxdb",
+   "category": [
+    "data-science",
+    "databases-and-storage",
+    "internet-of-things"
+   ],
+   "web": false,
+   "pulls": 1118670634,
+   "ports": [
+    8086
+   ],
+   "count": {
+    "8086": 1
+   }
+  },
+  {
+   "image": "consul",
+   "category": [],
+   "web": false,
+   "pulls": 1059229978,
+   "ports": [],
+   "error": "HTTP Error 404: Not Found",
+   "count": {}
+  },
+  {
+   "image": "nextcloud",
+   "category": [
+    "content-management-system"
+   ],
+   "web": true,
+   "pulls": 1041285897,
+   "ports": [
+    80
+   ],
+   "count": {
+    "80": 12
+   }
+  },
+  {
+   "image": "amazonlinux",
+   "category": [
+    "operating-systems"
+   ],
+   "web": true,
+   "pulls": 988117999,
+   "ports": [],
+   "count": {}
+  },
+  {
+   "image": "elasticsearch",
+   "category": [
+    "databases-and-storage"
+   ],
+   "web": false,
+   "pulls": 988026432,
+   "ports": [],
+   "error": "HTTP Error 404: Not Found",
+   "count": {}
+  },
+  {
+   "image": "tomcat",
+   "category": [
+    "web-servers"
+   ],
+   "web": true,
+   "pulls": 832778163,
+   "ports": [
+    8080
+   ],
+   "count": {
+    "8080": 7
+   }
+  },
+  {
+   "image": "maven",
+   "category": [
+    "languages-and-frameworks"
+   ],
+   "web": true,
+   "pulls": 786974245,
+   "ports": [],
+   "count": {}
+  },
+  {
+   "image": "caddy",
+   "category": [
+    "web-servers"
+   ],
+   "web": true,
+   "pulls": 761260226,
+   "ports": [
+    80,
+    443,
+    2019
+   ],
+   "count": {
+    "80": 12,
+    "443": 1,
+    "2019": 1
+   }
+  },
+  {
+   "image": "eclipse-mosquitto",
+   "category": [
+    "internet-of-things",
+    "message-queues"
+   ],
+   "web": false,
+   "pulls": 693844327,
+   "ports": [
+    1883
+   ],
+   "count": {
+    "1883": 1
+   }
+  },
+  {
+   "image": "telegraf",
+   "category": [
+    "monitoring-and-observability"
+   ],
+   "web": true,
+   "pulls": 648089425,
+   "ports": [
+    8092,
+    8094,
+    8125
+   ],
+   "count": {
+    "8092": 2,
+    "8094": 2,
+    "8125": 1
+   }
+  },
+  {
+   "image": "bash",
+   "category": [
+    "developer-tools"
+   ],
+   "web": true,
+   "pulls": 592634954,
+   "ports": [],
+   "count": {}
+  },
+  {
+   "image": "vault",
+   "category": [
+    "security"
+   ],
+   "web": true,
+   "pulls": 555623025,
+   "ports": [],
+   "error": "HTTP Error 404: Not Found",
+   "count": {}
+  },
+  {
+   "image": "adminer",
+   "category": [
+    "databases-and-storage"
+   ],
+   "web": false,
+   "pulls": 410397279,
+   "ports": [
+    8080
+   ],
+   "count": {
+    "8080": 7
+   }
+  },
+  {
+   "image": "ghost",
+   "category": [
+    "content-management-system"
+   ],
+   "web": true,
+   "pulls": 382424158,
+   "ports": [
+    2368
+   ],
+   "count": {
+    "2368": 1
+   }
+  },
+  {
+   "image": "eclipse-temurin",
+   "category": [
+    "languages-and-frameworks"
+   ],
+   "web": true,
+   "pulls": 375312331,
+   "ports": [],
+   "count": {}
+  },
+  {
+   "image": "kong",
+   "category": [
+    "api-management"
+   ],
+   "web": true,
+   "pulls": 363359870,
+   "ports": [
+    8000,
+    8001,
+    8443,
+    8444
+   ],
+   "count": {
+    "8000": 1,
+    "8001": 1,
+    "8443": 1,
+    "8444": 1
+   }
+  },
+  {
+   "image": "zookeeper",
+   "category": [
+    "databases-and-storage"
+   ],
+   "web": false,
+   "pulls": 360949581,
+   "ports": [
+    2181,
+    2888,
+    3888,
+    8080
+   ],
+   "count": {
+    "2181": 1,
+    "2888": 1,
+    "3888": 1,
+    "8080": 7
+   }
+  },
+  {
+   "image": "solr",
+   "category": [
+    "databases-and-storage"
+   ],
+   "web": false,
+   "pulls": 358302412,
+   "ports": [
+    8983
+   ],
+   "count": {
+    "8983": 1
+   }
+  },
+  {
+   "image": "neo4j",
+   "category": [
+    "databases-and-storage"
+   ],
+   "web": false,
+   "pulls": 329931931,
+   "ports": [
+    7473,
+    7474,
+    7687
+   ],
+   "count": {
+    "7473": 1,
+    "7474": 1,
+    "7687": 1
+   }
+  },
+  {
+   "image": "gradle",
+   "category": [
+    "languages-and-frameworks"
+   ],
+   "web": true,
+   "pulls": 307497617,
+   "ports": [],
+   "count": {}
+  },
+  {
+   "image": "mongo-express",
+   "category": [
+    "databases-and-storage"
+   ],
+   "web": false,
+   "pulls": 277942356,
+   "ports": [
+    8081
+   ],
+   "count": {
+    "8081": 2
+   }
+  },
+  {
+   "image": "cassandra",
+   "category": [
+    "databases-and-storage"
+   ],
+   "web": false,
+   "pulls": 275517615,
+   "ports": [
+    7000,
+    7001,
+    7199,
+    9042,
+    9160
+   ],
+   "count": {
+    "7000": 1,
+    "7001": 1,
+    "7199": 1,
+    "9042": 1,
+    "9160": 1
+   }
+  },
+  {
+   "image": "buildpack-deps",
+   "category": [
+    "developer-tools"
+   ],
+   "web": true,
+   "pulls": 263863700,
+   "ports": [],
+   "count": {}
+  },
+  {
+   "image": "nats",
+   "category": [
+    "message-queues"
+   ],
+   "web": false,
+   "pulls": 261493024,
+   "ports": [
+    4222,
+    6222,
+    8222
+   ],
+   "count": {
+    "4222": 2,
+    "6222": 1,
+    "8222": 2
+   }
+  },
+  {
+   "image": "perl",
+   "category": [
+    "languages-and-frameworks"
+   ],
+   "web": true,
+   "pulls": 256230369,
+   "ports": [],
+   "count": {}
+  },
+  {
+   "image": "composer",
+   "category": [
+    "developer-tools"
+   ],
+   "web": true,
+   "pulls": 248356261,
+   "ports": [],
+   "count": {}
+  },
+  {
+   "image": "percona",
+   "category": [
+    "databases-and-storage"
+   ],
+   "web": false,
+   "pulls": 241680049,
+   "ports": [
+    3306
+   ],
+   "count": {
+    "3306": 3
+   }
+  },
+  {
+   "image": "kibana",
+   "category": [
+    "monitoring-and-observability"
+   ],
+   "web": true,
+   "pulls": 225048280,
+   "ports": [],
+   "error": "HTTP Error 404: Not Found",
+   "count": {}
+  },
+  {
+   "image": "drupal",
+   "category": [
+    "content-management-system"
+   ],
+   "web": true,
+   "pulls": 210882930,
+   "ports": [
+    80
+   ],
+   "count": {
+    "80": 12
+   }
+  },
+  {
+   "image": "couchdb",
+   "category": [
+    "databases-and-storage"
+   ],
+   "web": false,
+   "pulls": 208061109,
+   "ports": [
+    4369,
+    5984,
+    9100
+   ],
+   "count": {
+    "4369": 2,
+    "5984": 1,
+    "9100": 1
+   }
+  },
+  {
+   "image": "logstash",
+   "category": [
+    "monitoring-and-observability"
+   ],
+   "web": true,
+   "pulls": 202803268,
+   "ports": [],
+   "error": "HTTP Error 404: Not Found",
+   "count": {}
+  },
+  {
+   "image": "rust",
+   "category": [
+    "languages-and-frameworks"
+   ],
+   "web": true,
+   "pulls": 170464515,
+   "ports": [],
+   "count": {}
+  },
+  {
+   "image": "amazoncorretto",
+   "category": [
+    "languages-and-frameworks"
+   ],
+   "web": true,
+   "pulls": 160867028,
+   "ports": [],
+   "count": {}
+  },
+  {
+   "image": "chronograf",
+   "category": [
+    "monitoring-and-observability"
+   ],
+   "web": true,
+   "pulls": 158124432,
+   "ports": [
+    8888
+   ],
+   "count": {
+    "8888": 1
+   }
+  },
+  {
+   "image": "jenkins",
+   "category": [],
+   "web": true,
+   "pulls": 149795721,
+   "ports": [],
+   "error": "HTTP Error 404: Not Found",
+   "count": {}
+  },
+  {
+   "image": "java",
+   "category": [],
+   "web": true,
+   "pulls": 143221594,
+   "ports": [],
+   "error": "HTTP Error 404: Not Found",
+   "count": {}
+  },
+  {
+   "image": "matomo",
+   "category": [
+    "monitoring-and-observability"
+   ],
+   "web": true,
+   "pulls": 140278830,
+   "ports": [
+    80
+   ],
+   "count": {
+    "80": 12
+   }
+  },
+  {
+   "image": "fedora",
+   "category": [
+    "operating-systems"
+   ],
+   "web": true,
+   "pulls": 138688739,
+   "ports": [],
+   "count": {}
+  },
+  {
+   "image": "teamspeak",
+   "category": [],
+   "web": true,
+   "pulls": 137813067,
+   "ports": [
+    9987,
+    10011,
+    30033
+   ],
+   "count": {
+    "9987": 1,
+    "10011": 1,
+    "30033": 1
+   }
+  },
+  {
+   "image": "sentry",
+   "category": [],
+   "web": true,
+   "pulls": 124839873,
+   "ports": [
+    9000
+   ],
+   "count": {
+    "9000": 2
+   }
+  },
+  {
+   "image": "nats-streaming",
+   "category": [],
+   "web": false,
+   "pulls": 107269355,
+   "ports": [
+    4222,
+    8222
+   ],
+   "count": {
+    "4222": 2,
+    "8222": 2
+   }
+  },
+  {
+   "image": "adoptopenjdk",
+   "category": [],
+   "web": true,
+   "pulls": 102746405,
+   "ports": [],
+   "count": {}
+  },
+  {
+   "image": "phpmyadmin",
+   "category": [
+    "databases-and-storage",
+    "developer-tools"
+   ],
+   "web": false,
+   "pulls": 98918299,
+   "ports": [
+    80
+   ],
+   "count": {
+    "80": 12
+   }
+  },
+  {
+   "image": "flink",
+   "category": [
+    "data-science"
+   ],
+   "web": true,
+   "pulls": 97908195,
+   "ports": [
+    6123,
+    8081
+   ],
+   "count": {
+    "6123": 1,
+    "8081": 2
+   }
+  },
+  {
+   "image": "couchbase",
+   "category": [
+    "databases-and-storage"
+   ],
+   "web": false,
+   "pulls": 90815772,
+   "ports": [
+    8091,
+    8092,
+    8093,
+    8094,
+    8095,
+    8096,
+    8097,
+    9123,
+    11207,
+    11210,
+    11280,
+    18091,
+    18092,
+    18093,
+    18094,
+    18095,
+    18096,
+    18097
+   ],
+   "count": {
+    "8091": 1,
+    "8092": 2,
+    "8093": 1,
+    "8094": 2,
+    "8095": 1,
+    "8096": 1,
+    "8097": 1,
+    "9123": 1,
+    "11207": 1,
+    "11210": 1,
+    "11280": 1,
+    "18091": 1,
+    "18092": 1,
+    "18093": 1,
+    "18094": 1,
+    "18095": 1,
+    "18096": 1,
+    "18097": 1
+   }
+  },
+  {
+   "image": "joomla",
+   "category": [
+    "content-management-system"
+   ],
+   "web": true,
+   "pulls": 88274695,
+   "ports": [
+    80
+   ],
+   "count": {
+    "80": 12
+   }
+  },
+  {
+   "image": "swarm",
+   "category": [],
+   "web": true,
+   "pulls": 83377140,
+   "ports": [
+    2375
+   ],
+   "count": {
+    "2375": 2
+   }
+  },
+  {
+   "image": "groovy",
+   "category": [
+    "languages-and-frameworks"
+   ],
+   "web": true,
+   "pulls": 79052864,
+   "ports": [],
+   "count": {}
+  },
+  {
+   "image": "rethinkdb",
+   "category": [
+    "databases-and-storage"
+   ],
+   "web": false,
+   "pulls": 77721738,
+   "ports": [
+    8080,
+    28015,
+    29015
+   ],
+   "count": {
+    "8080": 7,
+    "28015": 1,
+    "29015": 1
+   }
+  },
+  {
+   "image": "rocket.chat",
+   "category": [],
+   "web": true,
+   "pulls": 77217491,
+   "ports": [
+    3000
+   ],
+   "count": {
+    "3000": 2
+   }
+  },
+  {
+   "image": "redmine",
+   "category": [
+    "content-management-system"
+   ],
+   "web": true,
+   "pulls": 75473084,
+   "ports": [
+    3000
+   ],
+   "count": {
+    "3000": 2
+   }
+  },
+  {
+   "image": "elixir",
+   "category": [
+    "languages-and-frameworks"
+   ],
+   "web": true,
+   "pulls": 68841413,
+   "ports": [],
+   "count": {}
+  },
+  {
+   "image": "erlang",
+   "category": [
+    "languages-and-frameworks"
+   ],
+   "web": true,
+   "pulls": 66055762,
+   "ports": [],
+   "count": {}
+  },
+  {
+   "image": "kapacitor",
+   "category": [
+    "monitoring-and-observability"
+   ],
+   "web": true,
+   "pulls": 60837070,
+   "ports": [
+    9092
+   ],
+   "count": {
+    "9092": 1
+   }
+  },
+  {
+   "image": "owncloud",
+   "category": [],
+   "web": true,
+   "pulls": 58508560,
+   "ports": [
+    80
+   ],
+   "count": {
+    "80": 12
+   }
+  },
+  {
+   "image": "odoo",
+   "category": [
+    "content-management-system"
+   ],
+   "web": true,
+   "pulls": 56540285,
+   "ports": [
+    8069,
+    8071,
+    8072
+   ],
+   "count": {
+    "8069": 1,
+    "8071": 1,
+    "8072": 1
+   }
+  },
+  {
+   "image": "jruby",
+   "category": [
+    "languages-and-frameworks"
+   ],
+   "web": true,
+   "pulls": 52018520,
+   "ports": [],
+   "count": {}
+  },
+  {
+   "image": "mediawiki",
+   "category": [
+    "content-management-system"
+   ],
+   "web": true,
+   "pulls": 49965200,
+   "ports": [
+    80
+   ],
+   "count": {
+    "80": 12
+   }
+  },
+  {
+   "image": "rockylinux",
+   "category": [
+    "operating-systems"
+   ],
+   "web": true,
+   "pulls": 46862056,
+   "ports": [],
+   "error": "HTTP Error 404: Not Found",
+   "count": {}
+  },
+  {
+   "image": "oraclelinux",
+   "category": [
+    "operating-systems"
+   ],
+   "web": true,
+   "pulls": 46799618,
+   "ports": [],
+   "error": "HTTP Error 404: Not Found",
+   "count": {}
+  },
+  {
+   "image": "jetty",
+   "category": [
+    "web-servers"
+   ],
+   "web": true,
+   "pulls": 46793451,
+   "ports": [
+    8080
+   ],
+   "count": {
+    "8080": 7
+   }
+  },
+  {
+   "image": "mono",
+   "category": [
+    "languages-and-frameworks"
+   ],
+   "web": true,
+   "pulls": 43890515,
+   "ports": [],
+   "count": {}
+  },
+  {
+   "image": "clojure",
+   "category": [
+    "languages-and-frameworks"
+   ],
+   "web": true,
+   "pulls": 42339931,
+   "ports": [],
+   "count": {}
+  },
+  {
+   "image": "arangodb",
+   "category": [
+    "databases-and-storage"
+   ],
+   "web": false,
+   "pulls": 41938210,
+   "ports": [
+    8529
+   ],
+   "count": {
+    "8529": 1
+   }
+  },
+  {
+   "image": "pypy",
+   "category": [
+    "languages-and-frameworks"
+   ],
+   "web": true,
+   "pulls": 41797897,
+   "ports": [],
+   "count": {}
+  },
+  {
+   "image": "swift",
+   "category": [
+    "languages-and-frameworks"
+   ],
+   "web": true,
+   "pulls": 37156410,
+   "ports": [],
+   "count": {}
+  },
+  {
+   "image": "ros",
+   "category": [
+    "languages-and-frameworks",
+    "machine-learning-and-ai",
+    "operating-systems"
+   ],
+   "web": true,
+   "pulls": 35866631,
+   "ports": [],
+   "count": {}
+  },
+  {
+   "image": "archlinux",
+   "category": [
+    "operating-systems"
+   ],
+   "web": true,
+   "pulls": 35650047,
+   "ports": [],
+   "count": {}
+  },
+  {
+   "image": "xwiki",
+   "category": [
+    "content-management-system"
+   ],
+   "web": true,
+   "pulls": 35074325,
+   "ports": [
+    8080
+   ],
+   "count": {
+    "8080": 7
+   }
+  },
+  {
+   "image": "gcc",
+   "category": [
+    "languages-and-frameworks"
+   ],
+   "web": true,
+   "pulls": 31958087,
+   "ports": [],
+   "count": {}
+  },
+  {
+   "image": "hylang",
+   "category": [
+    "languages-and-frameworks"
+   ],
+   "web": true,
+   "pulls": 28600821,
+   "ports": [],
+   "count": {}
+  },
+  {
+   "image": "znc",
+   "category": [],
+   "web": true,
+   "pulls": 28578575,
+   "ports": [],
+   "count": {}
+  },
+  {
+   "image": "tomee",
+   "category": [
+    "web-servers"
+   ],
+   "web": true,
+   "pulls": 27088700,
+   "ports": [
+    8080
+   ],
+   "count": {
+    "8080": 7
+   }
+  }
+ ]
+}

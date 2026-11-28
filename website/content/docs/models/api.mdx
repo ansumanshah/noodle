@@ -1,0 +1,89 @@
+---
+title: Local API
+description: The OpenAI-compatible endpoint, API shapes, named local URLs and access from Compose services and Kubernetes pods.
+---
+
+The base URL is `http://models.noodle.local/v1`. Inference requires an API key. Noodle creates it on first use and keeps it until `noodle model key --rotate` replaces it. `noodle model endpoint` prints the URL, the model ID and the key. Each Noodle home has one active model. The context is 32,768 tokens when the server starts with an MLX model and 4,096 when it starts with a GGUF model; stop the server to change it.
+
+## Endpoints
+
+Every model answers model listing and chat completions (OpenAI Chat Completions), with server-sent events when `stream` is true. Chat models also answer `/v1/responses` (OpenAI Responses) and `/v1/messages` (Anthropic Messages), and the key works as a Bearer token or as `x-api-key`. Any tool that lets you set an OpenAI base URL can talk to it.
+
+Speech and embedding models have their own endpoints, served under the same base URL and key:
+
+| Endpoint | Catalog model | What it does |
+|---|---|---|
+| `/v1/embeddings` | `qwen3-embedding-0.6b` | Text to vectors |
+| `/v1/audio/transcriptions` | `qwen3-asr-0.6b` | WAV file to text |
+| `/v1/audio/speech` | `kokoro-82m` | Text to a WAV file |
+
+```sh
+curl http://models.noodle.local/v1/embeddings \
+  -H "Authorization: Bearer $NOODLE_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"qwen3-embedding-0.6b","input":"Hello!"}'
+
+curl http://models.noodle.local/v1/audio/transcriptions \
+  -H "Authorization: Bearer $NOODLE_API_KEY" \
+  -F file=@speech.wav -F model='qwen3-asr-0.6b'
+
+curl http://models.noodle.local/v1/audio/speech \
+  -H "Authorization: Bearer $NOODLE_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"kokoro-82m","input":"Hello from Noodle."}' -o speech.wav
+```
+
+<span id="create"></span>
+
+Image and video models answer one JSON request each. The reply carries a base64 PNG for images and frames for video.
+
+```sh
+curl http://models.noodle.local/v1/images/generations \
+  -H "Authorization: Bearer $NOODLE_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"flux2-klein-4b","prompt":"A paper boat on a pond","size":"1024x1024","steps":4}'
+```
+
+Video goes to `/v1/video/generations` with `num_frames` (49 is 2 seconds, 97 is 4). The app's Connections page prints the same samples for the running model.
+
+Ollama's own API (`/api/chat`, `/api/tags`) is not served, so point Ollama-aware tools at the OpenAI base URL instead.
+
+## Named URL
+
+When the daemon is running, Models registers `models.noodle.local` for the live runner and checks an authenticated request before it shows the name. The records are local-only and need no hosts-file or resolver edit. If another app holds port 80, the app prints the fallback port, for example `http://models.noodle.local:10080/v1`. When names are off (`NOODLE_LOCAL_NAMES=0`) or the route is unavailable, `noodle model endpoint` prints the direct `http://127.0.0.1:11345/v1` instead.
+
+To stay on the direct address, create an empty `models/direct-connection` file inside the Noodle home. `NOODLE_LOCAL_NAMES=0` turns names off for one command. HTTPS uses a separate authority limited to `noodle.local`: `noodle names ca noodle.local` prints it and `noodle names trust noodle.local` asks you to trust it. Nothing is trusted automatically.
+
+## Compose services and Kubernetes pods
+
+Guest access is opt-in. Keep a container or the managed k3s cluster running so the VM bridge stays up, find the bridge address, and serve on it:
+
+```sh
+gateway=$(docker --context noodle run --rm alpine:3.22 awk '$2 == "host.docker.internal" { print $1 }' /etc/hosts)
+noodle model stop
+noodle model serve qwen3.5-4b --workloads "$gateway"
+noodle model endpoint
+```
+
+For a Compose service use the printed workload URL, or `OPENAI_BASE_URL=http://host.docker.internal:11345/v1`, and pass the key as `OPENAI_API_KEY`. For a pod, use the printed workload URL and read the key from a Kubernetes Secret. The listener never binds all host interfaces.
+
+This path uses plain HTTP on the VM network, so prompts and keys travel in cleartext there. Use it with workloads you trust.
+
+## Claude Code and Codex
+
+With a model running, open **Models > Connections** and click **Set Up** beside Claude Code or Codex. Noodle writes one file of its own and shows the command that starts the agent on the local model:
+
+```sh
+claude --settings ~/.claude/noodle.json
+NOODLE_API_KEY=$(noodle model key) codex --profile noodle
+```
+
+Your own settings for the agent are not opened or changed. Started without the flag, the agent behaves as before. **Remove** deletes the file. The Claude Code file holds the server key and is readable by your user only; the Codex file holds no key. Loading another model updates both files. A shell that already exports `ANTHROPIC_BASE_URL` overrides the Claude Code file.
+
+Use an MLX model for agents. An agent sends 15,000 to 25,000 tokens of instructions before your first word, which fits the 32,768-token MLX context and not the 4,096-token GGUF one. On a 16 GB Mac mini M4 with Qwen 3.5 4B, a first reply took about a minute and a task that read one file took about five. Plugins and connectors in your own agent setup add to the prompt and can push it past the limit.
+
+## Models workspace
+
+The app's Models section has Chat, Create, Library, Apps and Connections. Follow-up messages include the completed exchanges of the current conversation. A cancelled or failed partial reply stays visible and is left out of later context. History is local and bounded to 30 conversations. Downloads in Library show byte progress and then checksum verification.
+
+Response metrics use a monotonic clock and the token counts the server reports. `tok/s avg` includes the wait for the first token, so it is not a GPU decode benchmark.

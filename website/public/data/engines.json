@@ -1,0 +1,784 @@
+{
+ "date": "2026-11-21",
+ "noodle_commit": "806dbf6",
+ "passes": 3,
+ "settings": {
+  "cpus": 4,
+  "memory_mib": 2048
+ },
+ "unit_note": "time rows in ms, rate rows in the unit shown",
+ "engines": {
+  "docker-desktop": {
+   "server_version": "29.9.3",
+   "engine_info": {
+    "ncpu": 4,
+    "mem_gib": 1.92,
+    "server_version": "29.9.3",
+    "kernel": "7.0.14-linuxkit",
+    "os": "Docker Desktop",
+    "arch": "aarch64",
+    "storage_driver": "overlayfs"
+   },
+   "p50_median_of_passes": {
+    "cli.run": {
+     "unit": "ms",
+     "value": 130.305,
+     "per_pass": [
+      138.103,
+      130.305,
+      123.224
+     ],
+     "failed_passes": 0
+    },
+    "cli.run.none": {
+     "unit": "ms",
+     "value": 97.18,
+     "per_pass": [
+      97.18,
+      103.462,
+      95.923
+     ],
+     "failed_passes": 0
+    },
+    "cli.exec": {
+     "unit": "ms",
+     "value": 29.037,
+     "per_pass": [
+      27.273,
+      29.037,
+      29.403
+     ],
+     "failed_passes": 0
+    },
+    "cli.stdout": {
+     "unit": "MB/s",
+     "value": 192.088,
+     "per_pass": [
+      192.088,
+      172.345,
+      192.335
+     ],
+     "failed_passes": 0
+    },
+    "cli.stdin": {
+     "unit": "MB/s",
+     "value": 151.499,
+     "per_pass": [
+      151.499,
+      131.503,
+      163.435
+     ],
+     "failed_passes": 0
+    },
+    "cli.build.uncached": {
+     "unit": "ms",
+     "value": 423.587,
+     "per_pass": [
+      423.587,
+      487.58,
+      366.971
+     ],
+     "failed_passes": 0
+    },
+    "cli.build.cached": {
+     "unit": "ms",
+     "value": 151.578,
+     "per_pass": [
+      151.578,
+      186.001,
+      138.028
+     ],
+     "failed_passes": 0
+    },
+    "cli.pull.warm": {
+     "unit": "ms",
+     "value": 1797.943,
+     "per_pass": [
+      1692.809,
+      2056.447,
+      1797.943
+     ],
+     "failed_passes": 0
+    },
+    "cli.pull.cold": {
+     "unit": "ms",
+     "value": 3591.594,
+     "per_pass": [
+      3672.663,
+      3591.594,
+      3486.98
+     ],
+     "failed_passes": 0
+    },
+    "cli.parallel": {
+     "unit": "containers/s",
+     "value": 13.332,
+     "per_pass": [
+      13.294,
+      13.332,
+      15.177
+     ],
+     "failed_passes": 0
+    },
+    "api.lifecycle.none": {
+     "unit": "ms",
+     "value": 70.608,
+     "per_pass": [
+      85.532,
+      65.394,
+      70.608
+     ],
+     "failed_passes": 0
+    },
+    "api.lifecycle.bridge": {
+     "unit": "ms",
+     "value": 110.996,
+     "per_pass": [
+      125.26,
+      106.839,
+      110.996
+     ],
+     "failed_passes": 0
+    },
+    "api.lifecycle.user-network": {
+     "unit": "ms",
+     "value": 125.232,
+     "per_pass": [
+      150.262,
+      120.344,
+      125.232
+     ],
+     "failed_passes": 0
+    },
+    "api.exec": {
+     "unit": "ms",
+     "value": 12.811,
+     "per_pass": [
+      22.499,
+      12.811,
+      11.751
+     ],
+     "failed_passes": 0
+    },
+    "resources.density": {
+     "unit": "containers/s",
+     "value": 11.708,
+     "per_pass": [
+      11.708,
+      10.956,
+      12.271
+     ],
+     "failed_passes": 0
+    }
+   },
+   "footprint_median": {
+    "vm-up-empty": {
+     "daemon_mb": 282.0,
+     "daemon_processes": 4,
+     "vm_helper_mb": 1122.0,
+     "vm_helpers": 1
+    },
+    "20-containers": {
+     "daemon_mb": 272.0,
+     "daemon_processes": 4,
+     "vm_helper_mb": 1129.0,
+     "vm_helpers": 1
+    },
+    "20-containers-idle-cpu": {
+     "cpu_percent": 1.6
+    },
+    "after-idle-wait": {
+     "daemon_mb": 252.0,
+     "daemon_processes": 4,
+     "vm_helper_mb": 1132.0,
+     "vm_helpers": 1
+    },
+    "after-idle-wait-cpu": {
+     "cpu_percent": 0.25
+    }
+   }
+  },
+  "kiri": {
+   "server_version": "27.5.1",
+   "engine_info": {
+    "ncpu": 4,
+    "mem_gib": 1.94,
+    "server_version": "27.5.1",
+    "kernel": "6.18-kiri",
+    "os": "Kiri",
+    "arch": "aarch64",
+    "storage_driver": "overlayfs"
+   },
+   "p50_median_of_passes": {
+    "cli.run": {
+     "unit": "ms",
+     "value": 48.104,
+     "per_pass": [
+      48.104,
+      47.936,
+      52.105
+     ],
+     "failed_passes": 0
+    },
+    "cli.run.none": {
+     "unit": "ms",
+     "value": 13.615,
+     "per_pass": [
+      13.615,
+      13.852,
+      13.465
+     ],
+     "failed_passes": 0
+    },
+    "cli.exec": {
+     "unit": "ms",
+     "value": 12.647,
+     "per_pass": [
+      12.002,
+      13.631,
+      12.647
+     ],
+     "failed_passes": 0
+    },
+    "cli.stdout": {
+     "unit": "MB/s",
+     "value": 284.181,
+     "per_pass": [
+      318.03,
+      215.542,
+      284.181
+     ],
+     "failed_passes": 0
+    },
+    "cli.stdin": {
+     "unit": "MB/s",
+     "value": 255.569,
+     "per_pass": [
+      255.569,
+      223.887,
+      266.268
+     ],
+     "failed_passes": 0
+    },
+    "cli.build.uncached": {
+     "unit": "ms",
+     "value": 525.132,
+     "per_pass": [
+      525.132,
+      530.913,
+      490.856
+     ],
+     "failed_passes": 0
+    },
+    "cli.build.cached": {
+     "unit": "ms",
+     "value": 460.797,
+     "per_pass": [
+      460.797,
+      468.036,
+      446.878
+     ],
+     "failed_passes": 0
+    },
+    "cli.pull.warm": {
+     "unit": "ms",
+     "value": 357.864,
+     "per_pass": [
+      354.926,
+      357.864,
+      368.252
+     ],
+     "failed_passes": 0
+    },
+    "cli.pull.cold": {
+     "unit": "ms",
+     "value": 896.031,
+     "per_pass": [
+      896.031,
+      945.823,
+      878.17
+     ],
+     "failed_passes": 0
+    },
+    "cli.parallel": {
+     "unit": "containers/s",
+     "value": 26.508,
+     "per_pass": [
+      24.092,
+      29.081,
+      26.508
+     ],
+     "failed_passes": 0
+    },
+    "api.lifecycle.none": {
+     "unit": "ms",
+     "value": 1.736,
+     "per_pass": [
+      1.731,
+      1.736,
+      2.339
+     ],
+     "failed_passes": 0
+    },
+    "api.lifecycle.bridge": {
+     "unit": "ms",
+     "value": 43.702,
+     "per_pass": [
+      44.893,
+      43.702,
+      43.663
+     ],
+     "failed_passes": 0
+    },
+    "api.lifecycle.user-network": {
+     "unit": "ms",
+     "value": 43.855,
+     "per_pass": [
+      47.319,
+      43.855,
+      41.132
+     ],
+     "failed_passes": 0
+    },
+    "api.exec": {
+     "unit": "ms",
+     "value": 0.55,
+     "per_pass": [
+      0.765,
+      0.55,
+      0.434
+     ],
+     "failed_passes": 0
+    },
+    "resources.density": {
+     "unit": "containers/s",
+     "value": 65.031,
+     "per_pass": [
+      65.031,
+      68.431,
+      61.323
+     ],
+     "failed_passes": 0
+    }
+   },
+   "footprint_median": {
+    "vm-up-empty": {
+     "daemon_mb": 15.0,
+     "daemon_processes": 1,
+     "vm_helper_mb": 262.0,
+     "vm_helpers": 1
+    },
+    "20-containers": {
+     "daemon_mb": 15.0,
+     "daemon_processes": 1,
+     "vm_helper_mb": 262.0,
+     "vm_helpers": 1
+    },
+    "20-containers-idle-cpu": {
+     "cpu_percent": 0.5
+    },
+    "after-idle-wait": {
+     "daemon_mb": 15.0,
+     "daemon_processes": 1,
+     "vm_helper_mb": 263.0,
+     "vm_helpers": 1
+    },
+    "after-idle-wait-cpu": {
+     "cpu_percent": 0.0
+    }
+   }
+  },
+  "noodle": {
+   "server_version": "0.0.1",
+   "engine_info": {
+    "ncpu": 4,
+    "mem_gib": 2.0,
+    "server_version": "0.0.1",
+    "kernel": "linux-guest",
+    "os": "Noodle",
+    "arch": "aarch64",
+    "storage_driver": "overlay2"
+   },
+   "p50_median_of_passes": {
+    "cli.run": {
+     "unit": "ms",
+     "value": 14.972,
+     "per_pass": [
+      14.972,
+      14.675,
+      15.127
+     ],
+     "failed_passes": 0
+    },
+    "cli.run.none": {
+     "unit": "ms",
+     "value": 14.266,
+     "per_pass": [
+      14.266,
+      13.729,
+      14.316
+     ],
+     "failed_passes": 0
+    },
+    "cli.exec": {
+     "unit": "ms",
+     "value": 12.349,
+     "per_pass": [
+      12.357,
+      11.818,
+      12.349
+     ],
+     "failed_passes": 0
+    },
+    "cli.stdout": {
+     "unit": "MB/s",
+     "value": 162.107,
+     "per_pass": [
+      162.107,
+      168.923,
+      142.005
+     ],
+     "failed_passes": 0
+    },
+    "cli.stdin": {
+     "unit": "MB/s",
+     "value": 186.66,
+     "per_pass": [
+      180.162,
+      186.66,
+      189.466
+     ],
+     "failed_passes": 0
+    },
+    "cli.build.uncached": {
+     "unit": "ms",
+     "value": null,
+     "per_pass": [],
+     "failed_passes": 3
+    },
+    "cli.build.cached": {
+     "unit": "ms",
+     "value": null,
+     "per_pass": [],
+     "failed_passes": 3
+    },
+    "cli.pull.warm": {
+     "unit": "ms",
+     "value": 391.989,
+     "per_pass": [
+      383.281,
+      391.989,
+      395.724
+     ],
+     "failed_passes": 0
+    },
+    "cli.pull.cold": {
+     "unit": "ms",
+     "value": 2539.813,
+     "per_pass": [
+      2539.813,
+      2579.534,
+      1980.768
+     ],
+     "failed_passes": 0
+    },
+    "cli.parallel": {
+     "unit": "containers/s",
+     "value": 161.362,
+     "per_pass": [
+      161.362,
+      152.603,
+      172.576
+     ],
+     "failed_passes": 0
+    },
+    "api.lifecycle.none": {
+     "unit": "ms",
+     "value": 1.748,
+     "per_pass": [
+      1.748,
+      1.883,
+      1.699
+     ],
+     "failed_passes": 0
+    },
+    "api.lifecycle.bridge": {
+     "unit": "ms",
+     "value": 1.992,
+     "per_pass": [
+      2.176,
+      1.992,
+      1.982
+     ],
+     "failed_passes": 0
+    },
+    "api.lifecycle.user-network": {
+     "unit": "ms",
+     "value": 2.242,
+     "per_pass": [
+      2.242,
+      2.196,
+      2.871
+     ],
+     "failed_passes": 0
+    },
+    "api.exec": {
+     "unit": "ms",
+     "value": 0.601,
+     "per_pass": [
+      0.644,
+      0.502,
+      0.601
+     ],
+     "failed_passes": 0
+    },
+    "resources.density": {
+     "unit": "containers/s",
+     "value": 70.57,
+     "per_pass": [
+      68.511,
+      70.57,
+      71.779
+     ],
+     "failed_passes": 0
+    },
+    "resources.wake-run": {
+     "unit": "ms",
+     "value": 452.906,
+     "per_pass": [
+      414.905,
+      452.906,
+      478.232
+     ],
+     "failed_passes": 0
+    }
+   },
+   "footprint_median": {
+    "vm-up-empty": {
+     "daemon_mb": 7.86,
+     "daemon_processes": 1,
+     "vm_helper_mb": 262.0,
+     "vm_helpers": 1
+    },
+    "20-containers": {
+     "daemon_mb": 8.33,
+     "daemon_processes": 1,
+     "vm_helper_mb": 262.0,
+     "vm_helpers": 1
+    },
+    "20-containers-idle-cpu": {
+     "cpu_percent": 0.55
+    },
+    "after-idle-wait": {
+     "daemon_mb": 8.55,
+     "daemon_processes": 1,
+     "vm_helper_mb": 0,
+     "vm_helpers": 0
+    },
+    "after-idle-wait-cpu": {
+     "cpu_percent": 0.0
+    }
+   }
+  },
+  "orbstack": {
+   "server_version": "29.8.2",
+   "engine_info": {
+    "ncpu": 4,
+    "mem_gib": 1.93,
+    "server_version": "29.8.2",
+    "kernel": "7.2.12-orbstack-00394-gbecdd6130068",
+    "os": "OrbStack",
+    "arch": "aarch64",
+    "storage_driver": "overlayfs"
+   },
+   "p50_median_of_passes": {
+    "cli.run": {
+     "unit": "ms",
+     "value": 171.608,
+     "per_pass": [
+      171.608,
+      170.096,
+      183.055
+     ],
+     "failed_passes": 0
+    },
+    "cli.run.none": {
+     "unit": "ms",
+     "value": 106.238,
+     "per_pass": [
+      115.872,
+      106.238,
+      93.994
+     ],
+     "failed_passes": 0
+    },
+    "cli.exec": {
+     "unit": "ms",
+     "value": 26.932,
+     "per_pass": [
+      26.932,
+      25.085,
+      28.648
+     ],
+     "failed_passes": 0
+    },
+    "cli.stdout": {
+     "unit": "MB/s",
+     "value": 304.302,
+     "per_pass": [
+      304.302,
+      328.328,
+      267.416
+     ],
+     "failed_passes": 0
+    },
+    "cli.stdin": {
+     "unit": "MB/s",
+     "value": 178.532,
+     "per_pass": [
+      247.832,
+      162.627,
+      178.532
+     ],
+     "failed_passes": 0
+    },
+    "cli.build.uncached": {
+     "unit": "ms",
+     "value": 670.312,
+     "per_pass": [
+      670.312,
+      800.222,
+      629.689
+     ],
+     "failed_passes": 0
+    },
+    "cli.build.cached": {
+     "unit": "ms",
+     "value": 231.557,
+     "per_pass": [
+      180.706,
+      231.557,
+      261.693
+     ],
+     "failed_passes": 0
+    },
+    "cli.pull.warm": {
+     "unit": "ms",
+     "value": 1895.88,
+     "per_pass": [
+      1828.628,
+      1895.88,
+      2040.956
+     ],
+     "failed_passes": 0
+    },
+    "cli.pull.cold": {
+     "unit": "ms",
+     "value": 3595.067,
+     "per_pass": [
+      6071.306,
+      3595.067,
+      3478.721
+     ],
+     "failed_passes": 0
+    },
+    "cli.parallel": {
+     "unit": "containers/s",
+     "value": 11.044,
+     "per_pass": [
+      10.081,
+      12.051,
+      11.044
+     ],
+     "failed_passes": 0
+    },
+    "api.lifecycle.none": {
+     "unit": "ms",
+     "value": 82.209,
+     "per_pass": [
+      82.209,
+      76.73,
+      92.465
+     ],
+     "failed_passes": 0
+    },
+    "api.lifecycle.bridge": {
+     "unit": "ms",
+     "value": 151.618,
+     "per_pass": [
+      149.62,
+      151.618,
+      162.504
+     ],
+     "failed_passes": 0
+    },
+    "api.lifecycle.user-network": {
+     "unit": "ms",
+     "value": 161.343,
+     "per_pass": [
+      161.343,
+      156.087,
+      174.848
+     ],
+     "failed_passes": 0
+    },
+    "api.exec": {
+     "unit": "ms",
+     "value": 11.401,
+     "per_pass": [
+      11.401,
+      11.327,
+      11.43
+     ],
+     "failed_passes": 0
+    },
+    "resources.density": {
+     "unit": "containers/s",
+     "value": 9.228,
+     "per_pass": [
+      9.228,
+      10.128,
+      7.642
+     ],
+     "failed_passes": 0
+    },
+    "resources.wake-run": {
+     "unit": "ms",
+     "value": 340.25,
+     "per_pass": [
+      340.25,
+      458.724,
+      334.816
+     ],
+     "failed_passes": 0
+    }
+   },
+   "footprint_median": {
+    "vm-up-empty": {
+     "daemon_mb": 95.0,
+     "daemon_processes": 1,
+     "vm_helper_mb": 0,
+     "vm_helpers": 0
+    },
+    "20-containers": {
+     "daemon_mb": 136.0,
+     "daemon_processes": 1,
+     "vm_helper_mb": 0,
+     "vm_helpers": 0
+    },
+    "20-containers-idle-cpu": {
+     "cpu_percent": 1.3
+    },
+    "after-idle-wait": {
+     "daemon_mb": 76.0,
+     "daemon_processes": 1,
+     "vm_helper_mb": 0,
+     "vm_helpers": 0
+    },
+    "after-idle-wait-cpu": {
+     "cpu_percent": 0.6
+    }
+   }
+  }
+ }
+}

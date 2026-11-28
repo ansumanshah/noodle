@@ -1,0 +1,11 @@
+{
+  "name": "noodle",
+  "description": "Teach your coding agent to drive Noodle on a Mac: Docker-compatible containers and Linux machines, local AI models behind an OpenAI-compatible endpoint, and GitHub Actions jobs on your own hardware.",
+  "version": "26.11.7",
+  "license": "Apache-2.0",
+  "keywords": ["docker", "containers", "compose", "kubernetes", "local-models", "llm", "openai-compatible", "github-actions", "self-hosted-runners", "macos", "apple-silicon"],
+  "author": { "name": "Ansuman Shah" },
+  "homepage": "https://getnoodle.dev",
+  "repository": "https://github.com/ansumanshah/noodle",
+  "skills": ["./.claude-plugin/skills/"]
+}

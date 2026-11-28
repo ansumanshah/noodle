@@ -1,0 +1,57 @@
+---
+title: Quickstart
+description: Download a model, chat with it in the terminal and call it from curl or an OpenAI client.
+---
+
+You need Noodle [installed](/docs/install/). The container daemon can stay off.
+
+## 1. Run a model
+
+```sh
+noodle model run qwen3.5-4b
+```
+
+The first run downloads the model and the engine that runs it, checks both against their SHA-256 hashes, and opens a chat. Prefer the app? Open Models, pick a model and press Run. Type `/exit` to leave. To send one prompt and exit, pass it after the model ID:
+
+```sh
+noodle model run qwen3.5-4b "Why does nginx return 502?"
+```
+
+For an MLX model, the small catalog entry is Qwen3 0.6B in four-bit weights (351 MB):
+
+```sh
+noodle model run qwen3-0.6b-mlx
+```
+
+## 2. Start only the API
+
+```sh
+noodle model serve qwen3.5-4b
+noodle model endpoint
+```
+
+`endpoint` prints the base URL, the model ID and the API key. Noodle creates the key on first use and keeps it until you run `noodle model key --rotate`.
+
+## 3. Call it
+
+```sh
+curl http://models.noodle.local/v1/chat/completions \
+  -H "Authorization: Bearer <key>" \
+  -H "Content-Type: application/json" \
+  -d '{"model":"<id>","messages":[{"role":"user","content":"Hello"}]}'
+```
+
+Replace `<key>` and `<id>` with the values from `noodle model endpoint`. Any OpenAI client works with the same base URL and key. Streaming uses server-sent events when `stream` is true.
+
+## 4. Ask from anywhere
+
+With the app running, press Control-Option-Space to open chat from any app. You can also run Ask Noodle or Open Noodle Chat from Shortcuts or Spotlight. Chat takes pictures, a video and an audio clip too: attach, paste or drag them into the message box when the model can read them.
+
+## 5. Stop
+
+```sh
+noodle model status
+noodle model stop
+```
+
+`stop` ends the server. The key stays the same for the next start. A model also unloads after idle time and reloads on the next request. See [idle sleep](/docs/models/catalog/#idle-sleep).

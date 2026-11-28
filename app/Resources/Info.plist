@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>Noodle</string>
+	<key>CFBundleExecutable</key>
+	<string>Noodle</string>
+	<key>CFBundleIconFile</key>
+	<string>AppIcon</string>
+	<key>CFBundleIdentifier</key>
+	<string>dev.getnoodle.Noodle</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>Noodle</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>26.11.7</string>
+	<key>CFBundleVersion</key>
+	<string>7</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.developer-tools</string>
+	<key>LSArchitecturePriority</key>
+	<array>
+		<string>arm64</string>
+	</array>
+	<key>LSMinimumSystemVersion</key>
+	<string>26.0</string>
+	<key>NSAccentColorName</key>
+	<string>AccentColor</string>
+	<key>NSHighResolutionCapable</key>
+	<true/>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright 2026 Ansuman Shah. Licensed under Apache-2.0.</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>Noodle uses local networking to connect to containers and model servers, and to resolve .noodle.local addresses on this Mac.</string>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+	<key>NSSupportsAutomaticTermination</key>
+	<false/>
+	<key>NoodlePublicGitHubURL</key>
+	<string>https://github.com/ansumanshah/noodle</string>
+	<key>NoodleUpdateFeedBase</key>
+	<string>https://getnoodle.dev/updates</string>
+	<key>NoodleUpdatePublicKey</key>
+	<string>NdfjyDP9K/z/KL0EMUPHRsaHlDe3IL/3L6Rm9kRUXI4=</string>
+</dict>
+</plist>

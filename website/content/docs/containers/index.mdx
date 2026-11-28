@@ -1,0 +1,153 @@
+---
+title: "Containers and Compose"
+description: "Run Docker workloads, manage Compose projects and use Noodle pods, local YAML workloads or single-node Kubernetes."
+---
+
+Run containers and Compose stacks with your standard `docker` CLI against the `noodle` context. The app's [Overview](/docs/containers/overview/) shows problems, ports, memory and disk at a glance. [Volumes and networks](/docs/containers/volumes-networks/) covers their pages and commands.
+
+## Container lifecycle
+
+```sh
+docker --context noodle run -d --name web -p 127.0.0.1:8080:80 nginx:alpine
+docker --context noodle logs web
+docker --context noodle stop web
+docker --context noodle rm web
+```
+
+Plain `docker run`, `docker logs`, `docker stop`, and `docker rm` work identically when Noodle is selected as the default context.
+
+## Compose projects
+
+The Containers window groups services by project. Use the project header to start or stop its existing containers. Select a row to see the container’s details and logs, or open its published TCP port on localhost from the row.
+
+From the folder containing your Compose file:
+
+```sh
+docker --context noodle compose up -d
+docker --context noodle compose ps
+docker --context noodle compose logs
+docker --context noodle compose down
+```
+
+Plain `docker compose up -d` works identically.
+
+Named volumes remain after `down` unless you pass `--volumes`. The real Docker suite covered Compose up/down, local builds, multiple networks, scaling and an unhealthy service with `up --wait`. See [Images and builds](/docs/containers/images/) for Buildx and first-use downloads.
+
+## Shared folders
+
+A bind mount (`-v ~/project:/app`) shows a Mac folder inside the container. Reads, writes, renames and appends from several containers behave as on Linux. Two things do not carry across the boundary between the Mac and a container:
+
+- **Do not append to one file from the Mac and a container at the same time.** A test with both sides appending 2,000 lines each to one file lost lines. Several containers appending to one file together lost none. Give each side its own file, or let only one side write while the other reads.
+- **Do not rely on `flock` between the Mac and a container.** A lock held in a container does not block a Mac process, and a lock held on the Mac does not block a container. `flock` between two containers on the same bind mount does exclude. A lock taken on one side cannot stop a writer on the other, so keep every writer to a shared file or database on one side, or put a service that both sides reach (a database server, for example) in front of it.
+
+<span id="pod"></span>
+
+## noodle pod
+
+A pod is a set of containers that share one network namespace and reach each other over `localhost`. Pods are made of container labels only, so `docker ps` shows every member and the infra container.
+
+```sh
+noodle pod create --name web -p 8080:80
+noodle pod start web
+infra=$(docker --context noodle ps -aq --no-trunc --filter label=dev.noodle.pod=web --filter label=dev.noodle.pod.role=infra)
+docker --context noodle run -d --network "container:$infra" \
+  --label dev.noodle.pod=web --label dev.noodle.pod.role=member --label "dev.noodle.pod.infra=$infra" \
+  nginx:alpine
+noodle pod ps
+noodle pod logs web
+noodle pod rm -f web
+```
+
+| Command | What it does |
+| --- | --- |
+| `pod create [--name NAME] [-p SPEC] [-l KEY=VALUE] [--share net] [--json]` | Creates the infra container, stopped. It runs `/bin/sleep infinity` in `alpine:3.22` and owns the network namespace. Start it with `pod start` before adding members. |
+| `pod ps \| inspect \| start \| stop \| restart \| logs \| top POD` | Lifecycle and inspection. `logs` shows the last 1000 lines per container. |
+| `pod rm [-f] POD` | Removes the pod and its members. |
+
+To add a member, run it with `docker run --network container:INFRA` and three labels: `dev.noodle.pod=POD`, `dev.noodle.pod.role=member` and `dev.noodle.pod.infra=INFRA`, where `INFRA` is the full ID of the infra container. Without the labels, `pod ps`, `pod restart` and `pod rm` do not see the container.
+
+### Limits
+
+- Only network sharing exists (`--share net`, the default). IPC, UTS and PID sharing are not available.
+- Ports belong on `pod create`. Members cannot publish their own.
+- `pod restart` stops members, then the infra, then starts the infra before the members so they join its new namespace. It needs members started without `--rm`, and refuses otherwise.
+
+**Checked:** these end-to-end cases passed: `pod-create-inspect-and-validation`, `pod-localhost-and-shared-publish`, `pod-restart-shared-network`, `pod-restart-refuses-autoremove`, `pod-stop-and-rm`, `pod-logs-and-top`.
+
+**Checked:** `pod-foreground-run-has-no-deadline` also passed. These cases add members with `docker run` and the labels above.
+
+<span id="kube"></span>
+
+## noodle kube
+
+Runs a small subset of Kubernetes YAML directly on the engine, with no cluster.
+
+```sh
+noodle kube play app.yaml
+noodle kube generate web
+noodle kube play app.yaml --down
+```
+
+- `kube play FILE` accepts `Pod`, `Deployment` (replicas must be 1), `ConfigMap` and `PersistentVolumeClaim`. Any other kind is refused with `unsupported kind`. Fields outside the supported set print a warning and are ignored.
+- A `hostPort` without `hostIP` binds `127.0.0.1`. A PersistentVolumeClaim becomes a local named volume and its `spec` is ignored.
+- `kube play FILE --down` removes the containers that play created from that file.
+- `kube generate CONTAINER-OR-POD` prints a `Pod` manifest for a running container or pod, using the same subset, so the output plays back.
+
+**Checked:** these end-to-end cases passed: `kube-play-port-env`, `kube-deployment-volumes-configmap`, `kube-down-removes-owned-containers`, `kube-generate-round-trip`, `kube-refuses-unsupported`, `kube-warns-unknown-fields`.
+
+**Checked:** the loopback default for `hostPort` is asserted by `kube-play-hostport-defaults-to-loopback`, which passed.
+
+<span id="kubernetes"></span>
+
+## noodle kubernetes
+
+One managed single-node k3s cluster. Nothing runs and nothing downloads until `start`.
+
+```sh
+noodle kubernetes start
+noodle kubernetes use-context
+kubectl get nodes
+noodle kubernetes stop
+noodle kubernetes delete --yes
+```
+
+| Command | What it does |
+| --- | --- |
+| `start [--api-port N] [--ports LIST] [--timeout SECONDS]` | Creates or resumes the `noodle-k3s` container. The first start pulls `rancher/k3s` v1.37.2+k3s1, pinned by digest, so the engine checks the download. The size was not measured. API server on `127.0.0.1:6443` unless `--api-port` says otherwise. |
+| `stop`, `status [--json]` | A stopped cluster is a stopped container: no k3s process, no host helper. |
+| `delete [--yes]` | Removes the container, the data volume `noodle-k3s-data` and the kubeconfig folder. Refuses without a terminal unless `--yes` is given. |
+| `kubeconfig` | Prints the path of the kubeconfig, `~/.noodle/kubernetes/kubeconfig`, mode 0600. |
+| `use-context [--remove] [--kubeconfig PATH]` | The only command that touches `~/.kube/config`. It backs the file up first and edits only the entries named `noodle`. Needs `kubectl`. |
+| `shared-folders [on\|off]` | Shows or changes whether the cluster and privileged containers can use your [approved folders](/docs/cli/). The first `start` of a new cluster turns it on and says so. Changing it restarts the workload VM. Also under **Settings > File Sharing**. |
+
+### What to know before using it
+
+- k3s runs as a privileged container in the workload VM. With shared folders on, each folder approved with `noodle share add` is mounted into the node at its own path, so a pod's `hostPath` naming that path is the Mac folder. Any other `hostPath`, such as an unapproved `/Users/…` path, points inside the node and sees nothing from the Mac. Run `noodle kubernetes start` after approving a folder so the node picks it up.
+- With shared folders on, every privileged workload in that VM can reach every approved folder, not only its own. `noodle share remove FOLDER` ends access at the next VM restart; add `--restart` to end it now.
+- Pods see Mac edits only when they read again. File-change events are not relayed into the workload VM.
+- Traefik and metrics-server are disabled. CoreDNS and local-path storage are on. The network backend is flannel `host-gw`.
+- `LoadBalancer` services work on any port: while the node runs, a small helper checks Services every two seconds and publishes each port on `127.0.0.1`. A port the Mac already uses fails for that service only. `NodePort` ports need `--ports` (for example `--ports 8080-8089,8443`, at most 256).
+- Changing `--api-port` or `--ports` recreates the container and keeps the data volume.
+- The workload VM's device policy has not been security reviewed. Do not run workloads in it that you would not run as root in a VM that shares a network with your Mac.
+
+**Checked:** these end-to-end cases passed: `k8s-start-ready`, `k8s-start-is-idempotent`, `k8s-stop-leaves-nothing-running`, `k8s-delete-leaves-nothing`, `k8s-nothing-until-start`, `k8s-state-survives-daemon-restart`, `k8s-pvc-survives-stop-start`, `k8s-port-forward`, `k8s-pod-dns-resolves-service`, `k8s-loadbalancer-any-port`, `k8s-loadbalancer-on-localhost`, `k8s-use-context-edits-only-ours`, `k8s-ordinary-containers-keep-working`.
+
+<span id="edit"></span>
+
+## noodle container edit and ports
+
+Change a container without recreating it. Use `docker --context noodle container` for every other container subcommand.
+
+```sh
+noodle container edit web --publish 127.0.0.1:9090:80 --dry-run
+noodle container edit web --env LOG=debug --restart
+noodle container ports web --json
+```
+
+- `--publish [HOST_IP:]HOST_PORT:CONTAINER_PORT[/tcp|udp]` and `--unpublish SPEC` apply to a running container live. The process keeps its PID, and a conflicting port leaves all state unchanged.
+- `--env K=V` and `--unset-env K` apply at the next start. `--restart` restarts now. The writable layer, network and volumes survive either way.
+- `--dry-run` prints what would change and changes nothing.
+- `container ports NAME` lists the TCP and UDP ports the container listens on and whether each is published. It refuses a stopped container.
+- Edits survive a daemon restart, and Compose containers stay in their project.
+
+**Checked:** these end-to-end cases passed: `edit-running-port-preserves-pid-and-releases-binding`, `edit-conflict-leaves-all-state-unchanged`, `edit-ipv6-and-loopback-specs`, `edit-env-applies-on-restart-and-keeps-writable-layer`, `edit-restart-keeps-live-ports-network-and-volume`, `edit-dry-run-changes-nothing`, `edit-ports-discovers-unpublished-tcp-udp-and-rejects-stopped`, `edit-compose-container-stays-in-project`, `edit-state-survives-daemon-restart`.

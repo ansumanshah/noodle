@@ -1,0 +1,35 @@
+---
+title: "Apps"
+description: "Install Open WebUI, AnythingLLM or n8n in one click, wired to your local model, and open, update or remove them."
+---
+
+The Apps page in the Models section lists a short catalog of web apps. Each one runs on your Mac and opens in your browser. Two of them are already pointed at your local model.
+
+## The catalog
+
+| App | Category | Uses your model | Port on your Mac |
+| --- | --- | --- | --- |
+| Open WebUI | Chat | yes | 3000 |
+| AnythingLLM | Documents | yes | 3001 |
+| n8n | Automation | no | 5678 |
+
+n8n does not use your model on its own. To use it, add an OpenAI step and paste the address from **Connections**. See the [local API](/docs/models/api/).
+
+## Install
+
+Press **Get** on a card. The card shows what is happening: downloading the app (the first time takes a few minutes), setting up, then starting.
+
+- Each app is a Compose project named `noodle-app-ID`, for example `noodle-app-open-webui`. The app needs Noodle Containers running, because it runs as containers. It uses the same engine as everything under [Containers](/docs/containers/).
+- Noodle writes the app's `compose.yaml` to `~/.noodle/apps/ID/` (under `NOODLE_HOME` when set) with owner-only permissions, because the file holds your model address, which works as a key. Then it runs `docker compose up -d`.
+- Apps that use your model get its address and the model ID filled in. The model ID is the model that is running, or else the one selected in the Library. Without a model address, **Get** stops with a message.
+- The web page is published on `127.0.0.1` only, so nothing outside your Mac can reach it.
+- Open WebUI and AnythingLLM keep their chats and files in a Docker volume. The first account you create in Open WebUI is the owner.
+
+## Open, stop and start
+
+The button on a card follows the state: **Get** when not installed, **Open** when running, **Start** when stopped. **Open** goes to the app's local `.localhost` name when Noodle serves one, and to `http://localhost:PORT` otherwise. Select a card to see the address and a **Stop** button.
+
+## Update and remove
+
+- **Update** (on the detail pane) checks for a newer image and recreates the app. Your data stays.
+- **Remove…** asks twice. The first confirms removing the app: it stops and leaves the list. The second asks whether to keep or delete its data. **Keep my data** brings your chats and files back if you install the app again. **Delete data** removes the volumes and cannot be undone.

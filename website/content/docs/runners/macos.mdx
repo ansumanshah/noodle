@@ -1,0 +1,39 @@
+---
+title: macOS jobs
+description: Build and test with Xcode on your own Mac, one fresh folder per job.
+---
+
+macOS jobs are off until you turn them on for a repo:
+
+```sh
+noodle runners add owner/repo --macos
+```
+
+Then use `runs-on: [self-hosted, noodle-macos]`.
+
+## What happens per job
+
+1. Noodle downloads GitHub's osx-arm64 runner once and checks it against a pinned SHA-256.
+2. Each job gets a copy of that install as a fresh work folder (an APFS clone, so it is instant and takes no extra space).
+3. The job runs as you, with a clean environment.
+4. The folder is deleted when the job ends.
+
+The runner adds an `xcode-<major>` label from the Xcode on this Mac.
+
+## Toolchains
+
+```sh
+noodle runners toolchains [--json]
+```
+
+Lists the build tools a macOS job sees: the selected Xcode (and other installed ones), Swift, Node, Bun, Python, Rust, Cargo, Go, Ruby, CocoaPods and the Docker CLI. Noodle looks for them on the same PATH a job gets, only reads versions, and never installs anything or opens an install dialog. Tools that are not there are left out, and a tool that does not answer in time keeps its previous version instead of counting as removed. It also prints the labels this Mac offers.
+
+When a macOS runner starts, Noodle saves this list (at most once every 5 minutes). The command compares the tools now with that list and prints each change, for example `Xcode 26.1 -> 26.2 since the last job`, so a build that turned red after an update is easy to explain. `noodle runners status` reads that saved list without running any tool, and shows one line only until a macOS job has run after the change.
+
+<Callout type="warn" title="Not a sandbox">
+A macOS job runs on your Mac as you. A workflow can read and change anything you can, including other folders and the keychain prompts you accept. Turn this on only for repos whose workflows you trust.
+</Callout>
+
+## Sleep
+
+While a job runs, Noodle keeps the Mac from idle sleep. A laptop with its lid closed still sleeps unless it is on power with an external display. GitHub fails a job after a long loss of contact and does not rerun it on its own.

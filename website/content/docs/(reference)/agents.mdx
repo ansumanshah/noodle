@@ -1,0 +1,82 @@
+---
+title: Scripts and AI coding tools
+description: Drive Noodle from a script or an AI coding tool with the noodle CLI, the Docker API socket and the local model endpoint, and read these docs as plain text.
+---
+
+Noodle needs no plugin for a script or an AI coding tool. Everything is a command-line tool, a Unix socket or an HTTP endpoint, and the docs are available as plain text.
+
+## Read the docs as text
+
+| URL | What it is |
+| --- | --- |
+| [`/llms.txt`](/llms.txt) | An index of every docs page with its description. |
+| [`/llms-full.txt`](/llms-full.txt) | Every docs page in one Markdown file. |
+| `/docs/<page>.md` | One page as Markdown, for example `/docs/cli.md` or `/docs/containers/quickstart.md`. |
+| `/llms.mdx/docs/<page>.md` | The same page with imports resolved, as listed in `llms.txt`. |
+
+The Copy Markdown button on each docs page copies the same text.
+
+## The `noodle` CLI
+
+Start with status. It never starts the daemon or the VM, so it is safe to poll.
+
+```sh
+noodle status --json
+```
+
+The output is one JSON object with `schemaVersion: 1`. `daemon.reachable` says whether the socket answers, `paths.socket` is the Docker socket, and `tools.docker.available` reports whether a Docker CLI was found. The exit code is 0 when the socket answers, 3 when it does not, and 1 on an encoding error. An unreachable daemon is still a valid snapshot.
+
+```sh
+noodle doctor            # report stale setup items
+noodle start             # start the daemon
+docker --context noodle run --rm alpine:3.22 echo hello
+docker --context noodle compose up -d
+noodle logs linux -n 100
+noodle diagnostics -o diag.tar.gz
+```
+
+Container, image, build and Compose commands go to `docker --context noodle`. An unknown `noodle` command prints the usage on stderr and exits 2. See the [CLI reference](/docs/cli/) for every command.
+
+### Discover commands
+
+`noodle help --json` prints every command, its flags, whether it takes `--json` or asks for a confirmation, and the exit codes, as one JSON document with `schemaVersion: 1`. `noodle <group> help` prints one group. Read it once instead of scraping the help text.
+
+### Exit codes
+
+| Code | Meaning |
+| --- | --- |
+| `0` | success |
+| `1` | the operation failed, was declined or timed out |
+| `2` | usage error, or a confirmation was needed with no terminal and no `--yes` |
+| `3` | the engine is not running or not reachable |
+
+### Output for scripts
+
+Without `--json`, output is for a person, on the same streams as always. With `--json`, stdout is one JSON document and every other line goes to stderr, so `noodle ... --json 2>/dev/null` leaves only the result. These commands carry `schemaVersion: 1`: `version`, `status`, `status --startup`, `doctor`, `tools status`, `update check`, `update status`, `machine status NAME`, `kubernetes start` and `status`, `runners list`, `status`, `repos`, `check`, `cache`, `doctor`, `clean` and `toolchains`, `diagnostics` and `import`. `machine list`, `model list`, `status`, `endpoint`, `catalog` and `network`, `builds list`, `image layers`, `scan`, `proxy`, `names`, `link` and `pod` keep the shape they had before, which may be a bare array or a shape the app reads, so they have no `schemaVersion`. An error is still a non-zero exit with a message on stderr. Nothing waits for a person unless it runs on a terminal: every confirmation takes `--yes` (`-y`, `-f` and `--force` also work). See [Exit codes](/docs/cli/#exit-codes) and [JSON output](/docs/cli/#json).
+
+## The Docker API
+
+Noodle serves the Docker Engine API on a Unix socket. By default it is `~/.noodle/run/docker.sock` with mode 0600, and `noodle status --json` prints the real path. Any Docker client reaches it:
+
+```sh
+docker --context noodle ps
+DOCKER_HOST=unix://$HOME/.noodle/run/docker.sock docker ps
+curl --unix-socket ~/.noodle/run/docker.sock http://localhost/containers/json
+```
+
+Setup makes the `noodle` context the default when no other engine is running; `noodle setup --use` forces it and `--no-use` never switches. An engine already in use is left untouched.
+
+## The model endpoint
+
+```sh
+noodle model serve qwen3.5-4b
+noodle model endpoint
+```
+
+The endpoint is OpenAI-compatible at `http://models.noodle.local/v1`, with a bearer key that stays the same until you run `noodle model key --rotate`. See [Local API](/docs/models/api/).
+
+## Skills
+
+Noodle ships no MCP server. The repository has four skills in [`.claude-plugin/skills`](https://github.com/ansumanshah/noodle/tree/main/.claude-plugin/skills): `noodle` picks the part, and `noodle-containers`, `noodle-models` and `noodle-runners` cover one each. A skill is a plain Markdown file, so any coding tool that reads skills can use them.
+
+Copy the four folders into the place your tool reads skills from, for example `.claude/skills/` or `.agents/skills/` in your project.
