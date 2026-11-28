@@ -1,0 +1,662 @@
+Noodle
+Copyright 2026 Ansuman Shah
+
+Licensed under the Apache License, Version 2.0. See LICENSE.
+
+Noodle includes, links to or downloads the third-party software listed below.
+Each component stays under its own licence. Licence texts that must travel
+with the software follow the list. Licence texts for the modules linked into
+the BuildKit adapter are in BuildKitAdapter-Licenses.txt in the application
+resources. e2fsprogs ships with its upstream NOTICE, and its source archive is
+published with each release.
+
+swift-atomics 1.3.1
+Licence: Apache-2.0
+Source: https://github.com/apple/swift-atomics
+Use: Linked host dependency
+
+swift-collections 1.7.6
+Licence: Apache-2.0
+Source: https://github.com/apple/swift-collections
+Use: Linked host dependency
+
+swift-nio 2.105.0
+Licence: Apache-2.0
+Source: https://github.com/apple/swift-nio
+Use: Linked host dependency
+
+swift-system 1.9.0
+Licence: Apache-2.0
+Source: https://github.com/apple/swift-system
+Use: Linked host dependency
+
+linux 6.18.63
+Licence: GPL-2.0-only
+Source: https://www.kernel.org/
+Use: Guest kernel
+
+e2fsprogs 1.47.4
+Licence: GPL-2.0-or-later; LGPL-2.0-or-later; BSD; MIT (see upstream NOTICE)
+Source: https://www.kernel.org/pub/linux/kernel/people/tytso/e2fsprogs/
+Use: Disk utilities; upstream notice bundled, source archive published with each release
+
+tini 0.19.0
+Licence: MIT
+Source: https://github.com/krallin/tini
+Use: Guest init
+
+docker 29.9.3
+Licence: Apache-2.0
+Source: https://github.com/docker/cli
+Use: On-demand Docker CLI
+
+docker-compose 5.7.1
+Licence: Apache-2.0
+Source: https://github.com/docker/compose
+Use: On-demand Docker Compose plugin
+
+docker-buildx 0.39.0
+Licence: Apache-2.0
+Source: https://github.com/docker/buildx
+Use: On-demand Docker Buildx plugin
+
+docker-model 1.2.9
+Licence: Apache-2.0
+Source: https://github.com/docker/model-runner
+Use: On-demand upstream Docker Model Runner CLI plugin
+
+mlx-serve/llama.cpp 26.11.4
+Licence: MIT
+Source: https://github.com/ggml-org/llama.cpp
+Use: Embedded GGUF engine in the unmodified mlx-serve release
+
+gemma-4-e2b-qat-gguf 347eef722ec7f151f37d1ef0b5c7c77d8de4efcb
+Licence: Apache-2.0
+Source: https://huggingface.co/google/gemma-4-E2B-it-qat-q4_0-gguf
+Use: On-demand catalog model, Q4_0 GGUF weights
+
+grype 0.121.3
+Licence: Apache-2.0
+Source: https://github.com/anchore/grype
+Use: On-demand vulnerability scanner
+
+syft 1.57.1
+Licence: Apache-2.0
+Source: https://github.com/anchore/syft
+Use: On-demand SBOM generator
+
+cloudflared 2026.11.0
+Licence: Apache-2.0
+Source: https://github.com/cloudflare/cloudflared
+Use: On-demand tunnel helper
+
+act 0.2.98
+Licence: MIT
+Source: https://github.com/nektos/act
+Use: Optional local GitHub Actions runner, installed only on request
+
+actions-runner 2.338.2
+Licence: MIT
+Source: https://github.com/actions/runner
+Use: GitHub Actions runner for Noodle Runners, downloaded on first use
+
+kubectl 1.37.2
+Licence: Apache-2.0
+Source: https://github.com/kubernetes/kubernetes
+Use: Kubernetes CLI, installed by setup when none is on PATH
+
+github.com/containerd/containerd/api v1.12.0
+Licence: Apache-2.0
+Source: https://github.com/containerd/containerd
+Use: On-demand BuildKit adapter dependency
+
+github.com/moby/buildkit v0.35.0
+Licence: Apache-2.0
+Source: https://github.com/moby/buildkit
+Use: On-demand BuildKit adapter dependency
+
+github.com/siderolabs/grpc-proxy v0.5.2
+Licence: Apache-2.0
+Source: https://github.com/siderolabs/grpc-proxy
+Use: On-demand BuildKit adapter dependency
+
+golang.org/x/net v0.62.0
+Licence: BSD-3-Clause
+Source: https://go.googlesource.com/net
+Use: On-demand BuildKit adapter dependency
+
+golang.org/x/sys v0.50.0
+Licence: BSD-3-Clause
+Source: https://go.googlesource.com/sys
+Use: On-demand BuildKit adapter dependency
+
+google.golang.org/grpc v1.85.0
+Licence: Apache-2.0
+Source: https://google.golang.org/grpc
+Use: On-demand BuildKit adapter dependency
+
+github.com/Microsoft/go-winio v0.6.4
+Licence: MIT
+Source: https://github.com/Microsoft/go-winio
+Use: On-demand BuildKit adapter dependency
+
+github.com/cespare/xxhash/v2 v2.3.0
+Licence: MIT
+Source: https://github.com/cespare/xxhash
+Use: On-demand BuildKit adapter dependency
+
+github.com/containerd/containerd/v2 v2.4.2
+Licence: Apache-2.0
+Source: https://github.com/containerd/containerd
+Use: On-demand BuildKit adapter dependency
+
+github.com/containerd/continuity v0.5.0
+Licence: Apache-2.0
+Source: https://github.com/containerd/continuity
+Use: On-demand BuildKit adapter dependency
+
+github.com/containerd/log v0.2.0
+Licence: Apache-2.0
+Source: https://github.com/containerd/log
+Use: On-demand BuildKit adapter dependency
+
+github.com/containerd/ttrpc v1.2.10
+Licence: Apache-2.0
+Source: https://github.com/containerd/ttrpc
+Use: On-demand BuildKit adapter dependency
+
+github.com/containerd/typeurl/v2 v2.3.0
+Licence: Apache-2.0
+Source: https://github.com/containerd/typeurl
+Use: On-demand BuildKit adapter dependency
+
+github.com/felixge/httpsnoop v1.1.0
+Licence: MIT
+Source: https://github.com/felixge/httpsnoop
+Use: On-demand BuildKit adapter dependency
+
+github.com/go-logr/logr v1.4.4
+Licence: Apache-2.0
+Source: https://github.com/go-logr/logr
+Use: On-demand BuildKit adapter dependency
+
+github.com/go-logr/stdr v1.2.2
+Licence: Apache-2.0
+Source: https://github.com/go-logr/stdr
+Use: On-demand BuildKit adapter dependency
+
+github.com/google/uuid v1.6.0
+Licence: BSD-3-Clause
+Source: https://github.com/google/uuid
+Use: On-demand BuildKit adapter dependency
+
+github.com/hashicorp/errwrap v1.1.0
+Licence: MPL-2.0
+Source: https://github.com/hashicorp/errwrap
+Use: On-demand BuildKit adapter dependency
+
+github.com/hashicorp/go-multierror v1.1.1
+Licence: MPL-2.0
+Source: https://github.com/hashicorp/go-multierror
+Use: On-demand BuildKit adapter dependency
+
+github.com/moby/patternmatcher v0.6.1
+Licence: Apache-2.0
+Source: https://github.com/moby/patternmatcher
+Use: On-demand BuildKit adapter dependency
+
+github.com/opencontainers/go-digest v1.0.0
+Licence: Apache-2.0
+Source: https://github.com/opencontainers/go-digest
+Use: On-demand BuildKit adapter dependency
+
+github.com/opencontainers/image-spec v1.1.1
+Licence: Apache-2.0
+Source: https://github.com/opencontainers/image-spec
+Use: On-demand BuildKit adapter dependency
+
+github.com/pkg/errors v0.9.1
+Licence: BSD-2-Clause
+Source: https://github.com/pkg/errors
+Use: On-demand BuildKit adapter dependency
+
+github.com/planetscale/vtprotobuf v0.6.1-0.20240319094008-0393e58bdf10
+Licence: BSD-3-Clause
+Source: https://github.com/planetscale/vtprotobuf
+Use: On-demand BuildKit adapter dependency
+
+github.com/sirupsen/logrus v1.10.2
+Licence: MIT
+Source: https://github.com/sirupsen/logrus
+Use: On-demand BuildKit adapter dependency
+
+github.com/tonistiigi/fsutil v0.0.0-20261103125000-e075fd9305eb
+Licence: MIT
+Source: https://github.com/tonistiigi/fsutil
+Use: On-demand BuildKit adapter dependency
+
+github.com/tonistiigi/units v0.0.0-20180711220420-6950e57a87ea
+Licence: MIT
+Source: https://github.com/tonistiigi/units
+Use: On-demand BuildKit adapter dependency
+
+go.opentelemetry.io/auto/sdk v1.2.1
+Licence: Apache-2.0
+Source: https://go.opentelemetry.io/auto/sdk
+Use: On-demand BuildKit adapter dependency
+
+go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.72.0
+Licence: Apache-2.0
+Source: https://go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc
+Use: On-demand BuildKit adapter dependency
+
+go.opentelemetry.io/contrib/instrumentation/net/http/httptrace/otelhttptrace v0.72.0
+Licence: Apache-2.0
+Source: https://go.opentelemetry.io/contrib/instrumentation/net/http/httptrace/otelhttptrace
+Use: On-demand BuildKit adapter dependency
+
+go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.72.0
+Licence: Apache-2.0
+Source: https://go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp
+Use: On-demand BuildKit adapter dependency
+
+go.opentelemetry.io/otel v1.47.0
+Licence: Apache-2.0
+Source: https://go.opentelemetry.io/otel
+Use: On-demand BuildKit adapter dependency
+
+go.opentelemetry.io/otel/metric v1.47.0
+Licence: Apache-2.0
+Source: https://go.opentelemetry.io/otel/metric
+Use: On-demand BuildKit adapter dependency
+
+go.opentelemetry.io/otel/log v1.47.0
+Licence: Apache-2.0 AND BSD-3-Clause
+Source: https://go.opentelemetry.io/otel/log
+Use: On-demand BuildKit adapter dependency
+
+go.opentelemetry.io/otel/sdk v1.47.0
+Licence: Apache-2.0
+Source: https://go.opentelemetry.io/otel/sdk
+Use: On-demand BuildKit adapter dependency
+
+go.opentelemetry.io/otel/trace v1.47.0
+Licence: Apache-2.0
+Source: https://go.opentelemetry.io/otel/trace
+Use: On-demand BuildKit adapter dependency
+
+golang.org/x/sync v0.24.0
+Licence: BSD-3-Clause
+Source: https://go.googlesource.com/sync
+Use: On-demand BuildKit adapter dependency
+
+golang.org/x/text v0.43.0
+Licence: BSD-3-Clause
+Source: https://go.googlesource.com/text
+Use: On-demand BuildKit adapter dependency
+
+google.golang.org/genproto/googleapis/rpc v0.0.0-20261012220534-4341edf3f941
+Licence: Apache-2.0
+Source: https://google.golang.org/genproto/googleapis/rpc
+Use: On-demand BuildKit adapter dependency
+
+google.golang.org/protobuf v1.36.12
+Licence: BSD-3-Clause
+Source: https://google.golang.org/protobuf
+Use: On-demand BuildKit adapter dependency
+
+swiftterm 1.99.3
+Licence: MIT
+Source: https://github.com/migueldeicaza/SwiftTerm
+Use: Terminal panel in the app. Linked into NoodleApp only, not noodled or noodle.
+
+h 1.0.1
+Licence: Apache-2.0
+Source: https://github.com/rarestype/h
+Use: Resolved through SwiftTerm for the app only.
+
+swift-argument-parser 1.8.2
+Licence: Apache-2.0
+Source: https://github.com/apple/swift-argument-parser
+Use: Resolved through SwiftTerm for the app only.
+
+swift-png 4.5.2
+Licence: Apache-2.0
+Source: https://github.com/tayloraswift/swift-png
+Use: Image support in SwiftTerm, app only.
+
+website/fumadocs-core 16.19.3
+Licence: MIT
+Source: https://github.com/fuma-nama/fumadocs
+Use: Website docs engine, search index and llms.txt generation
+
+website/fumadocs-mdx 15.6.2
+Licence: MIT
+Source: https://github.com/fuma-nama/fumadocs
+Use: Website MDX content loader
+
+website/fumadocs-ui 16.19.3
+Licence: MIT
+Source: https://github.com/fuma-nama/fumadocs
+Use: Website docs layout, search dialog and code blocks
+
+website/motion 14.14.0
+Licence: MIT
+Source: https://github.com/motiondivision/motion
+Use: Website scroll-reveal springs
+
+website/next 16.4.6
+Licence: MIT
+Source: https://github.com/vercel/next.js
+Use: Website framework and static export
+
+website/react 19.3.1
+Licence: MIT
+Source: https://github.com/react/react
+Use: Website UI runtime
+
+website/react-dom 19.3.1
+Licence: MIT
+Source: https://github.com/react/react
+Use: Website UI runtime
+
+mlx-serve 26.11.4
+Licence: MIT
+Source: https://github.com/ddalcu/mlx-serve
+Use: On-demand macOS MLX model runtime; the upstream release binary, downloaded on first use and run unmodified
+
+mlx-serve/apache-2.0-notice 26.11.4
+Licence: Apache-2.0
+Source: https://github.com/ddalcu/mlx-serve/blob/v26.11.4/NOTICE
+Use: Apache-2.0 Metal kernels and jinja.cpp inside the mlx-serve release; its LICENSE, LICENSE-APACHE-2.0 and NOTICE stay beside the installed binary
+
+qwen3-0.6b-mlx 73e3e38d981303bc594367cd910ea6eb48349da8
+Licence: Apache-2.0
+Source: https://huggingface.co/mlx-community/Qwen3-0.6B-4bit
+Use: On-demand 4-bit MLX catalog model
+
+qwen3.5-2b 93760be4f1f69842a46bc13dbdc0f19e291392a3
+Licence: Apache-2.0
+Source: https://huggingface.co/mlx-community/Qwen3.5-2B-MLX-4bit
+Use: On-demand 4-bit MLX catalog model
+
+qwen3.5-4b 32f3e8ecf65426fc3306969496342d504bfa13f3
+Licence: Apache-2.0
+Source: https://huggingface.co/mlx-community/Qwen3.5-4B-MLX-4bit
+Use: On-demand 4-bit MLX catalog model
+
+qwen3-embedding-0.6b 6c3ae70858513f1a78e9cdca3cae330d9075cd2a
+Licence: Apache-2.0
+Source: https://huggingface.co/mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ
+Use: On-demand 4-bit MLX embedding model, served as API only
+
+qwen3-asr-0.6b 313d850181767edf09f00a9c289becca70e58cd0
+Licence: Apache-2.0
+Source: https://huggingface.co/mlx-community/Qwen3-ASR-0.6B-4bit
+Use: On-demand 4-bit MLX speech-to-text model, served as API only
+
+kokoro-82m b5899d2ddd130ad8e3d81ea95e6346c7d88779bd
+Licence: Apache-2.0
+Source: https://huggingface.co/ddalcu/Kokoro-82M-MLX-Serve
+Use: On-demand text-to-speech model in the layout mlx-serve loads, served as API only
+
+mlx-serve-ui 9a173773649218b866089dbe9851b2ba594f34f9
+Licence: MIT
+Source: https://github.com/ddalcu/mlx-serve/tree/9a173773649218b866089dbe9851b2ba594f34f9
+Use: Portions of the Models chat interface; app only
+
+website/font-geist next/font/google 16.4.6
+Licence: OFL-1.1
+Source: https://github.com/vercel/geist-font
+Use: Website code face (Geist Mono), self-hosted at build time
+
+website/font-bricolage-grotesque next/font/google 16.4.6
+Licence: OFL-1.1
+Source: https://github.com/ateliertriay/bricolage
+Use: Website text face, self-hosted at build time
+
+website/font-fraunces next/font/google 16.4.6
+Licence: OFL-1.1
+Source: https://github.com/undercasetype/Fraunces
+Use: Website heading face, self-hosted at build time
+
+flux2-klein-4b 7ee1b3aa8178a1240050490072196a57da2bf2a9
+Licence: Apache-2.0
+Source: https://huggingface.co/Runpod/FLUX.2-klein-4B-mflux-4bit
+Use: On-demand text-to-image model for Models > Create
+
+bonsai2-27b 24b5937a4a104a44f790b6ccbd0c79b6fabd4299
+Licence: Apache-2.0
+Source: https://huggingface.co/prism-ml/Ternary-Bonsai-2-27B-mlx-2bit
+Use: On-demand chat model with image input, the largest that loads on a 16 GB Mac
+
+inkling2-mini-2.5bit d4a4f3f555fdf6f06102de1865d07e8ac5effe6d
+Licence: Apache-2.0
+Source: https://huggingface.co/mlx-community/Inkling-2-Mini-oQ2.5e-mtp
+Use: On-demand chat model with image input, the smallest Inkling 2 Mini pack
+
+inkling2-mini 3eea042751cd296b7266628a8342c1749242e1fe
+Licence: Apache-2.0
+Source: https://huggingface.co/mlx-community/Inkling-2-Mini-oQ4e-mtp
+Use: On-demand chat model with image input, for Macs with 32 GB or more
+
+inkling-small f8a0af554e168077bdaf48e1fb6682fb395c807c
+Licence: Apache-2.0
+Source: https://huggingface.co/mlx-community/Inkling-Small-mlx-2bit
+Use: On-demand chat model for Macs with 128 GB or more
+
+ltx-2.5-video e8f8c97cd6e4ff9c997e0d382c027ad9b61776bb
+Licence: LicenseRef-LTX-2-Community
+Source: https://huggingface.co/ddalcu/LTX-2.5-MLX-Serve-4bit
+Use: On-demand text-to-video model for Models > Create; listed as too big on 16 GB Macs
+Note: Not open source. LTX-2 Community License: free for entities under 10 million USD yearly revenue, larger companies need a paid license except for non-commercial use. LICENSE.md ships in the pack.
+
+The on-demand build adapter uses Moby BuildKit (https://github.com/moby/buildkit),
+gRPC for Go (https://github.com/grpc/grpc-go) and Sidero Labs gRPC Proxy
+(https://github.com/siderolabs/grpc-proxy). The application includes the
+linked modules' license texts in Resources/BuildKitAdapter-Licenses.txt.
+
+SwiftTerm 1.99.3 (https://github.com/migueldeicaza/SwiftTerm), MIT.
+Used only by the Noodle application for its embedded terminal.
+
+Copyright (c) 2019-2026 Miguel de Icaza (https://github.com/migueldeicaza)
+Copyright (c) 2017-2019, The xterm.js authors (https://github.com/xtermjs/xterm.js)
+Copyright (c) 2014-2016, SourceLair Private Company (https://www.sourcelair.com)
+Copyright (c) 2012-2013, Christopher Jeffrey (https://github.com/chjj/)
+Copyright (c) 2016 Ryan L McIntyre (Powerline Extra Symbols flame silhouette, https://github.com/ryanoasis/powerline-extra-symbols)
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+MLX-Serve (https://github.com/ddalcu/mlx-serve), MIT.
+Portions of the Noodle application's Models chat interface are
+Copyright (c) 2026 David Dalcu, under the MIT licence printed at the end of
+this file.
+
+The on-demand GGUF and MLX runtime is the unmodified mlx-serve release binary
+(https://github.com/ddalcu/mlx-serve), MIT, Copyright (c) 2026 David Dalcu. Noodle
+downloads it on first use and does not ship it. The archive carries LICENSE,
+LICENSE-APACHE-2.0 and NOTICE for the Apache-2.0 Metal kernels and jinja.cpp
+(Copyright 2025 Wang Zhaode) that it contains. They install with the binary
+under models/mlx-serve/<version>/ in the Noodle home.
+
+MIT License
+
+Copyright (c) 2026 David Dalcu
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+SwiftNIO 2.105.0 (https://github.com/apple/swift-nio), Apache-2.0.
+Linked into noodled. Its NOTICE follows.
+
+                            The SwiftNIO Project
+                            ====================
+
+Please visit the SwiftNIO web site for more information:
+
+  * https://github.com/apple/swift-nio
+
+Copyright 2017, 2018 The SwiftNIO Project
+
+The SwiftNIO Project licenses this file to you under the Apache License,
+version 2.0 (the "License"); you may not use this file except in compliance
+with the License. You may obtain a copy of the License at:
+
+  https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+License for the specific language governing permissions and limitations
+under the License.
+
+Also, please refer to each LICENSE.<component>.txt file, which is located in
+the 'license' directory of the distribution file, for the license terms of the
+components that this product depends on.
+
+-------------------------------------------------------------------------------
+
+This product is heavily influenced by Netty.
+
+  * LICENSE (Apache License 2.0):
+    * https://github.com/netty/netty/blob/4.1/LICENSE.txt
+  * HOMEPAGE:
+    * https://netty.io
+
+---
+
+This product contains NodeJS's llhttp.
+
+  * LICENSE (MIT):
+    * https://github.com/nodejs/llhttp/blob/1e1c5b43326494e97cf8244ff57475eb72a1b62c/LICENSE-MIT
+  * HOMEPAGE:
+    * https://github.com/nodejs/llhttp
+
+---
+
+This product contains "cpp_magic.h" from Thomas Nixon & Jonathan Heathcote's uSHET
+
+  * LICENSE (MIT):
+    * https://github.com/18sg/uSHET/blob/c09e0acafd86720efe42dc15c63e0cc228244c32/lib/cpp_magic.h
+  * HOMEPAGE:
+    * https://github.com/18sg/uSHET
+
+---
+
+This product contains "sha1.c" and "sha1.h" from FreeBSD (Copyright (C) 1995, 1996, 1997, and 1998 WIDE Project)
+
+  * LICENSE (BSD-3):
+    * https://opensource.org/licenses/BSD-3-Clause
+  * HOMEPAGE:
+    * https://github.com/freebsd/freebsd-src
+
+---
+
+This product contains a derivation of Fabian Fett's 'Base64.swift'.
+
+  * LICENSE (Apache License 2.0):
+    * https://github.com/swift-extras/swift-extras-base64/blob/b8af49699d59ad065b801715a5009619100245ca/LICENSE
+  * HOMEPAGE:
+    * https://github.com/fabianfett/swift-base64-kit
+
+---
+
+This product contains a derivation of "XCTest+AsyncAwait.swift" & "StructuredConcurrencyHelpers" from AsyncHTTPClient.
+
+  * LICENSE (Apache License 2.0):
+    * https://www.apache.org/licenses/LICENSE-2.0
+  * HOMEPAGE:
+    * https://github.com/swift-server/async-http-client
+
+---
+
+This product contains a derivation of "_TinyArray.swift" from SwiftCertificates.
+
+  * LICENSE (Apache License 2.0):
+    * https://www.apache.org/licenses/LICENSE-2.0
+  * HOMEPAGE:
+    * https://github.com/apple/swift-certificates
+
+---
+
+This product contains a derivation of the mocking infrastructure from Swift System.
+
+  * LICENSE (Apache License 2.0):
+    * https://www.apache.org/licenses/LICENSE-2.0
+  * HOMEPAGE:
+    * https://github.com/apple/swift-system
+
+---
+
+This product contains a derivation of "TokenBucket.swift" from Swift Package Manager.
+
+  * LICENSE (Apache License 2.0):
+    * https://www.apache.org/licenses/LICENSE-2.0
+  * HOMEPAGE:
+    * https://github.com/swiftlang/swift-package-manager
+
+
+Tini 0.19.0 (https://github.com/krallin/tini), MIT.
+Bundled in the guest initramfs as docker-init.
+
+The MIT License (MIT)
+
+Copyright (c) 2015 Thomas Orozco <thomas@orozco.fr>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+Terminal colour palettes in the Noodle application come from
+iTerm2-Color-Schemes (https://github.com/mbadolato/iTerm2-Color-Schemes),
+MIT, Copyright (c) 2011 to Present Mark Badolato. Individual themes keep their
+own licences: GitHub Primer (MIT, Copyright (c) 2020 Primer), Catppuccin (MIT,
+Copyright (c) 2021 Catppuccin), Tokyo Night (Apache-2.0, folke/tokyonight.nvim),
+Rosé Pine (MIT, Copyright (c) 2023 Rosé Pine) and Solarized (MIT, Copyright (c)
+2011 Ethan Schoonover).

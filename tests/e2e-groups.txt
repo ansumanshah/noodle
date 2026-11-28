@@ -1,0 +1,6 @@
+# name  jobs  areas (tests/e2e/<area>.sh). Each group should finish in under 10 minutes. Every area must appear exactly once:
+# `scripts/e2e-group.sh --check` verifies that. Serial-only groups use 1 job; sharded groups split their areas over 3 daemons.
+kube       1  managed-kubernetes local-kubernetes-yaml-workloads privileged-workloads
+workloads  1  model-workloads workload-vm-boundary finder-read-only-webdav
+heavy      3  public-links pods connections memory-reclaim build
+rest       3  network-compatibility compose host-access mounts-and-volumes containers images conn-stability restart-policies search-resume local-names-and-ssh-agent host-development-processes-and-shared-names run-io networking logs-rotation registry import-from-another-engine build-bases boot-console logs proxy exec security-and-limits docker-errors diagnostics testcontainers ai-apps model-runner engine

@@ -1,0 +1,28 @@
+---
+title: "macOS machines"
+description: "Run a macOS virtual machine from an Apple restore image. App only, with no command line."
+---
+
+A macOS machine is one macOS guest that runs inside Noodle. You manage it in the app only. There is no `noodle` command for it.
+
+Open **Machines** and choose the **macOS** chip. The **Linux** chip shows [Linux machines](/docs/containers/machines/).
+
+## Install
+
+1. Press **Choose IPSW…** and pick an Apple macOS restore image. **Find Apple Restore Image** looks up Apple's download link, which you can open or copy with **Copy Link**.
+2. Press **Choose Folder…** for the place to keep the machine. The folder needs at least 40 GiB free.
+3. Press **Install macOS**. Progress shows on the page, with **Cancel Installation**.
+
+Noodle creates a `Noodle Mac.noodlemac` folder there with a 64 GiB virtual disk. It takes the restore image's most capable supported setup: at least 4 CPUs and 4 GiB of memory, more if the image requires it. Noodle does not ask you to set these. The network is NAT and the display is 1440 by 900.
+
+**Open Existing…** attaches a `.noodlemac` folder you made earlier.
+
+## Run
+
+**Start macOS** boots the machine and shows its screen in the window. The header shows the state, and CPU and host memory use. **Shut Down** asks macOS to quit, and the button turns into **Retry Shutdown** when it does not. **Force Stop…** appears when a shutdown is pending or an error shows. It cuts the power, and unsaved work in the guest can be lost.
+
+## Limits
+
+- One macOS machine at a time.
+- The restore image must support this Mac. Otherwise the install stops with a message to choose a compatible image.
+- No file sharing or snapshots.

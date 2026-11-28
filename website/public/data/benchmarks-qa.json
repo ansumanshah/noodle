@@ -1,0 +1,589 @@
+{
+  "date": "2026-11-09",
+  "host": {
+    "model": "Apple M4 Mac mini",
+    "memory_gib": 16,
+    "os": "macOS 27.2"
+  },
+  "vm": {
+    "cpus": 2,
+    "memory_gib": 8
+  },
+  "base_revision": "a3503bbb4271bea252e2455c07b19371361130f3",
+  "qa_source_manifest_sha256": "563dd150fff6347a24c62327925b1a7b4b9d8831ad98a542b0d2b2521ab44812",
+  "benchmark_daemon_sha256": {
+    "baseline": "c2ce04125195b36c89cd4ab9a2b1d175e8a9626448e5bcb30ecb66ca82d9d45d",
+    "candidate": "4c893a2f2ad306b1adee9048d561e275d0823210a089b04ae078fe286a4df5f4"
+  },
+  "kernel_release": "6.18.60",
+  "kernel_sha256": "465321d3c1c19ad94c03f41fcaf5f31687bb04db78039fe454ee15c82a6900d9",
+  "docker_cli": "29.9.3",
+  "warmups": 5,
+  "images": [
+    "alpine:3.20",
+    "debian:bookworm-slim",
+    "node:22-alpine",
+    "nginx:1.27-alpine"
+  ],
+  "measurements": [
+    {
+      "name": "cli.run",
+      "status": "pass",
+      "runs": 30,
+      "failures": 0,
+      "seconds": {
+        "n": 30,
+        "median": 0.015912146001028304,
+        "mean": 0.01625721526658405,
+        "min": 0.015222457999698236,
+        "max": 0.01880462500048452,
+        "p95": 0.017995006098590238,
+        "stdev": 0.000897585927455053,
+        "ci95": [
+          0.015788959000929026,
+          0.016345333499884873
+        ]
+      },
+      "samples": [
+        {
+          "run": 1,
+          "seconds": 0.01880462500048452,
+          "success": true
+        },
+        {
+          "run": 2,
+          "seconds": 0.01738724999995611,
+          "success": true
+        },
+        {
+          "run": 3,
+          "seconds": 0.016502124999533407,
+          "success": true
+        },
+        {
+          "run": 4,
+          "seconds": 0.01690204199985601,
+          "success": true
+        },
+        {
+          "run": 5,
+          "seconds": 0.01714154099863663,
+          "success": true
+        },
+        {
+          "run": 6,
+          "seconds": 0.01687941599993792,
+          "success": true
+        },
+        {
+          "run": 7,
+          "seconds": 0.018030124998404062,
+          "success": true
+        },
+        {
+          "run": 8,
+          "seconds": 0.01707337500010908,
+          "success": true
+        },
+        {
+          "run": 9,
+          "seconds": 0.016644541999994544,
+          "success": true
+        },
+        {
+          "run": 10,
+          "seconds": 0.017952082998817787,
+          "success": true
+        },
+        {
+          "run": 11,
+          "seconds": 0.01529616700099723,
+          "success": true
+        },
+        {
+          "run": 12,
+          "seconds": 0.015386041999590816,
+          "success": true
+        },
+        {
+          "run": 13,
+          "seconds": 0.015940667000904796,
+          "success": true
+        },
+        {
+          "run": 14,
+          "seconds": 0.0154458329998306,
+          "success": true
+        },
+        {
+          "run": 15,
+          "seconds": 0.015788959000929026,
+          "success": true
+        },
+        {
+          "run": 16,
+          "seconds": 0.015717374999439926,
+          "success": true
+        },
+        {
+          "run": 17,
+          "seconds": 0.015638374999980442,
+          "success": true
+        },
+        {
+          "run": 18,
+          "seconds": 0.01586183300059929,
+          "success": true
+        },
+        {
+          "run": 19,
+          "seconds": 0.015480375001061475,
+          "success": true
+        },
+        {
+          "run": 20,
+          "seconds": 0.015809958000318147,
+          "success": true
+        },
+        {
+          "run": 21,
+          "seconds": 0.015847750000830274,
+          "success": true
+        },
+        {
+          "run": 22,
+          "seconds": 0.015966416998708155,
+          "success": true
+        },
+        {
+          "run": 23,
+          "seconds": 0.015883625001151813,
+          "success": true
+        },
+        {
+          "run": 24,
+          "seconds": 0.015703290999226738,
+          "success": true
+        },
+        {
+          "run": 25,
+          "seconds": 0.015222457999698236,
+          "success": true
+        },
+        {
+          "run": 26,
+          "seconds": 0.016000916999473702,
+          "success": true
+        },
+        {
+          "run": 27,
+          "seconds": 0.01618854200023634,
+          "success": true
+        },
+        {
+          "run": 28,
+          "seconds": 0.01584687499962456,
+          "success": true
+        },
+        {
+          "run": 29,
+          "seconds": 0.015397249999296037,
+          "success": true
+        },
+        {
+          "run": 30,
+          "seconds": 0.01597662499989383,
+          "success": true
+        }
+      ]
+    },
+    {
+      "name": "api.lifecycle.none",
+      "status": "pass",
+      "runs": 30,
+      "failures": 0,
+      "seconds": {
+        "n": 30,
+        "median": 0.0020309165001890506,
+        "mean": 0.002189447233043514,
+        "min": 0.0017561669992574025,
+        "max": 0.0032977079990814673,
+        "p95": 0.0031973148001270602,
+        "stdev": 0.00042405141996432167,
+        "ci95": [
+          0.001961499999197258,
+          0.0021971875003146124
+        ]
+      },
+      "samples": [
+        {
+          "run": 1,
+          "seconds": 0.00220916699981899,
+          "success": true
+        },
+        {
+          "run": 2,
+          "seconds": 0.0018845409995265072,
+          "success": true
+        },
+        {
+          "run": 3,
+          "seconds": 0.002185208000810235,
+          "success": true
+        },
+        {
+          "run": 4,
+          "seconds": 0.0020216250013618264,
+          "success": true
+        },
+        {
+          "run": 5,
+          "seconds": 0.0029125829987606267,
+          "success": true
+        },
+        {
+          "run": 6,
+          "seconds": 0.0031858329984970624,
+          "success": true
+        },
+        {
+          "run": 7,
+          "seconds": 0.0019712920002348255,
+          "success": true
+        },
+        {
+          "run": 8,
+          "seconds": 0.0020793329986190656,
+          "success": true
+        },
+        {
+          "run": 9,
+          "seconds": 0.0019737499987968476,
+          "success": true
+        },
+        {
+          "run": 10,
+          "seconds": 0.0018606249996082624,
+          "success": true
+        },
+        {
+          "run": 11,
+          "seconds": 0.002245584000775125,
+          "success": true
+        },
+        {
+          "run": 12,
+          "seconds": 0.0032067090014606947,
+          "success": true
+        },
+        {
+          "run": 13,
+          "seconds": 0.0020168749997537816,
+          "success": true
+        },
+        {
+          "run": 14,
+          "seconds": 0.0019255829993198859,
+          "success": true
+        },
+        {
+          "run": 15,
+          "seconds": 0.0020487080000748392,
+          "success": true
+        },
+        {
+          "run": 16,
+          "seconds": 0.0018507909990148619,
+          "success": true
+        },
+        {
+          "run": 17,
+          "seconds": 0.0022085839991632383,
+          "success": true
+        },
+        {
+          "run": 18,
+          "seconds": 0.0025714580006024335,
+          "success": true
+        },
+        {
+          "run": 19,
+          "seconds": 0.0023869169999670703,
+          "success": true
+        },
+        {
+          "run": 20,
+          "seconds": 0.0019492499995976686,
+          "success": true
+        },
+        {
+          "run": 21,
+          "seconds": 0.0019051250001211884,
+          "success": true
+        },
+        {
+          "run": 22,
+          "seconds": 0.0019356250013515819,
+          "success": true
+        },
+        {
+          "run": 23,
+          "seconds": 0.0018755419987428468,
+          "success": true
+        },
+        {
+          "run": 24,
+          "seconds": 0.002240916999653564,
+          "success": true
+        },
+        {
+          "run": 25,
+          "seconds": 0.0020136669991188683,
+          "success": true
+        },
+        {
+          "run": 26,
+          "seconds": 0.002082957998936763,
+          "success": true
+        },
+        {
+          "run": 27,
+          "seconds": 0.0032977079990814673,
+          "success": true
+        },
+        {
+          "run": 28,
+          "seconds": 0.001841084000261617,
+          "success": true
+        },
+        {
+          "run": 29,
+          "seconds": 0.0020402079990162747,
+          "success": true
+        },
+        {
+          "run": 30,
+          "seconds": 0.0017561669992574025,
+          "success": true
+        }
+      ]
+    },
+    {
+      "name": "api.lifecycle.bridge",
+      "status": "pass",
+      "runs": 30,
+      "failures": 0,
+      "seconds": {
+        "n": 30,
+        "median": 0.002369187499425607,
+        "mean": 0.002540168100010002,
+        "min": 0.002036207999481121,
+        "max": 0.005952084000455216,
+        "p95": 0.0037556229506662884,
+        "stdev": 0.0007826126281215353,
+        "ci95": [
+          0.0022323335006149136,
+          0.002425603999654413
+        ]
+      },
+      "samples": [
+        {
+          "run": 1,
+          "seconds": 0.0022427919993788237,
+          "success": true
+        },
+        {
+          "run": 2,
+          "seconds": 0.0023841250003897585,
+          "success": true
+        },
+        {
+          "run": 3,
+          "seconds": 0.002565708999100025,
+          "success": true
+        },
+        {
+          "run": 4,
+          "seconds": 0.002373875000557746,
+          "success": true
+        },
+        {
+          "run": 5,
+          "seconds": 0.0022410420006053755,
+          "success": true
+        },
+        {
+          "run": 6,
+          "seconds": 0.0025068750001082662,
+          "success": true
+        },
+        {
+          "run": 7,
+          "seconds": 0.002036207999481121,
+          "success": true
+        },
+        {
+          "run": 8,
+          "seconds": 0.002093916000376339,
+          "success": true
+        },
+        {
+          "run": 9,
+          "seconds": 0.0021823749993927777,
+          "success": true
+        },
+        {
+          "run": 10,
+          "seconds": 0.002426875000310247,
+          "success": true
+        },
+        {
+          "run": 11,
+          "seconds": 0.002354875001401524,
+          "success": true
+        },
+        {
+          "run": 12,
+          "seconds": 0.0022087919987825444,
+          "success": true
+        },
+        {
+          "run": 13,
+          "seconds": 0.002320499999768799,
+          "success": true
+        },
+        {
+          "run": 14,
+          "seconds": 0.002202749999923981,
+          "success": true
+        },
+        {
+          "run": 15,
+          "seconds": 0.004497542000535759,
+          "success": true
+        },
+        {
+          "run": 16,
+          "seconds": 0.0028488330008258345,
+          "success": true
+        },
+        {
+          "run": 17,
+          "seconds": 0.002223625000624452,
+          "success": true
+        },
+        {
+          "run": 18,
+          "seconds": 0.002412458999970113,
+          "success": true
+        },
+        {
+          "run": 19,
+          "seconds": 0.002055750001090928,
+          "success": true
+        },
+        {
+          "run": 20,
+          "seconds": 0.002722458999414812,
+          "success": true
+        },
+        {
+          "run": 21,
+          "seconds": 0.0024369580005441094,
+          "success": true
+        },
+        {
+          "run": 22,
+          "seconds": 0.0026877499985857867,
+          "success": true
+        },
+        {
+          "run": 23,
+          "seconds": 0.0026939170002151513,
+          "success": true
+        },
+        {
+          "run": 24,
+          "seconds": 0.0024243329989985796,
+          "success": true
+        },
+        {
+          "run": 25,
+          "seconds": 0.002077458000712795,
+          "success": true
+        },
+        {
+          "run": 26,
+          "seconds": 0.002364499998293468,
+          "success": true
+        },
+        {
+          "run": 27,
+          "seconds": 0.0024096249999274733,
+          "success": true
+        },
+        {
+          "run": 28,
+          "seconds": 0.0021899580005992902,
+          "success": true
+        },
+        {
+          "run": 29,
+          "seconds": 0.005952084000455216,
+          "success": true
+        },
+        {
+          "run": 30,
+          "seconds": 0.002067082999928971,
+          "success": true
+        }
+      ]
+    },
+    {
+      "name": "devloop.compose-swap",
+      "status": "pass",
+      "runs": 5,
+      "failures": 0,
+      "seconds": {
+        "n": 5,
+        "median": 0.9890678339997976,
+        "mean": 1.0019542916001227,
+        "min": 0.9634815420013183,
+        "max": 1.0550379159994918,
+        "p95": 1.0493564243995934,
+        "stdev": 0.03798021996109193,
+        "ci95": [
+          0.9634815420013183,
+          1.0550379159994918
+        ]
+      },
+      "samples": [
+        {
+          "run": 1,
+          "seconds": 0.9634815420013183,
+          "success": true
+        },
+        {
+          "run": 2,
+          "seconds": 1.0550379159994918,
+          "success": true
+        },
+        {
+          "run": 3,
+          "seconds": 0.9890678339997976,
+          "success": true
+        },
+        {
+          "run": 4,
+          "seconds": 0.9755537080000067,
+          "success": true
+        },
+        {
+          "run": 5,
+          "seconds": 1.0266304579999996,
+          "success": true
+        }
+      ]
+    }
+  ]
+}

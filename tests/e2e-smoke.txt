@@ -1,0 +1,45 @@
+# Checks for `just e2e-smoke`: exact names from `tests/e2e.sh --list`, one per line.
+# Target: whole run under 60 s with built binaries and cached images (a short suite for checking a change quickly).
+# First block: the audit's 20 common engine operations. Second block: the cheapest recorded case (under 1 s) of each
+# remaining area file, so every area still has one real `docker` CLI check. Areas left out because their cheapest
+# case costs seconds: compose, connections, import-from-another-engine, public-links, memory-reclaim, run-io (untimed).
+# A smoke pass is not release proof and does not mark a parity row done.
+api-ping
+info-arm64-linux
+image-platform-arm64
+image-tag-rmi
+run-echo
+run-exit-code
+run-autoremove
+run-stdin
+exec-basic
+exec-exit-code
+mount-bind-rw
+volume-persists-across-containers
+net-dns-by-container-name
+port-publish-tcp
+build-classic
+compose-up-down
+container-logs-follow-silent-exit
+limit-memory-cgroup
+logs-rotation-tail
+iso-workload-crash-stays-in-its-vm
+# per-area coverage
+build-local-only-base-classic
+registry-credential-helper
+proxy-legacy-loopback-injection-rejected-on-create
+restart-always-after-kill
+logs-partial-line-and-blank-lines
+diagnostics-redact
+debug-boot-console
+error-missing-binary-exits-127
+host-internal-reaches-mac-service
+priv-capabilities-and-mounts
+netdns-default-bridge-has-no-names
+ipv6-hosts-has-localhost-and-own-address
+names-real-compose-restart-and-down
+names-container-name-serves-http
+search-failure-is-an-error-not-an-empty-list
+edit-dry-run-changes-nothing
+finder-listener-rejects-non-loopback
+kube-refuses-unsupported

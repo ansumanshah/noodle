@@ -1,0 +1,87 @@
+{
+  "apps": [
+    {
+      "id": "open-webui",
+      "name": "Open WebUI",
+      "summary": "A chat window for your own model, with history and file uploads.",
+      "about": "Chat with the model on your Mac in a familiar browser window. Your chats and files stay on this Mac. The first account you create is the owner.",
+      "symbol": "bubble.left.and.bubble.right",
+      "category": "Chat",
+      "port": 3000,
+      "service": "app",
+      "usesModel": true,
+      "compose": [
+        "services:",
+        "  app:",
+        "    image: ghcr.io/open-webui/open-webui:v0.13.4",
+        "    restart: unless-stopped",
+        "    ports:",
+        "      - \"127.0.0.1:{{PORT}}:8080\"",
+        "    environment:",
+        "      OPENAI_API_BASE_URL: \"{{MODEL_BASE_URL}}\"",
+        "      OPENAI_API_KEY: \"{{API_KEY}}\"",
+        "      ENABLE_OLLAMA_API: \"false\"",
+        "    volumes:",
+        "      - data:/app/backend/data",
+        "volumes:",
+        "  data:"
+      ]
+    },
+    {
+      "id": "anythingllm",
+      "name": "AnythingLLM",
+      "summary": "Chat with your own documents. Drop in files and ask questions.",
+      "about": "Add PDFs, notes and web pages, then ask questions about them. Documents and answers stay on this Mac. It starts already pointed at your local model.",
+      "symbol": "doc.text.magnifyingglass",
+      "category": "Documents",
+      "port": 3001,
+      "service": "app",
+      "usesModel": true,
+      "compose": [
+        "services:",
+        "  app:",
+        "    image: mintplexlabs/anythingllm:1.20.0",
+        "    restart: unless-stopped",
+        "    ports:",
+        "      - \"127.0.0.1:{{PORT}}:3001\"",
+        "    environment:",
+        "      STORAGE_DIR: /app/server/storage",
+        "      LLM_PROVIDER: generic-openai",
+        "      GENERIC_OPEN_AI_BASE_PATH: \"{{MODEL_BASE_URL}}\"",
+        "      GENERIC_OPEN_AI_MODEL_PREF: \"{{MODEL_ID}}\"",
+        "      GENERIC_OPEN_AI_MODEL_TOKEN_LIMIT: \"4096\"",
+        "      GENERIC_OPEN_AI_API_KEY: \"{{API_KEY}}\"",
+        "    volumes:",
+        "      - storage:/app/server/storage",
+        "volumes:",
+        "  storage:"
+      ]
+    },
+    {
+      "id": "n8n",
+      "name": "n8n",
+      "summary": "Connect apps and automate tasks with a drag-and-drop editor.",
+      "about": "Build automations by joining blocks together. It does not use your local model on its own. To use it, add an OpenAI step and paste the address from Connections.",
+      "symbol": "arrow.triangle.branch",
+      "category": "Automation",
+      "port": 5678,
+      "service": "app",
+      "usesModel": false,
+      "compose": [
+        "services:",
+        "  app:",
+        "    image: docker.n8n.io/n8nio/n8n:2.49.3",
+        "    restart: unless-stopped",
+        "    ports:",
+        "      - \"127.0.0.1:{{PORT}}:5678\"",
+        "    environment:",
+        "      N8N_SECURE_COOKIE: \"false\"",
+        "      GENERIC_TIMEZONE: UTC",
+        "    volumes:",
+        "      - data:/home/node/.n8n",
+        "volumes:",
+        "  data:"
+      ]
+    }
+  ]
+}

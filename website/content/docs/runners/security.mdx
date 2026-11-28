@@ -1,0 +1,39 @@
+---
+title: Security
+description: What a job can reach on your Mac, and why public repos are refused by default.
+---
+
+A self-hosted runner runs whatever the workflow says. Decide which repos get one with that in mind.
+
+## Public repos
+
+On a public repo, anyone can open a pull request from a fork, and that pull request can start a workflow. GitHub's own advice is to avoid self-hosted runners on public repos for this reason.
+
+`noodle runners add` checks the repo with GitHub and stops if it is public, or if it cannot confirm it is private:
+
+```text
+owner/repo is a public repo. A pull request from a fork can run code with full
+access to Noodle's Docker engine, including every container and volume.
+Pass --allow-public only if you accept that.
+```
+
+If you pass `--allow-public`, also set **Settings → Actions → Fork pull request workflows → Require approval for all outside collaborators** on the repo.
+
+## What a job can reach
+
+| | Linux job | macOS job |
+| --- | --- | --- |
+| Runs as | a container on Noodle's engine | you, on this Mac |
+| Docker | the full Noodle engine, through its socket | whatever you can reach |
+| Files | its container, plus any volume it mounts | anything you can read or change |
+| Cache | one volume per repo, shared by that repo's jobs | none |
+
+Jobs of one repo share its cache volume, including its installed toolchains (`.cargo`, `.npm`, `.bun` and others), and jobs from fork pull requests share it too. A runner that waits warm for 5 minutes after a job can take the next job of that repo. Every Linux job also gets the Docker socket, so it can mount another repo's cache. This is not isolation between repos.
+
+## The GitHub token
+
+The token is read through `git credential fill`, held in memory and sent only in the `Authorization` header. It never appears in arguments, logs, state files or errors. Three rejected requests in a row stop the runners and ask you to sign in again.
+
+## Start failures
+
+If a runner exits with an error, or dies within 30 seconds, without taking a job, Noodle waits before the next start of that kind: 30 seconds, then 60, then 120 on every failure after that. It counts a start as failed only after GitHub confirms the runner took no job, and shows a failure for one hour. `noodle runners status` and `noodle runners doctor` show the last error line and the log file. If jobs stay queued, check there first. One working start clears the notice.

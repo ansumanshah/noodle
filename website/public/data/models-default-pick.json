@@ -1,0 +1,121 @@
+[
+  {
+    "model": "qwen3-5-2b-mlx-4bit",
+    "repo": "mlx-community/Qwen3.5-2B-MLX-4bit",
+    "disk_bytes": 1749079691,
+    "serve_s": 13.18,
+    "phys_footprint": "1920 MB",
+    "peak": "2406 MB",
+    "speed_p50": {
+      "short": {
+        "first_ms": 301.9339795000633,
+        "decode_tps": 85.06139239382551,
+        "prompt_tokens": 67.0
+      },
+      "long": {
+        "first_ms": 817.6330209998923,
+        "decode_tps": 81.73983480800746,
+        "prompt_tokens": 860.0
+      }
+    },
+    "checks": "11/12",
+    "failed": [
+      "no-tool-math"
+    ],
+    "memory_refusals": 0
+  },
+  {
+    "model": "qwen3-5-4b-mlx-4bit",
+    "repo": "mlx-community/Qwen3.5-4B-MLX-4bit",
+    "disk_bytes": 3061132920,
+    "serve_s": 4.01,
+    "phys_footprint": "3365 MB",
+    "peak": "3920 MB",
+    "speed_p50": {
+      "short": {
+        "first_ms": 393.4315624996998,
+        "decode_tps": 35.15378431903727,
+        "prompt_tokens": 67.0
+      },
+      "long": {
+        "first_ms": 2067.308791499727,
+        "decode_tps": 37.178819609345595,
+        "prompt_tokens": 860.0
+      }
+    },
+    "checks": "12/12",
+    "failed": [],
+    "memory_refusals": 0
+  },
+  {
+    "model": "qwen3-5-9b-mlx-4bit",
+    "repo": "mlx-community/Qwen3.5-9B-MLX-4bit",
+    "disk_bytes": 5977074591,
+    "serve_s": 6.24,
+    "phys_footprint": "5865 MB",
+    "peak": "6577 MB",
+    "speed_p50": {
+      "short": {
+        "first_ms": 606.4942914999847,
+        "decode_tps": 20.47185830450344,
+        "prompt_tokens": 67.0
+      },
+      "long": {
+        "first_ms": 4038.1527714994263,
+        "decode_tps": 20.188171100087523,
+        "prompt_tokens": 860.0
+      }
+    },
+    "checks": "11/12",
+    "failed": [
+      "docker-follow"
+    ],
+    "memory_refusals": 0
+  },
+  {
+    "model": "gemma-4-e4b-it-4bit",
+    "repo": "mlx-community/gemma-4-e4b-it-4bit",
+    "disk_bytes": 5179241512,
+    "serve_s": 6.54,
+    "phys_footprint": "5462 MB",
+    "peak": "6339 MB",
+    "speed_p50": {
+      "short": {
+        "first_ms": 351.4470829995844,
+        "decode_tps": 34.74039990084924,
+        "prompt_tokens": 64.0
+      },
+      "long": {
+        "first_ms": 2369.710811999539,
+        "decode_tps": 33.64558934694879,
+        "prompt_tokens": 856.5
+      }
+    },
+    "checks": "12/12",
+    "failed": [],
+    "memory_refusals": 0
+  },
+  {
+    "model": "nvidia-nemotron-3-5-bolt-e4b-optiq-4bit",
+    "repo": "mlx-community/NVIDIA-Nemotron-3.5-Bolt-E4B-OptiQ-4bit",
+    "disk_bytes": 7518868156,
+    "serve_s": 8.04,
+    "phys_footprint": "7175 MB",
+    "peak": "7894 MB",
+    "speed_p50": {
+      "short": {
+        "first_ms": 503.9360624996334,
+        "decode_tps": 26.42899901049366,
+        "prompt_tokens": 64.0
+      },
+      "long": {
+        "first_ms": 2379.7597709999536,
+        "decode_tps": 25.55400963512676,
+        "prompt_tokens": 856.5
+      }
+    },
+    "checks": "12/12",
+    "failed": [],
+    "memory_refusals": 0
+  }
+]

@@ -1,0 +1,36 @@
+---
+title: Noodle Models
+description: Run text models on your Mac and call them through an OpenAI-compatible endpoint, from the terminal, the app, Compose or Kubernetes.
+---
+
+Noodle Models lets you chat with an AI model that runs on your Mac, and connect your other tools to it. GGUF and MLX models both run natively on Apple silicon. The Models page in the app and the model commands work with the container daemon off.
+
+```sh
+noodle model run qwen3.5-4b
+```
+
+That downloads Qwen 3.5 4B (3.06 GB, 4-bit MLX, Apache-2.0), checks it against a pinned checksum, starts it and opens a chat in the terminal. Nothing leaves the Mac after the download. If you would rather click, open the Models page in the app, pick a model and press Run.
+
+## What you get
+
+- A local endpoint at `http://models.noodle.local/v1` with a saved API key. `noodle model endpoint` prints both, and `noodle model key --rotate` replaces the key.
+- A Models section in the app with Chat, Create, Library, Apps and Connections. Library shows downloads in progress, and Apps installs Open WebUI, AnythingLLM or n8n in one click.
+- Chat with images, one video and one audio clip per message: attach, paste or drag them into the message box. Each is offered only when the model can take it. A message holds up to four images.
+- Create pictures, speech and video from a prompt, see [Create](/docs/models/create/).
+- Embeddings, speech to text and text to speech through the same API.
+- Control-Option-Space opens chat from any app. Shortcuts and Spotlight get two actions, Ask Noodle and Open Noodle Chat.
+- A choice of how long a model stays in memory, and a model folder that can live on an external drive. See [Settings](/docs/models/settings/).
+- Optional access from your phone or another computer on your network, off until you turn it on.
+- Imports from a GGUF file, an MLX folder or a public Hugging Face repository.
+- Optional access for Compose services and Kubernetes pods, bound to the VM bridge only when you ask.
+
+## Where to go next
+
+- [Quickstart](/docs/models/quickstart/) runs a model and sends a request.
+- [Catalog and import](/docs/models/catalog/) covers pulling, Hugging Face IDs, imports and idle sleep.
+- [Create](/docs/models/create/) covers images, speech and video.
+- [Apps](/docs/models/apps/) installs Open WebUI, AnythingLLM or n8n.
+- [Settings](/docs/models/settings/) covers memory, the model folder and network access.
+- [Local API](/docs/models/api/) covers endpoints, named URLs and workload access.
+
+Noodle Models runs models. It does not train them.

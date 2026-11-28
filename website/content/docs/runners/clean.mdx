@@ -1,0 +1,27 @@
+---
+title: Free disk space
+description: Remove what Noodle Runners left behind, from the cheapest to rebuild to the dearest.
+---
+
+```sh
+noodle runners clean --dry-run
+noodle runners clean
+```
+
+`--dry-run` deletes nothing and prints what would be freed. `--older-than DAYS` sets the cutoff for tiers that look at age (default 14). `--json` prints the report for scripts, including `engine: false` when the Noodle engine was down and the container, cache and image tiers were skipped. The exit code is 1 when a deletion failed.
+
+## Tiers
+
+Each tier runs in this order. The report shows the space freed per tier.
+
+1. **Leftovers from finished or crashed jobs.** Work folders untouched for 10 minutes and not in use by any process, partial runner downloads and stopped job containers. A container that is only created, or belongs to a running runner, is kept.
+2. **Runner logs** not written to within the cutoff.
+3. **Old GitHub runner downloads.** The version Noodle currently uses is kept.
+4. **Per-repo toolchain caches** of repos with no job within the cutoff. A repo with no recorded job is kept. The next job there reinstalls its tools.
+5. **Runner images** of older runner versions (plain `N.N.N` tags only), unused within the cutoff.
+
+## What it never touches
+
+- A repo with a job in progress, and anything a running job holds. These are listed as skipped.
+- Anything outside the Runners folder, and any path that resolves outside it through a symlink.
+- Your own containers, images and volumes, and folders such as Xcode's DerivedData or Homebrew. A macOS job runs as you, so its build output may sit in those folders. Noodle reports their size and leaves them.

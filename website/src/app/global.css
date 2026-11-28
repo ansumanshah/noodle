@@ -1,0 +1,608 @@
+@import 'tailwindcss';
+@import 'fumadocs-ui/css/neutral.css';
+@import 'fumadocs-ui/css/preset.css';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Noodle tokens. The site opens dark (.dark on <html>); these are the light values. */
+:root {
+  --paper: #fbfbfc;
+  --surface: #f3f3f6;
+  --raised: #ffffff;
+  --ink: #16151c;
+  --muted: #64626e;
+  --faint: #6d6a78;
+  --line: #e6e5ec;
+  --line-strong: #d3d1db;
+  --accent: #c764ad;
+  --accent-ink: #814170;
+  --accent-soft: #fbecf6;
+  /* One colour per product. The base is for marks and icons (3:1+), -ink for text (AA on paper and -soft). */
+  --containers: #038cc3;
+  --containers-soft: #dff2f9;
+  --containers-ink: #025b7e;
+  --models: #c764ad;
+  --models-soft: #fbecf6;
+  --models-ink: #814170;
+  --runners: #368825;
+  --runners-soft: #e6f1e3;
+  --runners-ink: #235818;
+  --go: #10b981;
+  --stop: #ef4444;
+  --scrollbar-thumb: #8b8698;
+  --scrollbar-track: transparent;
+  --term-bg: #0f0e12;
+  --term-text: #f4f2f5;
+  --term-dim: #8b8590;
+  --term-accent: #ec4899;
+  --shadow: 0 1px 2px rgba(23, 21, 26, 0.05), 0 24px 48px -24px rgba(23, 21, 26, 0.22);
+
+  /* Springs compiled to linear(). snappy = 320/30, default = 170/26 (motion-first tokens). */
+  --spring-snappy: linear(0, 0.0161, 0.0603, 0.117, 0.1904, 0.2626, 0.3437, 0.4165, 0.4932, 0.565, 0.6251, 0.6851, 0.7339, 0.7814, 0.8191, 0.855, 0.883, 0.909, 0.9307, 0.947, 0.9618, 0.9726, 0.9822, 0.989, 0.9948, 0.9988, 1.002, 1.0042, 1.0056, 1.0065, 1.0069, 1.007, 1.0069, 1.0065, 1.0061, 1.0056, 1);
+  --spring-snappy-t: 380ms;
+  --spring-default: linear(0, 0.0181, 0.0651, 0.1295, 0.2029, 0.2797, 0.3559, 0.4245, 0.4933, 0.5565, 0.6139, 0.6654, 0.7112, 0.7492, 0.7849, 0.816, 0.8431, 0.8664, 0.8865, 0.9028, 0.9177, 0.9304, 0.9413, 0.9505, 0.9583, 0.9646, 0.9703, 0.975, 0.9791, 0.9825, 0.9853, 0.9876, 0.9896, 0.9913, 0.9928, 0.994, 1);
+  --spring-default-t: 570ms;
+
+  --font-sans: var(--font-bricolage), -apple-system, BlinkMacSystemFont, system-ui, 'Segoe UI', sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Fumadocs theme mapped to Noodle tokens. */
+  --color-fd-background: var(--paper);
+  --color-fd-foreground: var(--ink);
+  --color-fd-muted: var(--surface);
+  --color-fd-muted-foreground: var(--muted);
+  --color-fd-card: var(--raised);
+  --color-fd-card-foreground: var(--ink);
+  --color-fd-popover: var(--raised);
+  --color-fd-popover-foreground: var(--ink);
+  --color-fd-border: var(--line);
+  --color-fd-primary: var(--accent);
+  --color-fd-primary-foreground: #ffffff;
+  --color-fd-secondary: var(--surface);
+  --color-fd-secondary-foreground: var(--ink);
+  --color-fd-accent: var(--surface);
+  --color-fd-accent-foreground: var(--ink);
+  --color-fd-ring: var(--accent);
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
+  --paper: #0c0b0d;
+  --surface: #151317;
+  --raised: #1a181d;
+  --ink: #f4f2f5;
+  --muted: #a29ca8;
+  --faint: #918c9b;
+  --line: #28242c;
+  --line-strong: #3a3540;
+  --accent: #f5c2e7;
+  --accent-ink: #f8d1ed;
+  --accent-soft: #4b4048;
+  --containers: #89dceb;
+  --containers-soft: #334549;
+  --containers-ink: #a6e5f0;
+  --models: #f5c2e7;
+  --models-soft: #4b4048;
+  --models-ink: #f8d1ed;
+  --runners: #a6e3a1;
+  --runners-soft: #3a4738;
+  --runners-ink: #bceab8;
+  --scrollbar-thumb: #6f6a7d;
+  --scrollbar-track: transparent;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.6), 0 28px 56px -24px rgba(0, 0, 0, 0.9);
+  --color-fd-primary-foreground: #1a0510;
+}
+
+@theme inline {
+  /* Noodle design system geometry, shared with the Mac app (WorkspaceStyle.swift, ModelsChrome.swift).
+     Only colour changes between products; these never do. */
+  --radius-control: 8px; /* fields, code, rows */
+  --radius-panel: 10px; /* buttons, chips, tabs, panels */
+  --radius-card: 12px; /* cards and framed screenshots */
+  --spacing-control: 32px; /* every button, field, tab and picker */
+  --spacing-chip: 28px; /* filter chips and tags */
+  --spacing-inset: 16px; /* content inset for headers, rows and cards */
+  --spacing-gap: 8px; /* gap between controls */
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-raised: var(--raised);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
+}
+
+html {
+  scrollbar-gutter: stable;
+  font-family: var(--font-sans);
+  background: var(--paper);
+  color: var(--ink);
+}
+html > body[data-scroll-locked] {
+  margin-right: 0px !important;
+  --removed-body-scroll-bar-size: 0px !important;
+}
+body {
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+::selection {
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+}
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Scroll reveals: hidden only once JS marks the root, transitioning via CSS transform and opacity. */
+html.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 420ms cubic-bezier(0.23, 1, 0.32, 1), transform 420ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+html.js [data-reveal='shown'] {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  html.js [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Crisp control transitions and pointer-gated hover lifts. */
+.spring {
+  transition-property: transform, background-color, border-color, color, opacity;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+}
+.spring-soft {
+  transition-property: transform, opacity;
+  transition-duration: var(--spring-default-t);
+  transition-timing-function: var(--spring-default);
+}
+@media (prefers-reduced-motion: reduce) {
+  .spring,
+  .spring-soft {
+    transition-duration: 120ms;
+    transition-timing-function: ease-out;
+  }
+  .lift:hover,
+  .hover-lift:hover,
+  .press:active {
+    transform: none !important;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  .lift:hover {
+    transform: translateY(-3px);
+  }
+  .hover-lift:hover {
+    transform: translateY(-1px);
+  }
+}
+.press:active {
+  transform: scale(0.97);
+}
+
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -64px;
+  z-index: 100;
+  padding: 8px 14px;
+  border-radius: 8px;
+  background: var(--ink);
+  color: var(--paper);
+}
+.skip-link:focus {
+  top: 12px;
+}
+
+.eyebrow {
+  font: 600 0.72rem/1 var(--font-sans);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-optical-sizing: auto;
+  /* Rounded serifs: friendly at headline size. */
+  font-variation-settings: 'SOFT' 100;
+  letter-spacing: -0.025em;
+  line-height: 1.06;
+}
+/* The accent line of a headline: italic, in the headline's own colour, so the brand colour stays on the logo and links. */
+.display em {
+  font-style: italic;
+}
+.shell {
+  width: min(1120px, 100% - 32px);
+  margin-inline: auto;
+}
+
+/* Terminal surface shared by command boxes. */
+.term {
+  background: var(--term-bg);
+  color: var(--term-text);
+  font-family: var(--font-mono);
+  border: 1px solid #25222b;
+}
+.term .dim {
+  color: var(--term-dim);
+}
+.term .hl {
+  color: var(--term-accent);
+}
+
+/* Generated third-party table (scripts/gen-notice.sh). */
+.licence-table .tw {
+  overflow-x: auto;
+}
+.licence-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+.licence-table th,
+.licence-table td {
+  padding: 0.55rem 0.7rem;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid var(--line);
+}
+/* Module paths and commit hashes have no spaces; let them break so the prose columns keep their width. */
+.licence-table td:nth-child(-n + 2) {
+  overflow-wrap: anywhere;
+}
+.licence-table td:nth-child(3) {
+  min-width: 15rem;
+}
+.licence-table table {
+  min-width: 40rem;
+}
+.licence-table th {
+  color: var(--muted);
+  font-weight: 600;
+}
+.licence-table a {
+  color: var(--accent-ink);
+  text-decoration: underline;
+}
+
+/* Opening a <details> slides its body in. */
+details[open] > .details-body {
+  animation: details-in var(--spring-default-t) var(--spring-default);
+}
+@keyframes details-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  details[open] > .details-body {
+    animation-duration: 120ms;
+    animation-timing-function: ease-out;
+  }
+}
+
+/* Icons stay neutral; they take the product colour only when their control is selected, hovered or focused. */
+.chip-icon {
+  background: var(--surface);
+  color: var(--muted);
+  box-shadow: inset 0 0 0 1px var(--line);
+  transition: background-color var(--spring-snappy-t) var(--spring-snappy), color var(--spring-snappy-t) var(--spring-snappy);
+}
+.chip-select {
+  background: var(--raised);
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+.chip-select:hover .chip-icon,
+.chip-select:focus-visible .chip-icon,
+.chip-select[aria-current='true'] .chip-icon,
+[aria-current='page'] .chip-icon {
+  background: var(--p);
+  color: var(--paper);
+  box-shadow: none;
+}
+.chip-select:hover,
+.chip-select[aria-current='true'] {
+  background: var(--p-soft);
+  color: var(--p-ink);
+}
+@media (prefers-reduced-motion: reduce) {
+  .chip-icon { transition: none; }
+}
+
+/* Product tones. Set --p, --p-soft, --p-ink on a wrapper with .tone-containers and friends. */
+.tone-containers {
+  --p: var(--containers);
+  --p-soft: var(--containers-soft);
+  --p-ink: var(--containers-ink);
+}
+.tone-models {
+  --p: var(--models);
+  --p-soft: var(--models-soft);
+  --p-ink: var(--models-ink);
+}
+.tone-runners {
+  --p: var(--runners);
+  --p-soft: var(--runners-soft);
+  --p-ink: var(--runners-ink);
+}
+
+/* Soft colour washes behind sections. Full-bleed, fading into the page at both ends. */
+/* Hero band: the illustration sits on the page itself, a night scene in dark mode and a day scene in light. */
+.hero-art {
+  position: relative;
+  overflow: hidden;
+}
+/* Phones and tablets: the art fills the band behind a dimmer, fading out at the top and bottom. */
+.hero-art-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 70% center;
+  opacity: 0.2;
+  mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 82%, transparent 100%);
+}
+.dark .hero-art-light,
+:root:not(.dark) .hero-art-dark {
+  display: none;
+}
+/* Desktop: the art sits on the right at its own aspect ratio, every edge fading into the page, so the copy has the left to itself. */
+@media (min-width: 1100px) {
+  .hero-art-img {
+    /* Past 1440px the art stops growing and stays beside the copy instead of running to the window edge. */
+    inset: 50% max(0px, (100% - 1440px) / 2) auto auto;
+    width: min(72%, 1040px);
+    height: auto;
+    aspect-ratio: 2752 / 1536;
+    transform: translateY(-50%);
+    opacity: 1;
+    mask-image: linear-gradient(90deg, transparent 0%, #000 22%, #000 94%, transparent 100%),
+      linear-gradient(180deg, transparent 0%, #000 16%, #000 84%, transparent 100%);
+    mask-composite: intersect;
+  }
+}
+.hero-art > section {
+  z-index: 1;
+}
+
+.wash {
+  background: linear-gradient(180deg, transparent, var(--p-soft) 18%, var(--p-soft) 70%, transparent);
+}
+.panel-tint {
+  background: var(--raised);
+  border: 1px solid var(--line);
+}
+
+/* Scoped horizontal scrollbars with explicit contrast and webkit fallback. */
+.term code,
+.licence-table .tw,
+#nd-page .prose pre,
+.tab-strip {
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  scrollbar-width: thin;
+}
+
+@supports not (scrollbar-color: auto) {
+  .term code,
+  .licence-table .tw,
+  #nd-page .prose pre,
+  .tab-strip {
+    scrollbar-width: auto;
+  }
+  .term code::-webkit-scrollbar,
+  .licence-table .tw::-webkit-scrollbar,
+  #nd-page .prose pre::-webkit-scrollbar,
+  .tab-strip::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+  }
+  .term code::-webkit-scrollbar-track,
+  .licence-table .tw::-webkit-scrollbar-track,
+  #nd-page .prose pre::-webkit-scrollbar-track,
+  .tab-strip::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .term code::-webkit-scrollbar-thumb,
+  .licence-table .tw::-webkit-scrollbar-thumb,
+  #nd-page .prose pre::-webkit-scrollbar-thumb,
+  .tab-strip::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 3px;
+  }
+}
+
+/* Docs, Rex-style: one surface, quiet sidebar, muted body text, small regular-weight titles. */
+#nd-sidebar {
+  background: var(--paper);
+  border-inline-end: 0;
+}
+#nd-sidebar [data-search-full] {
+  border-radius: 999px;
+  background: transparent;
+}
+#nd-sidebar p {
+  font-weight: 400;
+  color: var(--faint);
+}
+#nd-sidebar a {
+  color: var(--muted);
+  /* Tighter rows so the longest section fits a laptop-height window without its own scrollbar. */
+  padding-block: 6px;
+}
+#nd-sidebar a:hover {
+  background: transparent;
+  color: var(--ink);
+}
+#nd-sidebar a[data-active='true'] {
+  background: transparent;
+  color: var(--ink);
+  font-weight: 500;
+}
+#nd-page {
+  max-width: 760px;
+}
+/* The theme switch is one button; without this its row draws as an empty field. */
+#nd-sidebar div:has(> [data-theme-toggle]) {
+  width: fit-content;
+  margin-inline-start: auto;
+}
+/* The copy button floats over the first line of code; a solid patch keeps the text from showing through it. */
+#nd-page figure.shiki > div.absolute {
+  top: 0;
+  right: 0;
+  padding: 0.6rem 0.5rem 0.25rem 0.35rem;
+  border-radius: 0;
+  backdrop-filter: none;
+  background: var(--color-fd-card);
+  box-shadow: -10px 0 10px var(--color-fd-card);
+}
+/* Phones: let endpoint paths and model names break so a three-column table fits the screen. */
+@media (max-width: 640px) {
+  #nd-page .prose :is(td, th) {
+    padding-inline: 0.5rem;
+  }
+  #nd-page .prose td code {
+    overflow-wrap: anywhere;
+    white-space: normal;
+  }
+}
+#nd-page h1 {
+  font-size: 1.75rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+#nd-page h1 + p {
+  font-size: 0.9375rem;
+}
+#nd-page .border-b {
+  border-bottom: 0;
+}
+#nd-page .prose {
+  --tw-prose-body: color-mix(in srgb, var(--ink) 68%, transparent);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+#nd-page .prose :is(h2, h3) {
+  font-weight: 500;
+}
+#nd-page .prose h2 {
+  font-size: 1.125rem;
+}
+#nd-page .prose h3 {
+  font-size: 1rem;
+}
+#nd-page .prose :not(pre) > code {
+  border: 0;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--ink) 7%, transparent);
+}
+#nd-page .prose figure {
+  border-radius: 12px;
+  box-shadow: none;
+}
+#nd-toc a[data-active='true'] {
+  color: var(--ink);
+}
+
+/* Diagram motion: a request or job in flight. Transform only. */
+.flow-track {
+  background: repeating-linear-gradient(90deg, var(--runners) 0 8px, transparent 8px 14px);
+}
+.flow-dot {
+  opacity: 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .flow-track { animation: flow-track 0.9s linear infinite; }
+  .flow-dot { animation: flow-dot 1.4s var(--spring-default) infinite; }
+}
+@keyframes flow-track { from { transform: translateX(-14px); } to { transform: translateX(0); } }
+@keyframes flow-dot {
+  0% { transform: translateX(0); opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { transform: translateX(88px); opacity: 0; }
+}
+
+/* Accessible tab strip: shape-based border underline via ::after so forced-colors preserves selection. */
+.tab-btn {
+  position: relative;
+}
+.tab-btn[aria-selected='true']::after {
+  content: '';
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: -1px;
+  border-bottom: 2px solid var(--p-ink, var(--accent-ink));
+}
+.tab-panel-in {
+  animation: tab-in 200ms cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+.stat-bar {
+  animation: bar-in 320ms cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+@keyframes tab-in {
+  from { opacity: 0; transform: scale(0.992); }
+}
+@keyframes bar-in { from { transform: scaleX(0); } }
+@keyframes caption-in { from { opacity: 0; transform: translateY(6px); } }
+@media (prefers-reduced-motion: reduce) {
+  .tab-panel-in, .stat-bar { animation: none; }
+}
+
+/* Containers: crates drop into the VM when the diagram scrolls in. */
+.crate { transform-box: fill-box; transform: translateY(-80px); opacity: 0; }
+[data-inview='true'] .crate {
+  transform: none;
+  opacity: 1;
+  transition: transform var(--spring-playful-t) var(--spring-playful), opacity 200ms linear;
+}
+/* Runners: the job card rides the timeline with scroll; each step lights as it passes; the runner vanishes at the end. */
+.job-mover { transform: translateX(calc(var(--progress, 0) * 100%)); }
+.job-card { opacity: clamp(0, calc((1 - var(--progress, 0)) * 12), 1); }
+.job-dot { opacity: clamp(0, calc((var(--progress, 0) - var(--t)) * 20), 1); }
+@media (prefers-reduced-motion: reduce) {
+  .crate { transform: none; opacity: 1; }
+  .job-mover, .job-card { display: none; }
+  .job-dot { opacity: 1; }
+}
+
+/* Models chat demo. */
+.chat-state-dot { background: var(--go); transition: background-color 400ms ease, transform var(--spring-playful-t) var(--spring-playful); }
+.chat-demo[data-phase='asleep'] .chat-state-dot { background: var(--faint); transform: scale(0.7); }
+@media (prefers-reduced-motion: no-preference) {
+  .chat-caret { animation: caret 0.9s steps(1) infinite; }
+}
+@keyframes caret { 50% { opacity: 0; } }
+
+/* Product page FAQ: the plus turns into a cross; the answer opens cleanly. */
+.faq-plus { transition: transform 150ms cubic-bezier(0.23, 1, 0.32, 1); }
+.faq[open] .faq-plus { transform: rotate(45deg); }
+.faq[open] .faq-body { animation: caption-in 200ms cubic-bezier(0.23, 1, 0.32, 1) both; }
+@media (prefers-reduced-motion: reduce) {
+  .faq-plus { transition: none; }
+  .faq[open] .faq-body { animation: none; }
+}
+
+/* Tab strips scroll by touch or arrow keys; a bar under three tabs is noise. */
+.tab-strip { scrollbar-width: none; }
+.tab-strip::-webkit-scrollbar { display: none; }

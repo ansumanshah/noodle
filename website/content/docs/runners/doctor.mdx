@@ -1,0 +1,26 @@
+---
+title: Check this Mac
+description: Run a preflight that shows whether this Mac is ready to run CI jobs.
+---
+
+```sh
+noodle runners doctor
+```
+
+Prints one line per check: `ok`, `warning` or `problem`, with a one-line fix where there is one. It exits with 1 when any check is a problem, so a script can stop on it. `--json` prints the same findings as JSON. The command only reads: it changes no setting and needs no `sudo`.
+
+## What it checks
+
+- **GitHub sign-in.** A token is saved, and it can manage runners for each added repo (the repo scope and admin access).
+- **GitHub is reachable.** The API host resolves and answers over HTTPS.
+- **Free disk space.** On the volume that holds the Noodle home. Under 15 GB is a warning. Under 10 GB is a problem, and the helper holds new jobs until there is room again.
+- **Runners helper.** It is running, and set to start again after a crash or a restart.
+- **GitHub runner download.** The pinned runner is installed (it was checked against its SHA-256 when downloaded), or it can be downloaded.
+- **Runner starts.** A problem when the last runner start of a kind failed and none has worked since. It shows the last line of the runner log and where the log is.
+- **Container engine.** It answers, which Linux jobs need.
+- **Sleep.** Whether this Mac sleeps while idle on power, and, on a laptop, that a closed lid stops jobs.
+
+When a repo has macOS jobs turned on, it also checks:
+
+- **Xcode.** One is selected, its licence is accepted and its first-launch setup is done. The fixes for these need `sudo`, so you run them yourself.
+- **Automatic login.** After a restart a Mac waits at the login screen until someone signs in, and macOS jobs run in your session. This is a warning, never changed for you. Automatic login is not available while FileVault is on.

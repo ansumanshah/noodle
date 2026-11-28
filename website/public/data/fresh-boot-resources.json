@@ -1,0 +1,3435 @@
+{
+  "method": {
+    "date": "2026-11-09",
+    "host": {
+      "system": "Darwin",
+      "machine": "arm64",
+      "cores": 10,
+      "chip": "Apple M4",
+      "memory_gib": 16,
+      "os": "27.2",
+      "power": "ac",
+      "low_power_mode": false,
+      "thermal": "no warning"
+    },
+    "dockerCLI": "29.9.3",
+    "vCPUs": 2,
+    "vmMemoryMiB": 8192,
+    "image": "alpine:3.20",
+    "imageDigest": "alpine@sha256:d9e853e87e55526f6b2917df91a2115c36dd7c696a35be12163d44e6e2a4b6bc",
+    "containers": 10,
+    "freshBootsPerEngine": 3,
+    "startupWarmups": 5,
+    "startupSamplesPerBoot": 30
+  },
+  "rows": [
+    {
+      "engine": "noodle",
+      "name": "Noodle",
+      "version": "0.1.0",
+      "kernel": "6.18.60",
+      "hostMemoryMB": 233.38,
+      "hostMemoryPassesMB": [
+        216.95,
+        233.58,
+        233.38
+      ],
+      "vmMemoryPassesMB": [
+        211.0,
+        227.0,
+        227.0
+      ],
+      "hostCPUPercent": 0.25,
+      "startup": {
+        "cli.run": {
+          "p50Ms": 29.46,
+          "p95Ms": 77.33,
+          "failures": 0
+        },
+        "api.lifecycle.bridge": {
+          "p50Ms": 5.51,
+          "p95Ms": 33.26,
+          "failures": 0
+        },
+        "api.lifecycle.none": {
+          "p50Ms": 4.72,
+          "p95Ms": 17.31,
+          "failures": 0
+        }
+      }
+    },
+    {
+      "engine": "orbstack",
+      "name": "OrbStack",
+      "version": "2.2.5",
+      "kernel": "7.2.12-orbstack-00394-gbecdd6130068",
+      "hostMemoryMB": 306.0,
+      "hostMemoryPassesMB": [
+        306.0,
+        306.0,
+        306.0
+      ],
+      "vmMemoryPassesMB": [
+        278.0,
+        278.0,
+        278.0
+      ],
+      "hostCPUPercent": 0.85,
+      "startup": {
+        "cli.run": {
+          "p50Ms": 142.95,
+          "p95Ms": 178.14,
+          "failures": 0
+        },
+        "api.lifecycle.bridge": {
+          "p50Ms": 123.83,
+          "p95Ms": 216.07,
+          "failures": 0
+        },
+        "api.lifecycle.none": {
+          "p50Ms": 95.97,
+          "p95Ms": 131.51,
+          "failures": 0
+        }
+      }
+    }
+  ],
+  "passes": [
+    {
+      "engine": "noodle",
+      "runId": "20261109T155706Z-c8d6ad",
+      "kernel": "6.18.60",
+      "bootId": "65351f21-fcbc-4980-aacb-c64e61a5a7f0",
+      "footprint": [
+        {
+          "state": "vm-up-empty",
+          "daemon_mb": 5.84,
+          "daemon_processes": 1,
+          "vm_helper_mb": 205.0,
+          "vm_helpers": 1
+        },
+        {
+          "state": "10-containers",
+          "daemon_mb": 5.95,
+          "daemon_processes": 1,
+          "vm_helper_mb": 211.0,
+          "vm_helpers": 1
+        },
+        {
+          "state": "10-containers-idle-cpu",
+          "cpu_percent": 0.15
+        }
+      ],
+      "startup": [
+        {
+          "name": "cli.run",
+          "unit": "seconds",
+          "higher_is_better": false,
+          "status": "pass",
+          "runs": 30,
+          "failures": 0,
+          "seconds": {
+            "n": 30,
+            "median": 0.029457645501679508,
+            "mean": 0.03553077493367406,
+            "min": 0.016518500000529457,
+            "max": 0.16030099999989034,
+            "p95": 0.06863136035171911,
+            "stdev": 0.027367630764763097,
+            "ci95": [
+              0.023810958002286498,
+              0.03742958300063037
+            ]
+          },
+          "value": null,
+          "load_before": 7.5283203125,
+          "load_after": 10.60888671875,
+          "samples": [
+            {
+              "run": 1,
+              "seconds": 0.0527399590027926,
+              "success": true
+            },
+            {
+              "run": 2,
+              "seconds": 0.16030099999989034,
+              "success": true
+            },
+            {
+              "run": 3,
+              "seconds": 0.04364037499908591,
+              "success": true
+            },
+            {
+              "run": 4,
+              "seconds": 0.04302112499863142,
+              "success": true
+            },
+            {
+              "run": 5,
+              "seconds": 0.08163341600084095,
+              "success": true
+            },
+            {
+              "run": 6,
+              "seconds": 0.045316750001802575,
+              "success": true
+            },
+            {
+              "run": 7,
+              "seconds": 0.03742958300063037,
+              "success": true
+            },
+            {
+              "run": 8,
+              "seconds": 0.040788500002236106,
+              "success": true
+            },
+            {
+              "run": 9,
+              "seconds": 0.03008537500136299,
+              "success": true
+            },
+            {
+              "run": 10,
+              "seconds": 0.031311708997236565,
+              "success": true
+            },
+            {
+              "run": 11,
+              "seconds": 0.028829916001996025,
+              "success": true
+            },
+            {
+              "run": 12,
+              "seconds": 0.023810958002286498,
+              "success": true
+            },
+            {
+              "run": 13,
+              "seconds": 0.038911499999812804,
+              "success": true
+            },
+            {
+              "run": 14,
+              "seconds": 0.03865770799893653,
+              "success": true
+            },
+            {
+              "run": 15,
+              "seconds": 0.0370288750018517,
+              "success": true
+            },
+            {
+              "run": 16,
+              "seconds": 0.035331458999280585,
+              "success": true
+            },
+            {
+              "run": 17,
+              "seconds": 0.0263167910015909,
+              "success": true
+            },
+            {
+              "run": 18,
+              "seconds": 0.02346587499778252,
+              "success": true
+            },
+            {
+              "run": 19,
+              "seconds": 0.025493917000858346,
+              "success": true
+            },
+            {
+              "run": 20,
+              "seconds": 0.03207670800111373,
+              "success": true
+            },
+            {
+              "run": 21,
+              "seconds": 0.02407520799897611,
+              "success": true
+            },
+            {
+              "run": 22,
+              "seconds": 0.028500208998593735,
+              "success": true
+            },
+            {
+              "run": 23,
+              "seconds": 0.017062208000425017,
+              "success": true
+            },
+            {
+              "run": 24,
+              "seconds": 0.016518500000529457,
+              "success": true
+            },
+            {
+              "run": 25,
+              "seconds": 0.01766499999939697,
+              "success": true
+            },
+            {
+              "run": 26,
+              "seconds": 0.017249041000468424,
+              "success": true
+            },
+            {
+              "run": 27,
+              "seconds": 0.017070458001398947,
+              "success": true
+            },
+            {
+              "run": 28,
+              "seconds": 0.016950000001088483,
+              "success": true
+            },
+            {
+              "run": 29,
+              "seconds": 0.01772300000084215,
+              "success": true
+            },
+            {
+              "run": 30,
+              "seconds": 0.01691812499848311,
+              "success": true
+            }
+          ]
+        },
+        {
+          "name": "api.lifecycle.none",
+          "unit": "seconds",
+          "higher_is_better": false,
+          "status": "pass",
+          "runs": 30,
+          "failures": 0,
+          "seconds": {
+            "n": 30,
+            "median": 0.00225000000136788,
+            "mean": 0.002301451466458578,
+            "min": 0.0018774169984681066,
+            "max": 0.0032568749993515667,
+            "p95": 0.0030679793500894446,
+            "stdev": 0.00033997584934817454,
+            "ci95": [
+              0.002172874999814667,
+              0.002355395497943391
+            ]
+          },
+          "value": null,
+          "load_before": 10.60888671875,
+          "load_after": 10.60888671875,
+          "samples": [
+            {
+              "run": 1,
+              "seconds": 0.0032568749993515667,
+              "success": true
+            },
+            {
+              "run": 2,
+              "seconds": 0.0023886669987405185,
+              "success": true
+            },
+            {
+              "run": 3,
+              "seconds": 0.002172791999328183,
+              "success": true
+            },
+            {
+              "run": 4,
+              "seconds": 0.002196166999056004,
+              "success": true
+            },
+            {
+              "run": 5,
+              "seconds": 0.002254041002743179,
+              "success": true
+            },
+            {
+              "run": 6,
+              "seconds": 0.0021729580003011506,
+              "success": true
+            },
+            {
+              "run": 7,
+              "seconds": 0.0021212920000834856,
+              "success": true
+            },
+            {
+              "run": 8,
+              "seconds": 0.0018774169984681066,
+              "success": true
+            },
+            {
+              "run": 9,
+              "seconds": 0.002468250000674743,
+              "success": true
+            },
+            {
+              "run": 10,
+              "seconds": 0.0018962089998240117,
+              "success": true
+            },
+            {
+              "run": 11,
+              "seconds": 0.0019843330010189675,
+              "success": true
+            },
+            {
+              "run": 12,
+              "seconds": 0.0019821659989247564,
+              "success": true
+            },
+            {
+              "run": 13,
+              "seconds": 0.0023742499979562126,
+              "success": true
+            },
+            {
+              "run": 14,
+              "seconds": 0.0026549169997451827,
+              "success": true
+            },
+            {
+              "run": 15,
+              "seconds": 0.0021864580012334045,
+              "success": true
+            },
+            {
+              "run": 16,
+              "seconds": 0.002270416996907443,
+              "success": true
+            },
+            {
+              "run": 17,
+              "seconds": 0.002269832999445498,
+              "success": true
+            },
+            {
+              "run": 18,
+              "seconds": 0.0021832499987795018,
+              "success": true
+            },
+            {
+              "run": 19,
+              "seconds": 0.002994875001604669,
+              "success": true
+            },
+            {
+              "run": 20,
+              "seconds": 0.0021662920007656794,
+              "success": true
+            },
+            {
+              "run": 21,
+              "seconds": 0.0019885000001522712,
+              "success": true
+            },
+            {
+              "run": 22,
+              "seconds": 0.002497917001164751,
+              "success": true
+            },
+            {
+              "run": 23,
+              "seconds": 0.0024375000029976945,
+              "success": true
+            },
+            {
+              "run": 24,
+              "seconds": 0.0022956249995331746,
+              "success": true
+            },
+            {
+              "run": 25,
+              "seconds": 0.0019077920005656779,
+              "success": true
+            },
+            {
+              "run": 26,
+              "seconds": 0.0019592089993238915,
+              "success": true
+            },
+            {
+              "run": 27,
+              "seconds": 0.0023365409979305696,
+              "success": true
+            },
+            {
+              "run": 28,
+              "seconds": 0.002245958999992581,
+              "success": true
+            },
+            {
+              "run": 29,
+              "seconds": 0.003127791998849716,
+              "success": true
+            },
+            {
+              "run": 30,
+              "seconds": 0.0023752499982947484,
+              "success": true
+            }
+          ]
+        },
+        {
+          "name": "api.lifecycle.bridge",
+          "unit": "seconds",
+          "higher_is_better": false,
+          "status": "pass",
+          "runs": 30,
+          "failures": 0,
+          "seconds": {
+            "n": 30,
+            "median": 0.0025012505011545727,
+            "mean": 0.0027814723334207278,
+            "min": 0.002197999998315936,
+            "max": 0.005216584002482705,
+            "p95": 0.004447156250171244,
+            "stdev": 0.0007521528550756724,
+            "ci95": [
+              0.0023632914999325294,
+              0.0027070209998782957
+            ]
+          },
+          "value": null,
+          "load_before": 10.60888671875,
+          "load_after": 10.60888671875,
+          "samples": [
+            {
+              "run": 1,
+              "seconds": 0.0026429999998072162,
+              "success": true
+            },
+            {
+              "run": 2,
+              "seconds": 0.0024684170020918828,
+              "success": true
+            },
+            {
+              "run": 3,
+              "seconds": 0.002777874997264007,
+              "success": true
+            },
+            {
+              "run": 4,
+              "seconds": 0.002335458000743529,
+              "success": true
+            },
+            {
+              "run": 5,
+              "seconds": 0.003837000000203261,
+              "success": true
+            },
+            {
+              "run": 6,
+              "seconds": 0.0022816669988969807,
+              "success": true
+            },
+            {
+              "run": 7,
+              "seconds": 0.002197999998315936,
+              "success": true
+            },
+            {
+              "run": 8,
+              "seconds": 0.002771041999949375,
+              "success": true
+            },
+            {
+              "run": 9,
+              "seconds": 0.002541500001825625,
+              "success": true
+            },
+            {
+              "run": 10,
+              "seconds": 0.0022099159978097305,
+              "success": true
+            },
+            {
+              "run": 11,
+              "seconds": 0.002454083998600254,
+              "success": true
+            },
+            {
+              "run": 12,
+              "seconds": 0.0023604169982718304,
+              "success": true
+            },
+            {
+              "run": 13,
+              "seconds": 0.0022804999971413054,
+              "success": true
+            },
+            {
+              "run": 14,
+              "seconds": 0.0024209580005845055,
+              "success": true
+            },
+            {
+              "run": 15,
+              "seconds": 0.005216584002482705,
+              "success": true
+            },
+            {
+              "run": 16,
+              "seconds": 0.002269708002131665,
+              "success": true
+            },
+            {
+              "run": 17,
+              "seconds": 0.0024311670022143517,
+              "success": true
+            },
+            {
+              "run": 18,
+              "seconds": 0.0023661660015932284,
+              "success": true
+            },
+            {
+              "run": 19,
+              "seconds": 0.0029064170012134127,
+              "success": true
+            },
+            {
+              "run": 20,
+              "seconds": 0.0049463750001450535,
+              "success": true
+            },
+            {
+              "run": 21,
+              "seconds": 0.00290133399903425,
+              "success": true
+            },
+            {
+              "run": 22,
+              "seconds": 0.003287167000962654,
+              "success": true
+            },
+            {
+              "run": 23,
+              "seconds": 0.0026084169985551853,
+              "success": true
+            },
+            {
+              "run": 24,
+              "seconds": 0.002590666998003144,
+              "success": true
+            },
+            {
+              "run": 25,
+              "seconds": 0.0036761250012204982,
+              "success": true
+            },
+            {
+              "run": 26,
+              "seconds": 0.0022669999998470303,
+              "success": true
+            },
+            {
+              "run": 27,
+              "seconds": 0.0025340840002172627,
+              "success": true
+            },
+            {
+              "run": 28,
+              "seconds": 0.002270125001814449,
+              "success": true
+            },
+            {
+              "run": 29,
+              "seconds": 0.002337124999030493,
+              "success": true
+            },
+            {
+              "run": 30,
+              "seconds": 0.0032558750026510097,
+              "success": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "engine": "orbstack",
+      "runId": "20261109T155746Z-3a4031",
+      "kernel": "7.2.12-orbstack-00394-gbecdd6130068",
+      "bootId": "51706239-42ff-49d8-8ebc-9fae95941a48",
+      "footprint": [
+        {
+          "state": "vm-up-empty",
+          "daemon_mb": 28.0,
+          "daemon_processes": 1,
+          "vm_helper_mb": 268.0,
+          "vm_helpers": 1
+        },
+        {
+          "state": "10-containers",
+          "daemon_mb": 28.0,
+          "daemon_processes": 1,
+          "vm_helper_mb": 278.0,
+          "vm_helpers": 1
+        },
+        {
+          "state": "10-containers-idle-cpu",
+          "cpu_percent": 1.15
+        }
+      ],
+      "startup": [
+        {
+          "name": "cli.run",
+          "unit": "seconds",
+          "higher_is_better": false,
+          "status": "pass",
+          "runs": 30,
+          "failures": 0,
+          "seconds": {
+            "n": 30,
+            "median": 0.16517091700006858,
+            "mean": 0.16654612369990598,
+            "min": 0.15019720800046343,
+            "max": 0.18821008399754646,
+            "p95": 0.18270184780103588,
+            "stdev": 0.009162588539763808,
+            "ci95": [
+              0.1619909170021856,
+              0.1686267505028809
+            ]
+          },
+          "value": null,
+          "load_before": 14.64208984375,
+          "load_after": 14.10986328125,
+          "samples": [
+            {
+              "run": 1,
+              "seconds": 0.16319962499983376,
+              "success": true
+            },
+            {
+              "run": 2,
+              "seconds": 0.1660622500021418,
+              "success": true
+            },
+            {
+              "run": 3,
+              "seconds": 0.17797691600208054,
+              "success": true
+            },
+            {
+              "run": 4,
+              "seconds": 0.15263808400050038,
+              "success": true
+            },
+            {
+              "run": 5,
+              "seconds": 0.16801979200317874,
+              "success": true
+            },
+            {
+              "run": 6,
+              "seconds": 0.16277199999967706,
+              "success": true
+            },
+            {
+              "run": 7,
+              "seconds": 0.1727168340003118,
+              "success": true
+            },
+            {
+              "run": 8,
+              "seconds": 0.1788079159996414,
+              "success": true
+            },
+            {
+              "run": 9,
+              "seconds": 0.15909787499913364,
+              "success": true
+            },
+            {
+              "run": 10,
+              "seconds": 0.1629624999986845,
+              "success": true
+            },
+            {
+              "run": 11,
+              "seconds": 0.16147466599795735,
+              "success": true
+            },
+            {
+              "run": 12,
+              "seconds": 0.1655052499991143,
+              "success": true
+            },
+            {
+              "run": 13,
+              "seconds": 0.16483658400102286,
+              "success": true
+            },
+            {
+              "run": 14,
+              "seconds": 0.16582654200101388,
+              "success": true
+            },
+            {
+              "run": 15,
+              "seconds": 0.15913154099689564,
+              "success": true
+            },
+            {
+              "run": 16,
+              "seconds": 0.16923370900258305,
+              "success": true
+            },
+            {
+              "run": 17,
+              "seconds": 0.15641970800061245,
+              "success": true
+            },
+            {
+              "run": 18,
+              "seconds": 0.1595614999969257,
+              "success": true
+            },
+            {
+              "run": 19,
+              "seconds": 0.16764962500019465,
+              "success": true
+            },
+            {
+              "run": 20,
+              "seconds": 0.16173666700342437,
+              "success": true
+            },
+            {
+              "run": 21,
+              "seconds": 0.18821008399754646,
+              "success": true
+            },
+            {
+              "run": 22,
+              "seconds": 0.15019720800046343,
+              "success": true
+            },
+            {
+              "run": 23,
+              "seconds": 0.15802704199813888,
+              "success": true
+            },
+            {
+              "run": 24,
+              "seconds": 0.1749272499982908,
+              "success": true
+            },
+            {
+              "run": 25,
+              "seconds": 0.17828054199708276,
+              "success": true
+            },
+            {
+              "run": 26,
+              "seconds": 0.18588779200217687,
+              "success": true
+            },
+            {
+              "run": 27,
+              "seconds": 0.17437041699668043,
+              "success": true
+            },
+            {
+              "run": 28,
+              "seconds": 0.17050212499816553,
+              "success": true
+            },
+            {
+              "run": 29,
+              "seconds": 0.16224516700094682,
+              "success": true
+            },
+            {
+              "run": 30,
+              "seconds": 0.15810650000275928,
+              "success": true
+            }
+          ]
+        },
+        {
+          "name": "api.lifecycle.none",
+          "unit": "seconds",
+          "higher_is_better": false,
+          "status": "pass",
+          "runs": 30,
+          "failures": 0,
+          "seconds": {
+            "n": 30,
+            "median": 0.11574202049996529,
+            "mean": 0.11787926103400727,
+            "min": 0.08935050000218325,
+            "max": 0.16429483300089487,
+            "p95": 0.15015624634925184,
+            "stdev": 0.017488450020559012,
+            "ci95": [
+              0.10709685400070157,
+              0.12457541649928316
+            ]
+          },
+          "value": null,
+          "load_before": 14.10986328125,
+          "load_after": 14.3408203125,
+          "samples": [
+            {
+              "run": 1,
+              "seconds": 0.08935050000218325,
+              "success": true
+            },
+            {
+              "run": 2,
+              "seconds": 0.09860933300296892,
+              "success": true
+            },
+            {
+              "run": 3,
+              "seconds": 0.1011855420001666,
+              "success": true
+            },
+            {
+              "run": 4,
+              "seconds": 0.1143303749995539,
+              "success": true
+            },
+            {
+              "run": 5,
+              "seconds": 0.10522441699868068,
+              "success": true
+            },
+            {
+              "run": 6,
+              "seconds": 0.11715366600037669,
+              "success": true
+            },
+            {
+              "run": 7,
+              "seconds": 0.12287524999919697,
+              "success": true
+            },
+            {
+              "run": 8,
+              "seconds": 0.10896929100272246,
+              "success": true
+            },
+            {
+              "run": 9,
+              "seconds": 0.09719904099983978,
+              "success": true
+            },
+            {
+              "run": 10,
+              "seconds": 0.10250645800260827,
+              "success": true
+            },
+            {
+              "run": 11,
+              "seconds": 0.11298891700062086,
+              "success": true
+            },
+            {
+              "run": 12,
+              "seconds": 0.09666920800009393,
+              "success": true
+            },
+            {
+              "run": 13,
+              "seconds": 0.10127687500062166,
+              "success": true
+            },
+            {
+              "run": 14,
+              "seconds": 0.13175125000270782,
+              "success": true
+            },
+            {
+              "run": 15,
+              "seconds": 0.11095475000183797,
+              "success": true
+            },
+            {
+              "run": 16,
+              "seconds": 0.16429483300089487,
+              "success": true
+            },
+            {
+              "run": 17,
+              "seconds": 0.12417029199787066,
+              "success": true
+            },
+            {
+              "run": 18,
+              "seconds": 0.13110329199844273,
+              "success": true
+            },
+            {
+              "run": 19,
+              "seconds": 0.13120404200162739,
+              "success": true
+            },
+            {
+              "run": 20,
+              "seconds": 0.12313895900297211,
+              "success": true
+            },
+            {
+              "run": 21,
+              "seconds": 0.10506275000079768,
+              "success": true
+            },
+            {
+              "run": 22,
+              "seconds": 0.12593904100140207,
+              "success": true
+            },
+            {
+              "run": 23,
+              "seconds": 0.12069533400062937,
+              "success": true
+            },
+            {
+              "run": 24,
+              "seconds": 0.10571429099945817,
+              "success": true
+            },
+            {
+              "run": 25,
+              "seconds": 0.11186741600249661,
+              "success": true
+            },
+            {
+              "run": 26,
+              "seconds": 0.13349491600092733,
+              "success": true
+            },
+            {
+              "run": 27,
+              "seconds": 0.12515949999942677,
+              "success": true
+            },
+            {
+              "run": 28,
+              "seconds": 0.12498054100069567,
+              "success": true
+            },
+            {
+              "run": 29,
+              "seconds": 0.14023016699866275,
+              "success": true
+            },
+            {
+              "run": 30,
+              "seconds": 0.1582775839997339,
+              "success": true
+            }
+          ]
+        },
+        {
+          "name": "api.lifecycle.bridge",
+          "unit": "seconds",
+          "higher_is_better": false,
+          "status": "pass",
+          "runs": 30,
+          "failures": 0,
+          "seconds": {
+            "n": 30,
+            "median": 0.14915197950176662,
+            "mean": 0.16657449039982264,
+            "min": 0.11165166600039811,
+            "max": 0.3419750409993867,
+            "p95": 0.24004127105108633,
+            "stdev": 0.047860780766630806,
+            "ci95": [
+              0.1395886665013677,
+              0.16916239599959226
+            ]
+          },
+          "value": null,
+          "load_before": 14.3408203125,
+          "load_after": 14.0732421875,
+          "samples": [
+            {
+              "run": 1,
+              "seconds": 0.12628845799918054,
+              "success": true
+            },
+            {
+              "run": 2,
+              "seconds": 0.13450220899903798,
+              "success": true
+            },
+            {
+              "run": 3,
+              "seconds": 0.12853249999898253,
+              "success": true
+            },
+            {
+              "run": 4,
+              "seconds": 0.13043429200115497,
+              "success": true
+            },
+            {
+              "run": 5,
+              "seconds": 0.11165166600039811,
+              "success": true
+            },
+            {
+              "run": 6,
+              "seconds": 0.11984708399904775,
+              "success": true
+            },
+            {
+              "run": 7,
+              "seconds": 0.1402342920009687,
+              "success": true
+            },
+            {
+              "run": 8,
+              "seconds": 0.14122541699907742,
+              "success": true
+            },
+            {
+              "run": 9,
+              "seconds": 0.14874350000172853,
+              "success": true
+            },
+            {
+              "run": 10,
+              "seconds": 0.15972975000113365,
+              "success": true
+            },
+            {
+              "run": 11,
+              "seconds": 0.1543292089991155,
+              "success": true
+            },
+            {
+              "run": 12,
+              "seconds": 0.1391964590002317,
+              "success": true
+            },
+            {
+              "run": 13,
+              "seconds": 0.1463747499983583,
+              "success": true
+            },
+            {
+              "run": 14,
+              "seconds": 0.1313884999981383,
+              "success": true
+            },
+            {
+              "run": 15,
+              "seconds": 0.1495604590018047,
+              "success": true
+            },
+            {
+              "run": 16,
+              "seconds": 0.13730058299915981,
+              "success": true
+            },
+            {
+              "run": 17,
+              "seconds": 0.1678204999989248,
+              "success": true
+            },
+            {
+              "run": 18,
+              "seconds": 0.14802762500039535,
+              "success": true
+            },
+            {
+              "run": 19,
+              "seconds": 0.15211983399785822,
+              "success": true
+            },
+            {
+              "run": 20,
+              "seconds": 0.19620220900105778,
+              "success": true
+            },
+            {
+              "run": 21,
+              "seconds": 0.1389430410017667,
+              "success": true
+            },
+            {
+              "run": 22,
+              "seconds": 0.18219583300015074,
+              "success": true
+            },
+            {
+              "run": 23,
+              "seconds": 0.24728683400098816,
+              "success": true
+            },
+            {
+              "run": 24,
+              "seconds": 0.2311855830012064,
+              "success": true
+            },
+            {
+              "run": 25,
+              "seconds": 0.22191074999864213,
+              "success": true
+            },
+            {
+              "run": 26,
+              "seconds": 0.19406024999989313,
+              "success": true
+            },
+            {
+              "run": 27,
+              "seconds": 0.19673012499697506,
+              "success": true
+            },
+            {
+              "run": 28,
+              "seconds": 0.3419750409993867,
+              "success": true
+            },
+            {
+              "run": 29,
+              "seconds": 0.17050429200025974,
+              "success": true
+            },
+            {
+              "run": 30,
+              "seconds": 0.20893366699965554,
+              "success": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "engine": "orbstack",
+      "runId": "20261109T155839Z-f764be",
+      "kernel": "7.2.12-orbstack-00394-gbecdd6130068",
+      "bootId": "65832505-f57c-475d-90b5-d2d553a137d9",
+      "footprint": [
+        {
+          "state": "vm-up-empty",
+          "daemon_mb": 28.0,
+          "daemon_processes": 1,
+          "vm_helper_mb": 269.0,
+          "vm_helpers": 1
+        },
+        {
+          "state": "10-containers",
+          "daemon_mb": 28.0,
+          "daemon_processes": 1,
+          "vm_helper_mb": 278.0,
+          "vm_helpers": 1
+        },
+        {
+          "state": "10-containers-idle-cpu",
+          "cpu_percent": 0.85
+        }
+      ],
+      "startup": [
+        {
+          "name": "cli.run",
+          "unit": "seconds",
+          "higher_is_better": false,
+          "status": "pass",
+          "runs": 30,
+          "failures": 0,
+          "seconds": {
+            "n": 30,
+            "median": 0.14295135450083762,
+            "mean": 0.14276530270011184,
+            "min": 0.11307991600187961,
+            "max": 0.17020545800187392,
+            "p95": 0.16841820885001652,
+            "stdev": 0.016651223245311063,
+            "ci95": [
+              0.13587822900080937,
+              0.15389320850226795
+            ]
+          },
+          "value": null,
+          "load_before": 8.69140625,
+          "load_after": 8.3955078125,
+          "samples": [
+            {
+              "run": 1,
+              "seconds": 0.16748366699903272,
+              "success": true
+            },
+            {
+              "run": 2,
+              "seconds": 0.15799945799881243,
+              "success": true
+            },
+            {
+              "run": 3,
+              "seconds": 0.17020545800187392,
+              "success": true
+            },
+            {
+              "run": 4,
+              "seconds": 0.13940433399693575,
+              "success": true
+            },
+            {
+              "run": 5,
+              "seconds": 0.14518083299844875,
+              "success": true
+            },
+            {
+              "run": 6,
+              "seconds": 0.1370513750007376,
+              "success": true
+            },
+            {
+              "run": 7,
+              "seconds": 0.11979383300058544,
+              "success": true
+            },
+            {
+              "run": 8,
+              "seconds": 0.1261864579973917,
+              "success": true
+            },
+            {
+              "run": 9,
+              "seconds": 0.138415833000181,
+              "success": true
+            },
+            {
+              "run": 10,
+              "seconds": 0.12696404199959943,
+              "success": true
+            },
+            {
+              "run": 11,
+              "seconds": 0.1207802079989051,
+              "success": true
+            },
+            {
+              "run": 12,
+              "seconds": 0.13470508300088113,
+              "success": true
+            },
+            {
+              "run": 13,
+              "seconds": 0.1257258749974426,
+              "success": true
+            },
+            {
+              "run": 14,
+              "seconds": 0.11689900000055786,
+              "success": true
+            },
+            {
+              "run": 15,
+              "seconds": 0.11835579100079485,
+              "success": true
+            },
+            {
+              "run": 16,
+              "seconds": 0.11307991600187961,
+              "success": true
+            },
+            {
+              "run": 17,
+              "seconds": 0.1413747090009565,
+              "success": true
+            },
+            {
+              "run": 18,
+              "seconds": 0.15867220800282666,
+              "success": true
+            },
+            {
+              "run": 19,
+              "seconds": 0.1534910830014269,
+              "success": true
+            },
+            {
+              "run": 20,
+              "seconds": 0.14128770800016355,
+              "success": true
+            },
+            {
+              "run": 21,
+              "seconds": 0.1545569579975563,
+              "success": true
+            },
+            {
+              "run": 22,
+              "seconds": 0.16918283400082146,
+              "success": true
+            },
+            {
+              "run": 23,
+              "seconds": 0.14706137499888428,
+              "success": true
+            },
+            {
+              "run": 24,
+              "seconds": 0.15561245800199686,
+              "success": true
+            },
+            {
+              "run": 25,
+              "seconds": 0.1538245840019954,
+              "success": true
+            },
+            {
+              "run": 26,
+              "seconds": 0.1326977499993518,
+              "success": true
+            },
+            {
+              "run": 27,
+              "seconds": 0.15396183300254052,
+              "success": true
+            },
+            {
+              "run": 28,
+              "seconds": 0.15416695800013258,
+              "success": true
+            },
+            {
+              "run": 29,
+              "seconds": 0.14452800000071875,
+              "success": true
+            },
+            {
+              "run": 30,
+              "seconds": 0.16430945899992366,
+              "success": true
+            }
+          ]
+        },
+        {
+          "name": "api.lifecycle.none",
+          "unit": "seconds",
+          "higher_is_better": false,
+          "status": "pass",
+          "runs": 30,
+          "failures": 0,
+          "seconds": {
+            "n": 30,
+            "median": 0.09597002100235841,
+            "mean": 0.09779291946676191,
+            "min": 0.08227200000328594,
+            "max": 0.12857679199805716,
+            "p95": 0.11455971030045475,
+            "stdev": 0.011229835385271685,
+            "ci95": [
+              0.09032574999946519,
+              0.10147581299861486
+            ]
+          },
+          "value": null,
+          "load_before": 8.3955078125,
+          "load_after": 8.3955078125,
+          "samples": [
+            {
+              "run": 1,
+              "seconds": 0.0939959169991198,
+              "success": true
+            },
+            {
+              "run": 2,
+              "seconds": 0.08227200000328594,
+              "success": true
+            },
+            {
+              "run": 3,
+              "seconds": 0.08744604100138531,
+              "success": true
+            },
+            {
+              "run": 4,
+              "seconds": 0.11077712499900372,
+              "success": true
+            },
+            {
+              "run": 5,
+              "seconds": 0.12857679199805716,
+              "success": true
+            },
+            {
+              "run": 6,
+              "seconds": 0.11490041700017173,
+              "success": true
+            },
+            {
+              "run": 7,
+              "seconds": 0.11211000000184868,
+              "success": true
+            },
+            {
+              "run": 8,
+              "seconds": 0.10017566699752933,
+              "success": true
+            },
+            {
+              "run": 9,
+              "seconds": 0.10357791600108612,
+              "success": true
+            },
+            {
+              "run": 10,
+              "seconds": 0.09032574999946519,
+              "success": true
+            },
+            {
+              "run": 11,
+              "seconds": 0.08259112499945331,
+              "success": true
+            },
+            {
+              "run": 12,
+              "seconds": 0.10846883399790386,
+              "success": true
+            },
+            {
+              "run": 13,
+              "seconds": 0.10684095800024807,
+              "success": true
+            },
+            {
+              "run": 14,
+              "seconds": 0.0955986250010028,
+              "success": true
+            },
+            {
+              "run": 15,
+              "seconds": 0.08359037500122213,
+              "success": true
+            },
+            {
+              "run": 16,
+              "seconds": 0.08880654200038407,
+              "success": true
+            },
+            {
+              "run": 17,
+              "seconds": 0.09904475000075763,
+              "success": true
+            },
+            {
+              "run": 18,
+              "seconds": 0.08819316699737101,
+              "success": true
+            },
+            {
+              "run": 19,
+              "seconds": 0.08551170799910324,
+              "success": true
+            },
+            {
+              "run": 20,
+              "seconds": 0.11414329100080067,
+              "success": true
+            },
+            {
+              "run": 21,
+              "seconds": 0.0957358750019921,
+              "success": true
+            },
+            {
+              "run": 22,
+              "seconds": 0.09172350000153529,
+              "success": true
+            },
+            {
+              "run": 23,
+              "seconds": 0.10277595899970038,
+              "success": true
+            },
+            {
+              "run": 24,
+              "seconds": 0.09620416700272472,
+              "success": true
+            },
+            {
+              "run": 25,
+              "seconds": 0.08882091600025888,
+              "success": true
+            },
+            {
+              "run": 26,
+              "seconds": 0.10462445899975137,
+              "success": true
+            },
+            {
+              "run": 27,
+              "seconds": 0.09853758299868787,
+              "success": true
+            },
+            {
+              "run": 28,
+              "seconds": 0.09923166699809371,
+              "success": true
+            },
+            {
+              "run": 29,
+              "seconds": 0.09328237500085379,
+              "success": true
+            },
+            {
+              "run": 30,
+              "seconds": 0.08590408300005947,
+              "success": true
+            }
+          ]
+        },
+        {
+          "name": "api.lifecycle.bridge",
+          "unit": "seconds",
+          "higher_is_better": false,
+          "status": "pass",
+          "runs": 30,
+          "failures": 0,
+          "seconds": {
+            "n": 30,
+            "median": 0.1238338120001572,
+            "mean": 0.12641184580024856,
+            "min": 0.09820604199921945,
+            "max": 0.23530087499966612,
+            "p95": 0.15443621455178796,
+            "stdev": 0.026229156112115765,
+            "ci95": [
+              0.1140629165001883,
+              0.129617666501872
+            ]
+          },
+          "value": null,
+          "load_before": 8.3955078125,
+          "load_after": 8.04345703125,
+          "samples": [
+            {
+              "run": 1,
+              "seconds": 0.14338970899916603,
+              "success": true
+            },
+            {
+              "run": 2,
+              "seconds": 0.14212004200089723,
+              "success": true
+            },
+            {
+              "run": 3,
+              "seconds": 0.11665050000010524,
+              "success": true
+            },
+            {
+              "run": 4,
+              "seconds": 0.11124204199950327,
+              "success": true
+            },
+            {
+              "run": 5,
+              "seconds": 0.09973995800100965,
+              "success": true
+            },
+            {
+              "run": 6,
+              "seconds": 0.10981854100100463,
+              "success": true
+            },
+            {
+              "run": 7,
+              "seconds": 0.09906833300192375,
+              "success": true
+            },
+            {
+              "run": 8,
+              "seconds": 0.11795233299926622,
+              "success": true
+            },
+            {
+              "run": 9,
+              "seconds": 0.10411199999725795,
+              "success": true
+            },
+            {
+              "run": 10,
+              "seconds": 0.1182486659999995,
+              "success": true
+            },
+            {
+              "run": 11,
+              "seconds": 0.10413275000246358,
+              "success": true
+            },
+            {
+              "run": 12,
+              "seconds": 0.11147533300027135,
+              "success": true
+            },
+            {
+              "run": 13,
+              "seconds": 0.10535562500081141,
+              "success": true
+            },
+            {
+              "run": 14,
+              "seconds": 0.09820604199921945,
+              "success": true
+            },
+            {
+              "run": 15,
+              "seconds": 0.10416920900024706,
+              "success": true
+            },
+            {
+              "run": 16,
+              "seconds": 0.12984062500254367,
+              "success": true
+            },
+            {
+              "run": 17,
+              "seconds": 0.12332291599886958,
+              "success": true
+            },
+            {
+              "run": 18,
+              "seconds": 0.12939470800120034,
+              "success": true
+            },
+            {
+              "run": 19,
+              "seconds": 0.14493804100129637,
+              "success": true
+            },
+            {
+              "run": 20,
+              "seconds": 0.23530087499966612,
+              "success": true
+            },
+            {
+              "run": 21,
+              "seconds": 0.14066420899689547,
+              "success": true
+            },
+            {
+              "run": 22,
+              "seconds": 0.15904445800333633,
+              "success": true
+            },
+            {
+              "run": 23,
+              "seconds": 0.12719079199814587,
+              "success": true
+            },
+            {
+              "run": 24,
+              "seconds": 0.1488039169998956,
+              "success": true
+            },
+            {
+              "run": 25,
+              "seconds": 0.12434470800144481,
+              "success": true
+            },
+            {
+              "run": 26,
+              "seconds": 0.12925795900082448,
+              "success": true
+            },
+            {
+              "run": 27,
+              "seconds": 0.12618666699927417,
+              "success": true
+            },
+            {
+              "run": 28,
+              "seconds": 0.1299287080000795,
+              "success": true
+            },
+            {
+              "run": 29,
+              "seconds": 0.11857966699972167,
+              "success": true
+            },
+            {
+              "run": 30,
+              "seconds": 0.1398760410011164,
+              "success": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "engine": "noodle",
+      "runId": "20261109T155958Z-785111",
+      "kernel": "6.18.60",
+      "bootId": "dabf6385-ad10-4672-8aa4-e8811500d3c0",
+      "footprint": [
+        {
+          "state": "vm-up-empty",
+          "daemon_mb": 6.39,
+          "daemon_processes": 1,
+          "vm_helper_mb": 221.0,
+          "vm_helpers": 1
+        },
+        {
+          "state": "10-containers",
+          "daemon_mb": 6.58,
+          "daemon_processes": 1,
+          "vm_helper_mb": 227.0,
+          "vm_helpers": 1
+        },
+        {
+          "state": "10-containers-idle-cpu",
+          "cpu_percent": 0.55
+        }
+      ],
+      "startup": [
+        {
+          "name": "cli.run",
+          "unit": "seconds",
+          "higher_is_better": false,
+          "status": "pass",
+          "runs": 30,
+          "failures": 0,
+          "seconds": {
+            "n": 30,
+            "median": 0.03499624999858497,
+            "mean": 0.04365311383335211,
+            "min": 0.024368499998672633,
+            "max": 0.09961625000141794,
+            "p95": 0.0902881336995051,
+            "stdev": 0.020329786945866186,
+            "ci95": [
+              0.033030666500053485,
+              0.04031427050176717
+            ]
+          },
+          "value": null,
+          "load_before": 9.5859375,
+          "load_after": 11.38037109375,
+          "samples": [
+            {
+              "run": 1,
+              "seconds": 0.09961625000141794,
+              "success": true
+            },
+            {
+              "run": 2,
+              "seconds": 0.08447912499832455,
+              "success": true
+            },
+            {
+              "run": 3,
+              "seconds": 0.039881625001726206,
+              "success": true
+            },
+            {
+              "run": 4,
+              "seconds": 0.09504095900047105,
+              "success": true
+            },
+            {
+              "run": 5,
+              "seconds": 0.07207812499837019,
+              "success": true
+            },
+            {
+              "run": 6,
+              "seconds": 0.0460365830003866,
+              "success": true
+            },
+            {
+              "run": 7,
+              "seconds": 0.036217249999026535,
+              "success": true
+            },
+            {
+              "run": 8,
+              "seconds": 0.03373041600207216,
+              "success": true
+            },
+            {
+              "run": 9,
+              "seconds": 0.035180499999114545,
+              "success": true
+            },
+            {
+              "run": 10,
+              "seconds": 0.03370191700014402,
+              "success": true
+            },
+            {
+              "run": 11,
+              "seconds": 0.028946833001100458,
+              "success": true
+            },
+            {
+              "run": 12,
+              "seconds": 0.03312295800060383,
+              "success": true
+            },
+            {
+              "run": 13,
+              "seconds": 0.03127308300099685,
+              "success": true
+            },
+            {
+              "run": 14,
+              "seconds": 0.024368499998672633,
+              "success": true
+            },
+            {
+              "run": 15,
+              "seconds": 0.02973175000079209,
+              "success": true
+            },
+            {
+              "run": 16,
+              "seconds": 0.026416374999826076,
+              "success": true
+            },
+            {
+              "run": 17,
+              "seconds": 0.03713629099729587,
+              "success": true
+            },
+            {
+              "run": 18,
+              "seconds": 0.04074691600180813,
+              "success": true
+            },
+            {
+              "run": 19,
+              "seconds": 0.03934570799901849,
+              "success": true
+            },
+            {
+              "run": 20,
+              "seconds": 0.02815304199975799,
+              "success": true
+            },
+            {
+              "run": 21,
+              "seconds": 0.028860333000920946,
+              "success": true
+            },
+            {
+              "run": 22,
+              "seconds": 0.04329400000278838,
+              "success": true
+            },
+            {
+              "run": 23,
+              "seconds": 0.07091737500013551,
+              "success": true
+            },
+            {
+              "run": 24,
+              "seconds": 0.030646166997030377,
+              "success": true
+            },
+            {
+              "run": 25,
+              "seconds": 0.03293837499950314,
+              "success": true
+            },
+            {
+              "run": 26,
+              "seconds": 0.0348119999980554,
+              "success": true
+            },
+            {
+              "run": 27,
+              "seconds": 0.03408820900222054,
+              "success": true
+            },
+            {
+              "run": 28,
+              "seconds": 0.03244208300020546,
+              "success": true
+            },
+            {
+              "run": 29,
+              "seconds": 0.05026016700139735,
+              "success": true
+            },
+            {
+              "run": 30,
+              "seconds": 0.05613049999737996,
+              "success": true
+            }
+          ]
+        },
+        {
+          "name": "api.lifecycle.none",
+          "unit": "seconds",
+          "higher_is_better": false,
+          "status": "pass",
+          "runs": 30,
+          "failures": 0,
+          "seconds": {
+            "n": 30,
+            "median": 0.01191310399917711,
+            "mean": 0.013325359699714075,
+            "min": 0.0039729999989503995,
+            "max": 0.07966179099821602,
+            "p95": 0.02060887064944835,
+            "stdev": 0.013447989428743364,
+            "ci95": [
+              0.007373041498794919,
+              0.01378852149900922
+            ]
+          },
+          "value": null,
+          "load_before": 11.38037109375,
+          "load_after": 11.38037109375,
+          "samples": [
+            {
+              "run": 1,
+              "seconds": 0.0062202500012062956,
+              "success": true
+            },
+            {
+              "run": 2,
+              "seconds": 0.0039729999989503995,
+              "success": true
+            },
+            {
+              "run": 3,
+              "seconds": 0.007281917001819238,
+              "success": true
+            },
+            {
+              "run": 4,
+              "seconds": 0.0078109579990268685,
+              "success": true
+            },
+            {
+              "run": 5,
+              "seconds": 0.005457584000396309,
+              "success": true
+            },
+            {
+              "run": 6,
+              "seconds": 0.005151957997441059,
+              "success": true
+            },
+            {
+              "run": 7,
+              "seconds": 0.005081999999674736,
+              "success": true
+            },
+            {
+              "run": 8,
+              "seconds": 0.005820333000883693,
+              "success": true
+            },
+            {
+              "run": 9,
+              "seconds": 0.007301082998310449,
+              "success": true
+            },
+            {
+              "run": 10,
+              "seconds": 0.006099707999965176,
+              "success": true
+            },
+            {
+              "run": 11,
+              "seconds": 0.012899334000394447,
+              "success": true
+            },
+            {
+              "run": 12,
+              "seconds": 0.006568333003087901,
+              "success": true
+            },
+            {
+              "run": 13,
+              "seconds": 0.017551500000990927,
+              "success": true
+            },
+            {
+              "run": 14,
+              "seconds": 0.014822207998804515,
+              "success": true
+            },
+            {
+              "run": 15,
+              "seconds": 0.007444999999279389,
+              "success": true
+            },
+            {
+              "run": 16,
+              "seconds": 0.00861508399975719,
+              "success": true
+            },
+            {
+              "run": 17,
+              "seconds": 0.013834625002346002,
+              "success": true
+            },
+            {
+              "run": 18,
+              "seconds": 0.022738083000149345,
+              "success": true
+            },
+            {
+              "run": 19,
+              "seconds": 0.008736124997085426,
+              "success": true
+            },
+            {
+              "run": 20,
+              "seconds": 0.017343874998914544,
+              "success": true
+            },
+            {
+              "run": 21,
+              "seconds": 0.01584233299945481,
+              "success": true
+            },
+            {
+              "run": 22,
+              "seconds": 0.07966179099821602,
+              "success": true
+            },
+            {
+              "run": 23,
+              "seconds": 0.011484374997962732,
+              "success": true
+            },
+            {
+              "run": 24,
+              "seconds": 0.012341833000391489,
+              "success": true
+            },
+            {
+              "run": 25,
+              "seconds": 0.014144333999865921,
+              "success": true
+            },
+            {
+              "run": 26,
+              "seconds": 0.013200583001889754,
+              "success": true
+            },
+            {
+              "run": 27,
+              "seconds": 0.01343270899815252,
+              "success": true
+            },
+            {
+              "run": 28,
+              "seconds": 0.013624832998175407,
+              "success": true
+            },
+            {
+              "run": 29,
+              "seconds": 0.018006499998591607,
+              "success": true
+            },
+            {
+              "run": 30,
+              "seconds": 0.017268542000238085,
+              "success": true
+            }
+          ]
+        },
+        {
+          "name": "api.lifecycle.bridge",
+          "unit": "seconds",
+          "higher_is_better": false,
+          "status": "pass",
+          "runs": 30,
+          "failures": 0,
+          "seconds": {
+            "n": 30,
+            "median": 0.011787437999373651,
+            "mean": 0.017712189099620447,
+            "min": 0.004751166998175904,
+            "max": 0.05204550000053132,
+            "p95": 0.04633820885046586,
+            "stdev": 0.013288456159120462,
+            "ci95": [
+              0.010033749998910935,
+              0.014606166498197126
+            ]
+          },
+          "value": null,
+          "load_before": 11.38037109375,
+          "load_after": 11.38037109375,
+          "samples": [
+            {
+              "run": 1,
+              "seconds": 0.011795083999459166,
+              "success": true
+            },
+            {
+              "run": 2,
+              "seconds": 0.010033124999608845,
+              "success": true
+            },
+            {
+              "run": 3,
+              "seconds": 0.011481209003250115,
+              "success": true
+            },
+            {
+              "run": 4,
+              "seconds": 0.010034374998213025,
+              "success": true
+            },
+            {
+              "run": 5,
+              "seconds": 0.013685959002032178,
+              "success": true
+            },
+            {
+              "run": 6,
+              "seconds": 0.016837874998600455,
+              "success": true
+            },
+            {
+              "run": 7,
+              "seconds": 0.040737999999691965,
+              "success": true
+            },
+            {
+              "run": 8,
+              "seconds": 0.010227292001218302,
+              "success": true
+            },
+            {
+              "run": 9,
+              "seconds": 0.023098166999261593,
+              "success": true
+            },
+            {
+              "run": 10,
+              "seconds": 0.05032595900047454,
+              "success": true
+            },
+            {
+              "run": 11,
+              "seconds": 0.00906912499704049,
+              "success": true
+            },
+            {
+              "run": 12,
+              "seconds": 0.013488749998941785,
+              "success": true
+            },
+            {
+              "run": 13,
+              "seconds": 0.007734249997156439,
+              "success": true
+            },
+            {
+              "run": 14,
+              "seconds": 0.009151250000286382,
+              "success": true
+            },
+            {
+              "run": 15,
+              "seconds": 0.006770042000425747,
+              "success": true
+            },
+            {
+              "run": 16,
+              "seconds": 0.05204550000053132,
+              "success": true
+            },
+            {
+              "run": 17,
+              "seconds": 0.012829833998694085,
+              "success": true
+            },
+            {
+              "run": 18,
+              "seconds": 0.041464292000455316,
+              "success": true
+            },
+            {
+              "run": 19,
+              "seconds": 0.014072540998313343,
+              "success": true
+            },
+            {
+              "run": 20,
+              "seconds": 0.038238500001170905,
+              "success": true
+            },
+            {
+              "run": 21,
+              "seconds": 0.010017541997513035,
+              "success": true
+            },
+            {
+              "run": 22,
+              "seconds": 0.011779791999288136,
+              "success": true
+            },
+            {
+              "run": 23,
+              "seconds": 0.004751166998175904,
+              "success": true
+            },
+            {
+              "run": 24,
+              "seconds": 0.008327625000674743,
+              "success": true
+            },
+            {
+              "run": 25,
+              "seconds": 0.008834500000375556,
+              "success": true
+            },
+            {
+              "run": 26,
+              "seconds": 0.021360209000704344,
+              "success": true
+            },
+            {
+              "run": 27,
+              "seconds": 0.01513979199808091,
+              "success": true
+            },
+            {
+              "run": 28,
+              "seconds": 0.011352166999131441,
+              "success": true
+            },
+            {
+              "run": 29,
+              "seconds": 0.009498041999904672,
+              "success": true
+            },
+            {
+              "run": 30,
+              "seconds": 0.027183707999938633,
+              "success": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "engine": "orbstack",
+      "runId": "20261109T160122Z-d9a70e",
+      "kernel": "7.2.12-orbstack-00394-gbecdd6130068",
+      "bootId": "2a0d32b8-711b-46b8-9867-3be2ceface7e",
+      "footprint": [
+        {
+          "state": "vm-up-empty",
+          "daemon_mb": 28.0,
+          "daemon_processes": 1,
+          "vm_helper_mb": 269.0,
+          "vm_helpers": 1
+        },
+        {
+          "state": "10-containers",
+          "daemon_mb": 28.0,
+          "daemon_processes": 1,
+          "vm_helper_mb": 278.0,
+          "vm_helpers": 1
+        },
+        {
+          "state": "10-containers-idle-cpu",
+          "cpu_percent": 0.75
+        }
+      ],
+      "startup": [
+        {
+          "name": "cli.run",
+          "unit": "seconds",
+          "higher_is_better": false,
+          "status": "pass",
+          "runs": 30,
+          "failures": 0,
+          "seconds": {
+            "n": 30,
+            "median": 0.13087835400256154,
+            "mean": 0.13635860143379736,
+            "min": 0.11352166700089583,
+            "max": 0.19821050000246032,
+            "p95": 0.1630619313997158,
+            "stdev": 0.0176487684495498,
+            "ci95": [
+              0.12834945900067396,
+              0.1351906455001881
+            ]
+          },
+          "value": null,
+          "load_before": 9.498046875,
+          "load_after": 8.9775390625,
+          "samples": [
+            {
+              "run": 1,
+              "seconds": 0.15327899999829242,
+              "success": true
+            },
+            {
+              "run": 2,
+              "seconds": 0.16582412500065402,
+              "success": true
+            },
+            {
+              "run": 3,
+              "seconds": 0.13995808300023782,
+              "success": true
+            },
+            {
+              "run": 4,
+              "seconds": 0.15042266700038454,
+              "success": true
+            },
+            {
+              "run": 5,
+              "seconds": 0.1304130000025907,
+              "success": true
+            },
+            {
+              "run": 6,
+              "seconds": 0.11352166700089583,
+              "success": true
+            },
+            {
+              "run": 7,
+              "seconds": 0.1263433329986583,
+              "success": true
+            },
+            {
+              "run": 8,
+              "seconds": 0.12110620800012839,
+              "success": true
+            },
+            {
+              "run": 9,
+              "seconds": 0.11680441699718358,
+              "success": true
+            },
+            {
+              "run": 10,
+              "seconds": 0.1233736249996582,
+              "success": true
+            },
+            {
+              "run": 11,
+              "seconds": 0.12763695900139282,
+              "success": true
+            },
+            {
+              "run": 12,
+              "seconds": 0.11800195800242363,
+              "success": true
+            },
+            {
+              "run": 13,
+              "seconds": 0.19821050000246032,
+              "success": true
+            },
+            {
+              "run": 14,
+              "seconds": 0.15931491700030165,
+              "success": true
+            },
+            {
+              "run": 15,
+              "seconds": 0.15102008300164016,
+              "success": true
+            },
+            {
+              "run": 16,
+              "seconds": 0.1290619589999551,
+              "success": true
+            },
+            {
+              "run": 17,
+              "seconds": 0.13177229200300644,
+              "success": true
+            },
+            {
+              "run": 18,
+              "seconds": 0.13317316599932383,
+              "success": true
+            },
+            {
+              "run": 19,
+              "seconds": 0.1372081250010524,
+              "success": true
+            },
+            {
+              "run": 20,
+              "seconds": 0.14335245900292648,
+              "success": true
+            },
+            {
+              "run": 21,
+              "seconds": 0.13153045899889548,
+              "success": true
+            },
+            {
+              "run": 22,
+              "seconds": 0.13003958400076954,
+              "success": true
+            },
+            {
+              "run": 23,
+              "seconds": 0.12738316700051655,
+              "success": true
+            },
+            {
+              "run": 24,
+              "seconds": 0.12991395800054306,
+              "success": true
+            },
+            {
+              "run": 25,
+              "seconds": 0.15968591699856916,
+              "success": true
+            },
+            {
+              "run": 26,
+              "seconds": 0.13275695799893583,
+              "success": true
+            },
+            {
+              "run": 27,
+              "seconds": 0.13134370800253237,
+              "success": true
+            },
+            {
+              "run": 28,
+              "seconds": 0.12470829199810396,
+              "success": true
+            },
+            {
+              "run": 29,
+              "seconds": 0.13040416600051685,
+              "success": true
+            },
+            {
+              "run": 30,
+              "seconds": 0.12319329100137111,
+              "success": true
+            }
+          ]
+        },
+        {
+          "name": "api.lifecycle.none",
+          "unit": "seconds",
+          "higher_is_better": false,
+          "status": "pass",
+          "runs": 30,
+          "failures": 0,
+          "seconds": {
+            "n": 30,
+            "median": 0.08838366649797536,
+            "mean": 0.08977760826686183,
+            "min": 0.07818499999848427,
+            "max": 0.10481295800127555,
+            "p95": 0.10187857935052305,
+            "stdev": 0.007563186810978115,
+            "ci95": [
+              0.08427020800081664,
+              0.09484424999936891
+            ]
+          },
+          "value": null,
+          "load_before": 8.9775390625,
+          "load_after": 8.65869140625,
+          "samples": [
+            {
+              "run": 1,
+              "seconds": 0.07818499999848427,
+              "success": true
+            },
+            {
+              "run": 2,
+              "seconds": 0.09031216700168443,
+              "success": true
+            },
+            {
+              "run": 3,
+              "seconds": 0.08745704099783325,
+              "success": true
+            },
+            {
+              "run": 4,
+              "seconds": 0.082315584000753,
+              "success": true
+            },
+            {
+              "run": 5,
+              "seconds": 0.09110979099932592,
+              "success": true
+            },
+            {
+              "run": 6,
+              "seconds": 0.10431641700051841,
+              "success": true
+            },
+            {
+              "run": 7,
+              "seconds": 0.09475962500073365,
+              "success": true
+            },
+            {
+              "run": 8,
+              "seconds": 0.0799891659989953,
+              "success": true
+            },
+            {
+              "run": 9,
+              "seconds": 0.08066320900252322,
+              "success": true
+            },
+            {
+              "run": 10,
+              "seconds": 0.0869743750008638,
+              "success": true
+            },
+            {
+              "run": 11,
+              "seconds": 0.08312429199941107,
+              "success": true
+            },
+            {
+              "run": 12,
+              "seconds": 0.08522404199902667,
+              "success": true
+            },
+            {
+              "run": 13,
+              "seconds": 0.08513287499954458,
+              "success": true
+            },
+            {
+              "run": 14,
+              "seconds": 0.0977252500015311,
+              "success": true
+            },
+            {
+              "run": 15,
+              "seconds": 0.08343237500230316,
+              "success": true
+            },
+            {
+              "run": 16,
+              "seconds": 0.08135504200254218,
+              "success": true
+            },
+            {
+              "run": 17,
+              "seconds": 0.09659833299883758,
+              "success": true
+            },
+            {
+              "run": 18,
+              "seconds": 0.08381462499892223,
+              "success": true
+            },
+            {
+              "run": 19,
+              "seconds": 0.09889900000052876,
+              "success": true
+            },
+            {
+              "run": 20,
+              "seconds": 0.10481295800127555,
+              "success": true
+            },
+            {
+              "run": 21,
+              "seconds": 0.09709199999997509,
+              "success": true
+            },
+            {
+              "run": 22,
+              "seconds": 0.09829795800033025,
+              "success": true
+            },
+            {
+              "run": 23,
+              "seconds": 0.09869650000109687,
+              "success": true
+            },
+            {
+              "run": 24,
+              "seconds": 0.08302195799842593,
+              "success": true
+            },
+            {
+              "run": 25,
+              "seconds": 0.08441737500106683,
+              "success": true
+            },
+            {
+              "run": 26,
+              "seconds": 0.09492887499800418,
+              "success": true
+            },
+            {
+              "run": 27,
+              "seconds": 0.08931029199811746,
+              "success": true
+            },
+            {
+              "run": 28,
+              "seconds": 0.08412304100056645,
+              "success": true
+            },
+            {
+              "run": 29,
+              "seconds": 0.09063216600043233,
+              "success": true
+            },
+            {
+              "run": 30,
+              "seconds": 0.09660691600220161,
+              "success": true
+            }
+          ]
+        },
+        {
+          "name": "api.lifecycle.bridge",
+          "unit": "seconds",
+          "higher_is_better": false,
+          "status": "pass",
+          "runs": 30,
+          "failures": 0,
+          "seconds": {
+            "n": 30,
+            "median": 0.11778268700072658,
+            "mean": 0.1198278040336542,
+            "min": 0.10505187500166357,
+            "max": 0.1567788329994073,
+            "p95": 0.14048933124977334,
+            "stdev": 0.011433989323238624,
+            "ci95": [
+              0.11258429200097453,
+              0.12269439550073002
+            ]
+          },
+          "value": null,
+          "load_before": 8.65869140625,
+          "load_after": 8.125,
+          "samples": [
+            {
+              "run": 1,
+              "seconds": 0.12391687499984982,
+              "success": true
+            },
+            {
+              "run": 2,
+              "seconds": 0.1182362910003576,
+              "success": true
+            },
+            {
+              "run": 3,
+              "seconds": 0.1294757910000044,
+              "success": true
+            },
+            {
+              "run": 4,
+              "seconds": 0.12288879200059455,
+              "success": true
+            },
+            {
+              "run": 5,
+              "seconds": 0.11215616700064857,
+              "success": true
+            },
+            {
+              "run": 6,
+              "seconds": 0.11335616600263165,
+              "success": true
+            },
+            {
+              "run": 7,
+              "seconds": 0.12250145800135215,
+              "success": true
+            },
+            {
+              "run": 8,
+              "seconds": 0.10640299999795388,
+              "success": true
+            },
+            {
+              "run": 9,
+              "seconds": 0.13161762500021723,
+              "success": true
+            },
+            {
+              "run": 10,
+              "seconds": 0.10908616600136156,
+              "success": true
+            },
+            {
+              "run": 11,
+              "seconds": 0.10505187500166357,
+              "success": true
+            },
+            {
+              "run": 12,
+              "seconds": 0.12920437499997206,
+              "success": true
+            },
+            {
+              "run": 13,
+              "seconds": 0.11258429200097453,
+              "success": true
+            },
+            {
+              "run": 14,
+              "seconds": 0.11732908300109557,
+              "success": true
+            },
+            {
+              "run": 15,
+              "seconds": 0.14774799999941024,
+              "success": true
+            },
+            {
+              "run": 16,
+              "seconds": 0.12502891600161092,
+              "success": true
+            },
+            {
+              "run": 17,
+              "seconds": 0.12233741700038081,
+              "success": true
+            },
+            {
+              "run": 18,
+              "seconds": 0.12220583300222643,
+              "success": true
+            },
+            {
+              "run": 19,
+              "seconds": 0.1228873330001079,
+              "success": true
+            },
+            {
+              "run": 20,
+              "seconds": 0.1567788329994073,
+              "success": true
+            },
+            {
+              "run": 21,
+              "seconds": 0.12222499999916181,
+              "success": true
+            },
+            {
+              "run": 22,
+              "seconds": 0.11213091700119548,
+              "success": true
+            },
+            {
+              "run": 23,
+              "seconds": 0.12584416599929682,
+              "success": true
+            },
+            {
+              "run": 24,
+              "seconds": 0.11298554099994362,
+              "success": true
+            },
+            {
+              "run": 25,
+              "seconds": 0.11136020899721188,
+              "success": true
+            },
+            {
+              "run": 26,
+              "seconds": 0.11074550000193994,
+              "success": true
+            },
+            {
+              "run": 27,
+              "seconds": 0.11356604200045695,
+              "success": true
+            },
+            {
+              "run": 28,
+              "seconds": 0.11618854200060014,
+              "success": true
+            },
+            {
+              "run": 29,
+              "seconds": 0.10886074999871198,
+              "success": true
+            },
+            {
+              "run": 30,
+              "seconds": 0.11013316599928658,
+              "success": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "engine": "noodle",
+      "runId": "20261109T160243Z-5e0e7a",
+      "kernel": "6.18.60",
+      "bootId": "41229111-29a8-4f1e-bed0-612f02678cb1",
+      "footprint": [
+        {
+          "state": "vm-up-empty",
+          "daemon_mb": 6.22,
+          "daemon_processes": 1,
+          "vm_helper_mb": 221.0,
+          "vm_helpers": 1
+        },
+        {
+          "state": "10-containers",
+          "daemon_mb": 6.38,
+          "daemon_processes": 1,
+          "vm_helper_mb": 227.0,
+          "vm_helpers": 1
+        },
+        {
+          "state": "10-containers-idle-cpu",
+          "cpu_percent": 0.25
+        }
+      ],
+      "startup": [
+        {
+          "name": "cli.run",
+          "unit": "seconds",
+          "higher_is_better": false,
+          "status": "pass",
+          "runs": 30,
+          "failures": 0,
+          "seconds": {
+            "n": 30,
+            "median": 0.021814936999362544,
+            "mean": 0.021870376399844342,
+            "min": 0.018932540999230696,
+            "max": 0.024770708001597086,
+            "p95": 0.023829806549474596,
+            "stdev": 0.0011860125291555494,
+            "ci95": [
+              0.02150370799972734,
+              0.022271083000305225
+            ]
+          },
+          "value": null,
+          "load_before": 8.65478515625,
+          "load_after": 8.65478515625,
+          "samples": [
+            {
+              "run": 1,
+              "seconds": 0.02386987499994575,
+              "success": true
+            },
+            {
+              "run": 2,
+              "seconds": 0.02204120899841655,
+              "success": true
+            },
+            {
+              "run": 3,
+              "seconds": 0.020477834001212614,
+              "success": true
+            },
+            {
+              "run": 4,
+              "seconds": 0.021853082998859463,
+              "success": true
+            },
+            {
+              "run": 5,
+              "seconds": 0.022971667000092566,
+              "success": true
+            },
+            {
+              "run": 6,
+              "seconds": 0.020686583000497194,
+              "success": true
+            },
+            {
+              "run": 7,
+              "seconds": 0.021776790999865625,
+              "success": true
+            },
+            {
+              "run": 8,
+              "seconds": 0.022797541001637,
+              "success": true
+            },
+            {
+              "run": 9,
+              "seconds": 0.021085250002215616,
+              "success": true
+            },
+            {
+              "run": 10,
+              "seconds": 0.018932540999230696,
+              "success": true
+            },
+            {
+              "run": 11,
+              "seconds": 0.021573207999608712,
+              "success": true
+            },
+            {
+              "run": 12,
+              "seconds": 0.022750749998522224,
+              "success": true
+            },
+            {
+              "run": 13,
+              "seconds": 0.02095575000203098,
+              "success": true
+            },
+            {
+              "run": 14,
+              "seconds": 0.02164283399906708,
+              "success": true
+            },
+            {
+              "run": 15,
+              "seconds": 0.024770708001597086,
+              "success": true
+            },
+            {
+              "run": 16,
+              "seconds": 0.020912874999339692,
+              "success": true
+            },
+            {
+              "run": 17,
+              "seconds": 0.022298166000837227,
+              "success": true
+            },
+            {
+              "run": 18,
+              "seconds": 0.021541833000810584,
+              "success": true
+            },
+            {
+              "run": 19,
+              "seconds": 0.023780833998898743,
+              "success": true
+            },
+            {
+              "run": 20,
+              "seconds": 0.022517666999192443,
+              "success": true
+            },
+            {
+              "run": 21,
+              "seconds": 0.02186995800002478,
+              "success": true
+            },
+            {
+              "run": 22,
+              "seconds": 0.020086707998416387,
+              "success": true
+            },
+            {
+              "run": 23,
+              "seconds": 0.022435625000071013,
+              "success": true
+            },
+            {
+              "run": 24,
+              "seconds": 0.020878084000287345,
+              "success": true
+            },
+            {
+              "run": 25,
+              "seconds": 0.021131959001650102,
+              "success": true
+            },
+            {
+              "run": 26,
+              "seconds": 0.021465582998644095,
+              "success": true
+            },
+            {
+              "run": 27,
+              "seconds": 0.02161504199830233,
+              "success": true
+            },
+            {
+              "run": 28,
+              "seconds": 0.022243999999773223,
+              "success": true
+            },
+            {
+              "run": 29,
+              "seconds": 0.022938791997148655,
+              "success": true
+            },
+            {
+              "run": 30,
+              "seconds": 0.022208541999134468,
+              "success": true
+            }
+          ]
+        },
+        {
+          "name": "api.lifecycle.none",
+          "unit": "seconds",
+          "higher_is_better": false,
+          "status": "pass",
+          "runs": 30,
+          "failures": 0,
+          "seconds": {
+            "n": 30,
+            "median": 0.0047197500007314375,
+            "mean": 0.004858997233774668,
+            "min": 0.0036976250012230594,
+            "max": 0.01022745800219127,
+            "p95": 0.005490570650727022,
+            "stdev": 0.0011488083969735257,
+            "ci95": [
+              0.004426104000231135,
+              0.004958999999871594
+            ]
+          },
+          "value": null,
+          "load_before": 8.65478515625,
+          "load_after": 8.65478515625,
+          "samples": [
+            {
+              "run": 1,
+              "seconds": 0.00433833400165895,
+              "success": true
+            },
+            {
+              "run": 2,
+              "seconds": 0.004786584002431482,
+              "success": true
+            },
+            {
+              "run": 3,
+              "seconds": 0.0054175830009626225,
+              "success": true
+            },
+            {
+              "run": 4,
+              "seconds": 0.00500083299994003,
+              "success": true
+            },
+            {
+              "run": 5,
+              "seconds": 0.004965500000253087,
+              "success": true
+            },
+            {
+              "run": 6,
+              "seconds": 0.005517833000340033,
+              "success": true
+            },
+            {
+              "run": 7,
+              "seconds": 0.01022745800219127,
+              "success": true
+            },
+            {
+              "run": 8,
+              "seconds": 0.004952499999490101,
+              "success": true
+            },
+            {
+              "run": 9,
+              "seconds": 0.00413158399896929,
+              "success": true
+            },
+            {
+              "run": 10,
+              "seconds": 0.005424167000455782,
+              "success": true
+            },
+            {
+              "run": 11,
+              "seconds": 0.004702124999312218,
+              "success": true
+            },
+            {
+              "run": 12,
+              "seconds": 0.0038786249970144127,
+              "success": true
+            },
+            {
+              "run": 13,
+              "seconds": 0.004951250000885921,
+              "success": true
+            },
+            {
+              "run": 14,
+              "seconds": 0.0046475830022245646,
+              "success": true
+            },
+            {
+              "run": 15,
+              "seconds": 0.004186124999250751,
+              "success": true
+            },
+            {
+              "run": 16,
+              "seconds": 0.00439895800082013,
+              "success": true
+            },
+            {
+              "run": 17,
+              "seconds": 0.005457250001200009,
+              "success": true
+            },
+            {
+              "run": 18,
+              "seconds": 0.005239582998910919,
+              "success": true
+            },
+            {
+              "run": 19,
+              "seconds": 0.003830416997516295,
+              "success": true
+            },
+            {
+              "run": 20,
+              "seconds": 0.0036976250012230594,
+              "success": true
+            },
+            {
+              "run": 21,
+              "seconds": 0.004598374998749932,
+              "success": true
+            },
+            {
+              "run": 22,
+              "seconds": 0.004084124997461913,
+              "success": true
+            },
+            {
+              "run": 23,
+              "seconds": 0.005382750001444947,
+              "success": true
+            },
+            {
+              "run": 24,
+              "seconds": 0.004737375002150657,
+              "success": true
+            },
+            {
+              "run": 25,
+              "seconds": 0.004046209000080125,
+              "success": true
+            },
+            {
+              "run": 26,
+              "seconds": 0.005283166003209772,
+              "success": true
+            },
+            {
+              "run": 27,
+              "seconds": 0.004587125000398373,
+              "success": true
+            },
+            {
+              "run": 28,
+              "seconds": 0.004453249999642139,
+              "success": true
+            },
+            {
+              "run": 29,
+              "seconds": 0.004928583002765663,
+              "success": true
+            },
+            {
+              "run": 30,
+              "seconds": 0.003917042002285598,
+              "success": true
+            }
+          ]
+        },
+        {
+          "name": "api.lifecycle.bridge",
+          "unit": "seconds",
+          "higher_is_better": false,
+          "status": "pass",
+          "runs": 30,
+          "failures": 0,
+          "seconds": {
+            "n": 30,
+            "median": 0.005512771000212524,
+            "mean": 0.005497430500084496,
+            "min": 0.003977083997597219,
+            "max": 0.007660791001399048,
+            "p95": 0.007173228649844532,
+            "stdev": 0.0009901640481824972,
+            "ci95": [
+              0.004886458002147265,
+              0.006022249999659834
+            ]
+          },
+          "value": null,
+          "load_before": 8.65478515625,
+          "load_after": 8.65478515625,
+          "samples": [
+            {
+              "run": 1,
+              "seconds": 0.005633124997984851,
+              "success": true
+            },
+            {
+              "run": 2,
+              "seconds": 0.00459666599999764,
+              "success": true
+            },
+            {
+              "run": 3,
+              "seconds": 0.004391124999528984,
+              "success": true
+            },
+            {
+              "run": 4,
+              "seconds": 0.007660791001399048,
+              "success": true
+            },
+            {
+              "run": 5,
+              "seconds": 0.005547750002733665,
+              "success": true
+            },
+            {
+              "run": 6,
+              "seconds": 0.005604250000033062,
+              "success": true
+            },
+            {
+              "run": 7,
+              "seconds": 0.006090958002459956,
+              "success": true
+            },
+            {
+              "run": 8,
+              "seconds": 0.004204750002827495,
+              "success": true
+            },
+            {
+              "run": 9,
+              "seconds": 0.005016957999032456,
+              "success": true
+            },
+            {
+              "run": 10,
+              "seconds": 0.006663416999799665,
+              "success": true
+            },
+            {
+              "run": 11,
+              "seconds": 0.006544874999235617,
+              "success": true
+            },
+            {
+              "run": 12,
+              "seconds": 0.004786165998666547,
+              "success": true
+            },
+            {
+              "run": 13,
+              "seconds": 0.004279166998458095,
+              "success": true
+            },
+            {
+              "run": 14,
+              "seconds": 0.004812874998606276,
+              "success": true
+            },
+            {
+              "run": 15,
+              "seconds": 0.003977083997597219,
+              "success": true
+            },
+            {
+              "run": 16,
+              "seconds": 0.004886458002147265,
+              "success": true
+            },
+            {
+              "run": 17,
+              "seconds": 0.00451995800176519,
+              "success": true
+            },
+            {
+              "run": 18,
+              "seconds": 0.006326624999928754,
+              "success": true
+            },
+            {
+              "run": 19,
+              "seconds": 0.007196665999799734,
+              "success": true
+            },
+            {
+              "run": 20,
+              "seconds": 0.006421334001061041,
+              "success": true
+            },
+            {
+              "run": 21,
+              "seconds": 0.005477791997691384,
+              "success": true
+            },
+            {
+              "run": 22,
+              "seconds": 0.004892500001005828,
+              "success": true
+            },
+            {
+              "run": 23,
+              "seconds": 0.004978417000529589,
+              "success": true
+            },
+            {
+              "run": 24,
+              "seconds": 0.005738500000006752,
+              "success": true
+            },
+            {
+              "run": 25,
+              "seconds": 0.006190750002133427,
+              "success": true
+            },
+            {
+              "run": 26,
+              "seconds": 0.005177457998797763,
+              "success": true
+            },
+            {
+              "run": 27,
+              "seconds": 0.006000042001687689,
+              "success": true
+            },
+            {
+              "run": 28,
+              "seconds": 0.004117417000088608,
+              "success": true
+            },
+            {
+              "run": 29,
+              "seconds": 0.00604445799763198,
+              "success": true
+            },
+            {
+              "run": 30,
+              "seconds": 0.007144582999899285,
+              "success": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

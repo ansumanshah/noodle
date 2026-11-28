@@ -1,0 +1,10 @@
+{
+  "arch" : "arm64",
+  "build" : 8,
+  "length" : 20724753,
+  "minimumSystem" : "26.0",
+  "sha256" : "4ddd38f7efec7e9d882b20df879e64d7dc74a2a8f8250f791c44d3cbf0a2768e",
+  "signature" : "F\/BdyZ7gVd5w+vlXA4sk+1duylRA8PNSE3k5tgaNjpEgpXXQacXgS+CRbn+6bibmal76MSGoCeGpj4lvhnftCw==",
+  "url" : "https:\/\/github.com\/ansumanshah\/noodle\/releases\/download\/v26.11.8\/Noodle-26.11.8-arm64.zip",
+  "version" : "26.11.8"
+}

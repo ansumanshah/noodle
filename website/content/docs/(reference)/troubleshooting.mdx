@@ -1,0 +1,94 @@
+---
+title: "Troubleshooting"
+description: "Check startup and daemon status, recover from a stale socket, migrate an old disk and understand app updates."
+---
+
+## First run
+
+### No network
+
+Setup needs a network connection to download missing Docker tools and pull its test image. Reconnect, then choose **Try Again**. You can choose **Skip for Now** and return through **Noodle > Set Up Noodle…**. Already verified tools stay on disk.
+
+### Disk full
+
+Free space on the volume containing Noodle’s data folder, `~/.noodle` by default, then choose **Try Again**. `NOODLE_HOME` can move that folder for terminal use. Setup keeps existing containers and images when a download fails.
+
+### Docker CLI missing
+
+Reopen setup and allow the Docker tool download, or install compatible Docker tools yourself before retrying. From a terminal, `noodle setup --tools` downloads checksum-verified tools. If only Compose is missing, run `noodle tools install docker-compose`, then check `docker --context noodle compose version`.
+
+### PATH not applied
+
+Open a new Terminal window after setup updates your profile. If `docker` is still missing, add this to your shell profile, then open another Terminal window:
+
+```sh
+export PATH="$HOME/.local/bin:$PATH"
+```
+
+Setup can update zsh and bash profiles when you allow it. Other shells need their own PATH syntax. Use `command -v docker` to check which executable your shell finds. If it finds a broken executable ahead of Noodle’s link, correct that PATH entry and retry setup.
+
+### Reopen setup
+
+Choose **Noodle > Set Up Noodle…** at any time. After **Not Now** or **Skip for Now**, the empty Containers page and sidebar card also offer **Set Up Noodle…** until setup finishes.
+
+After ten seconds, the apply step shows elapsed time and whether it is waiting for the Docker socket or `docker version`. For a persistent startup failure, use the commands below. A Compose check failure on the finished page never disables **Done**.
+
+## Find where startup stopped
+
+If the Containers window shows **Connection lost**, it keeps the last loaded list visible. Use **Retry Connection** to check the engine again. The Logs tab reloads once the connection returns.
+
+```sh
+noodle status --startup
+noodle logs engine -n 30
+noodle doctor
+```
+
+The Docker API can answer while the VM is asleep. The startup status shows whether the VM has started and whether its Linux connection is ready. A container start can boot the VM when needed. If Doctor reports a stale Noodle socket or another setup item it can repair, run `noodle doctor --fix`.
+
+## Updates
+
+Noodle 26.11.3 and later update themselves from a signed feed. Versions 26.11.1 and 26.11.2 have no updater: install the current version once with `brew upgrade --cask noodle` or from the disk image.
+
+### What it does
+
+- The app checks every six hours while automatic checks are on. A check that came due while the Mac slept runs once on wake, not repeatedly. The timer tolerates 15 minutes of drift and does not exist while the setting is off.
+- Turning automatic checks off in the Updates tab cancels the timer and any running automatic check. The manual check button still works.
+- A feed entry is accepted only if its Ed25519 signature is valid for that exact version, build, architecture and minimum macOS, the build is newer than the running one, and the artifact matches its signed length and SHA-256. Feeds are capped at 64 KB and artifacts at 2 GiB, over HTTPS only.
+- The staged app must be named `Noodle.app`, carry the same bundle ID and signing team as the running one, and have a valid code signature.
+- Install stops the daemon, swaps the app atomically and keeps the previous one. The new app confirms itself after 30 healthy seconds. After two launches without confirmation, the third restores the previous app.
+
+### Command line
+
+```sh
+noodle update check
+noodle update stage
+noodle update install
+noodle update confirm
+noodle update rollback
+noodle update status
+```
+
+The commands read the feed address and release key from the app's `Info.plist`. Without them, or without `--feed-base` and `--public-key`, they stop with `updates are not configured`. `install` acts on the app that contains the `noodle` binary, or on `--app PATH`. When containers are running, `install` and `rollback` ask before they stop the engine. Without a terminal they refuse unless you pass `--yes`.
+
+**Checked:** the Swift unit tests (`UpdateTests.swift`, `UpdatePolicyTests.swift`) passed with the rest of `swift test`, and `tests/update.sh` passed 14 of 14 against a local feed with ad-hoc signed test apps. **Not verified:** no real update between two signed builds has been done, and updating a Developer ID signed, notarized build to a later version has not been tried.
+
+<span id="migrate-disk"></span>
+
+## noodle migrate-disk
+
+Older experimental homes have a data disk (`~/.noodle/data.img`) without an ext4 journal. The daemon refuses to use one and prints the exact `migrate-disk` command, including `NOODLE_HOME` when it is not the default.
+
+```sh
+noodle stop
+noodle migrate-disk --dry-run
+noodle migrate-disk
+```
+
+- `--dry-run` reports the space needed and available and changes nothing. You need the data actually stored in the old disk plus 80 MiB free on the same volume.
+- The daemon must be stopped. A running daemon or a second migration blocks it.
+- The original is never written to. Noodle copies it sparsely to `data.img.migrating`, compares the copy byte for byte, runs `e2fsck -p` on the copy (up to four passes), adds a 16 MiB journal, and runs a read-only check. Only then does `data.img` point at the copy. The original stays as `data.img.legacy-backup`, a hard link that costs no extra space.
+- Noodle never deletes the backup. Delete it yourself when you are satisfied.
+- If the process dies mid-copy, the original is unchanged and the disk is still refused. Run the command again.
+- A disk that already has a journal prints a message and exits. A file that is not ext4 is left untouched and reported.
+
+**Checked:** `tests/migrate-disk.sh` (which kills a migration mid-copy and then retries) passed, and `DiskMigrationTests` passed in the same `swift test` run. **Not verified:** a home written by the retired formatter after real use, and host power loss during a migration.

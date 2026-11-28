@@ -1,0 +1,62 @@
+---
+title: "Security"
+description: "Understand Noodle’s VM boundary, host sharing, privileged workloads and the checks still pending."
+---
+
+This page lists the boundary as built, the defaults, and the checks we ran. It also lists what we have not checked.
+
+<span id="boundary"></span>
+
+## The boundary
+
+Ordinary containers run inside one Linux VM under Virtualization.framework. They share that VM's kernel. A kernel bug in the VM could cross between containers. The Mac is separated from the VM by the hypervisor. Privileged and unconfined containers run in a second VM, described below.
+
+## Defaults
+
+- Noodle shares no Mac folder by default. An explicit directory bind attaches that directory. Use `noodle share add` to approve the containing folder for a single-file bind.
+- A single-file bind mount shares its containing folder with the VM, siblings included. Read-only applies to the container's mount, not to everything the VM can see.
+- Ordinary containers and builds are denied `socket(AF_VSOCK)` and `io_uring_setup`. Listeners in the guest accept only the host.
+- Capability selection, `no-new-privileges`, read-only roots, memory, CPU and PID limits all passed in the compatibility suite.
+
+<span id="refused"></span>
+
+## Privileged containers run in a second VM
+
+A container that asks for `--privileged` or `seccomp=unconfined` runs in a separate workload VM. It boots on the first such start and sleeps when nothing in it runs. Full `CAP_SYS_ADMIN` in the shared VM could expose folders already attached to it, so privileged work goes where no Mac folder is attached. The Docker CLI cases for it passed.
+
+- Bind mounts from the Mac are refused for these containers unless "Let Kubernetes use your shared folders" is on (the default for new Kubernetes clusters). With it on, only folders you approved with `noodle share add` can be bound. Volumes and tmpfs always work.
+- Named volumes and networks exist once per VM. A privileged container and an ordinary one cannot share a volume or reach each other over a Docker network. Published ports connect them.
+- `docker exec --privileged` works only in a container that already runs in the workload VM.
+
+<span id="models-network"></span>
+
+## Models on your network
+
+The model endpoint listens on this Mac only. `noodle model network on`, or the Network switch in Settings, lets other devices on your local network use it. It is off by default.
+
+- Every request needs the API key, except `GET /health` and CORS preflight requests. `noodle model key` prints it and `noodle model key --rotate` replaces it, which cuts off every device holding the old one.
+- The connection is plain HTTP. Anyone on the same network who can watch traffic can read the prompts and the key. Turn it on only at home or on a network you trust.
+- Prompts from other devices run on this Mac and use its memory.
+
+<span id="images"></span>
+
+## Images and builds
+
+- Layers are checked for digest, exact size and unpacked digest before they are published.
+- Archive extraction stays inside its target and rejects path traversal, bad whiteouts and device entries.
+- The BuildKit helper runs only while a build does. Concurrent builds get separate sessions, and a test confirmed two builds kept their own secrets.
+- An imported build must match the expected configuration digest before it is published.
+
+<span id="data"></span>
+
+## Disks and crashes
+
+New data disks are journaled ext4, formatted by upstream `mke2fs` 1.47.4. Noodle refuses an older disk without a journal and leaves it unchanged. After a hard kill of the daemon during a busy write, a synced canary on a named volume survived and the next container ran. We have not tested a power cut. Writes a program had not synced can be lost.
+
+<span id="untested"></span>
+
+## Not tested yet
+
+- An independent review of the workload VM and its device policy.
+- Behaviour on a clean macOS 26 install. Most visual checks ran on macOS 27.
+- Isolation against deliberately hostile workloads. Do not treat Noodle as a sandbox for code you do not trust.

@@ -1,0 +1,84 @@
+---
+title: "Benchmarks"
+description: "Read Noodle’s benchmark methodology, test setup and recorded performance data."
+---
+
+These are measurements from Noodle running on one Mac.
+
+See the [ten-container CPU and memory comparison](/benchmarks/resources/) for host resource use while containers are idle.
+
+The fresh-boot comparison uses three distinct Linux boots per engine. Each
+pass measures macOS physical footprint for the engine and VM helper while
+ten Alpine containers are running. Warm startup is timed after those
+containers are removed. The [raw fresh-boot samples](/data/fresh-boot-resources.json)
+include the boot IDs. The earlier five-engine results are shown separately.
+
+## Method
+
+- Run one engine at a time on the same Mac. Record the build, client version, image, CPU count, memory limit and system load.
+- Measure warm container startup through the Docker CLI and directly through the Docker API. Keep bridge and `--network none` separate.
+- Record 30 startup samples after five warm-ups. Report p50, p95 and any failures.
+- Measure cold boot and wake separately through the first successful Docker operation. The wake check verifies that the guest released its disk and booted again.
+- Use macOS `footprint` for the host daemon, VM helper and app. Keep those figures separate from guest RSS and the size of the guest executable.
+- Use isolated Docker settings and runtime homes. Match VM limits before comparing engines.
+
+<span id="edit-loop"></span>
+
+## The edit loop
+
+| Measure | What is timed |
+| --- | --- |
+| Bind-mount round trip | A save in a bind-mounted Mac folder until a container reads the new contents. |
+| Warm rebuild | A one-line change followed by a rebuild with a warm cache. |
+| Compose rebuild | A change and `docker compose up -d --build` until the published port serves the new response. |
+
+<span id="recorded"></span>
+
+## Noodle-only results
+
+Recorded on an Apple M4 Mac mini with 16 GiB RAM and macOS 27.2. The VM used two CPUs, 8 GiB RAM and the custom Linux 6.18.60 kernel. The startup image was `alpine:3.20`, and the Docker CLI was 29.9.3. All timed samples in the table completed.
+
+| Workload | Samples | p50 | p95 |
+| --- | ---: | ---: | ---: |
+| Warm CLI `docker run --rm alpine true` | 30 | 15.91 ms | 18.00 ms |
+| Bridge API create, start, wait and remove | 30 | 2.37 ms | 3.76 ms |
+| No-network API create, start, wait and remove | 30 | 2.03 ms | 3.20 ms |
+| Compose rebuild to new HTTP response | 5 | 989.07 ms | 1049.36 ms |
+
+Read the [raw samples and build identifiers](/data/benchmarks-qa.json) for this run. The [previous data file](/data/benchmarks.json) retains earlier observations.
+
+<span id="engines"></span>
+
+## Same Mac, four engines
+
+Noodle against Kiri 0.2.2, OrbStack and Docker Desktop on one M4 Mac mini with macOS 27.2.1. Every engine got 4 vCPUs and 2048 MiB. Each row is the p50 of 30 runs after five warm-ups, over three passes in alternating order, and each cell is the median of the three per-pass p50s. A win needs non-overlapping 95 percent intervals, a gap above 5 percent and the same direction in every pass; anything else is a tie. Load on the Mac was high at times, so treat small gaps as noise. [Raw results](/data/engines.json).
+
+| Test | Noodle | Kiri 0.2.2 | OrbStack | Docker Desktop | Result |
+| --- | ---: | ---: | ---: | ---: | --- |
+| `docker run`, bridge | 14.97 ms | 48.10 ms | 171.61 ms | 130.31 ms | Noodle |
+| `docker run --network none` | 14.27 ms | 13.62 ms | 106.24 ms | 97.18 ms | Noodle and Kiri tie |
+| API lifecycle, bridge | 1.99 ms | 43.70 ms | 151.62 ms | 111.00 ms | Noodle |
+| API lifecycle, no network | 1.75 ms | 1.74 ms | 82.21 ms | 70.61 ms | Noodle and Kiri tie |
+| Parallel starts | 161.36/s | 26.51/s | 11.04/s | 13.33/s | Noodle |
+| Cold pull (network) | 2539.81 ms | 896.03 ms | 3595.07 ms | 3591.59 ms | Kiri, 2.8× faster |
+| `docker build`, uncached and cached | failed | 525.13 / 460.80 ms | 670.31 / 231.56 ms | 423.59 / 151.58 ms | Noodle failed |
+
+The builds failed because that test build pointed at a BuildKit download that did not exist. They were not retried. Wake from sleep took 452.9 ms on Noodle and 340.3 ms on OrbStack, a tie under the rule. Kiri and Docker Desktop never slept their VM, so their wake was not measured.
+
+Idle, after its VM slept, Noodle's daemon used 8.6 MB of physical memory and nothing else stayed resident. Kiri's daemon used 15 MB and its 263 MB VM helper stayed up. A separate check after the full benchmark measured Noodle's daemon at 6.47 to 6.74 MB ([raw samples](/data/daemon-footprint.json)).
+
+Against the targets Noodle sets from Kiri's published numbers: bridge API latency and daemon memory are met. `docker run` through the CLI (about 14.3 to 15.0 ms against 14.2 ms), the no-network API (1.57 to 1.76 ms against 1.26 ms) and wake (0.41 to 0.48 s across three passes against 0.15 s) are not. Guest agent memory has not been measured.
+
+<span id="models"></span>
+
+## Models against Ollama
+
+Qwen3 0.6B as the same Q4_K_M GGUF file on both engines, on the same M4 Mac mini, one engine at a time, 30 requests per prompt class after five warm-ups. The figures are the mean of two rounds' p50.
+
+| Measure | Noodle | Ollama 0.40.16 |
+| --- | ---: | ---: |
+| First words on a long prompt | 312.4 ms | 327.9 ms |
+| Decode speed | 128.9 tokens/s | 169.0 tokens/s |
+| Memory after replies | 1974 MB | 926 MB + 13 MB server |
+
+Noodle gave the first words slightly sooner in both rounds. Ollama decoded about 1.3× faster and used about half the memory. The Mac was busy with other work during the runs, so read the decode gap as indicative. Noodle's runtime reserved four 4096-token context sequences against Ollama's one slot. [Raw results](/data/models-vs-ollama.json).

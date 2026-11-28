@@ -1,0 +1,25 @@
+---
+title: Create
+description: Make pictures, speech and short video clips on your Mac from the Create tab or the API.
+---
+
+The Create tab turns a prompt into a picture, a spoken clip or a short video. It runs on this Mac, so nothing is uploaded. Download a model for the kind you want first. The tab shows only the kinds you have a model for.
+
+## Pictures, speech and video
+
+| Kind | Catalog model | Size | Notes |
+|---|---|---|---|
+| Image | `flux2-klein-4b` | 4.62 GB | Pick a size, the number of steps and an optional seed. A preview updates while it works. |
+| Speech | `kokoro-82m` | 0.36 GB | Type the text, pick a voice. |
+| Video | `ltx-2.5-video` | 38.79 GB | 2 or 4 second clips with sound. Needs a Mac with 24 GB of memory or more. |
+
+```sh
+noodle model pull flux2-klein-4b
+noodle model pull kokoro-82m
+```
+
+Anything you make is kept in a grid on the Create tab. The video model is under a community license that is free below 10 million dollars of yearly revenue. Read it before you use clips commercially. Licenses for every catalog model are in the [catalog](/docs/models/catalog/).
+
+## From code
+
+Each kind has an endpoint on the [local API](/docs/models/api/#create): `/v1/images/generations`, `/v1/audio/speech` and `/v1/video/generations`.

@@ -1,0 +1,75 @@
+---
+title: Catalog and import
+description: Pull catalog models, Hugging Face GGUF files and local imports, and control how long a GGUF model stays loaded.
+---
+
+## Catalog
+
+```sh
+noodle model catalog
+noodle model pull qwen3-0.6b-mlx
+noodle model list
+```
+
+| ID | What it does | Size | License |
+|---|---|---|---|
+| `qwen3-0.6b-mlx` | Chat, smallest | 0.35 GB | Apache-2.0 |
+| `qwen3.5-2b` | Chat, small | 1.75 GB | Apache-2.0 |
+| `qwen3.5-4b` | Chat, the default on 16 GB Macs and larger | 3.06 GB | Apache-2.0 |
+| `gemma4` | Chat, GGUF | 3.35 GB | Apache-2.0 |
+| `qwen3-embedding-0.6b` | Embeddings | 0.35 GB | Apache-2.0 |
+| `qwen3-asr-0.6b` | Speech to text | 0.71 GB | Apache-2.0 |
+| `kokoro-82m` | Text to speech | 0.36 GB | Apache-2.0 |
+| `flux2-klein-4b` | Images | 4.62 GB | Apache-2.0 |
+| `bonsai2-27b` | Chat with image input, the strongest that loads on 16 GB, with other apps closed | 8.61 GB | Apache-2.0 |
+| `inkling2-mini-2.5bit` | Chat with image input, needs 24 GB or more | 11.57 GB | Apache-2.0 |
+| `inkling2-mini` | Chat with image input, needs 32 GB or more | 16.87 GB | Apache-2.0 |
+| `inkling-small` | Chat, 276B parameters, needs 128 GB or more | 88.42 GB | Apache-2.0 |
+| `ltx-2.5-video` | Video with sound, needs 24 GB or more | 38.79 GB | LTX-2 Community, free under 10 million dollars of yearly revenue |
+
+## Which chat model for a 16 GB Mac
+
+Qwen 3.5 4B, and the app recommends it there. We ran five candidates on an M4 Mac with 16 GB and picked it by measurement. It passed all 12 of our helper checks and peaked at 3,920 MB, inside the 6 GB we allow so containers keep their share of memory. Qwen 3.5 2B passed 11 of 12 and peaked at 2,406 MB. The 4B model decodes at about 35 tokens per second against 85 for the 2B, and started answering an 860-token prompt in 2.1 s against 0.8 s (time to first token). [Raw results](/data/models-default-pick.json). The 2B stays in the catalog as the small option and is the pick on Macs with less memory.
+
+Every catalog file and runtime download has a pinned SHA-256. Installation is atomic: weights appear only after every checksum passes. An interrupted download starts again on retry. Pause and resume is not implemented.
+
+For scripts, `--progress-json` prints one JSON object per line with `phase`, `receivedBytes` and `totalBytes`. The phases are `downloading`, `verifying` and `installed`.
+
+## Hugging Face
+
+Public repositories with a single-file GGUF pull directly:
+
+```sh
+noodle model pull hf.co/bartowski/Llama-3.2-1B-Instruct-GGUF:Q4_K_M
+noodle model run hf.co/bartowski/Llama-3.2-1B-Instruct-GGUF:Q4_K_M "Hello"
+```
+
+The form is `hf.co/<org>/<repo>[:<quant>]`. Quantization matching is case-insensitive and matches the whole token. Without a tag, Noodle prefers Q4_K_M, then the smallest GGUF by size. Projection files and draft sidecars are skipped. Split shards, missing quantizations and repositories without runnable GGUF weights are rejected with an error.
+
+Noodle reads the commit and each file's SHA-256 from the Hub metadata API, downloads over HTTPS at that commit and verifies the hash before install. If you sign in to Hugging Face under **Settings > Docker > Sign in**, Noodle sends that token to `huggingface.co` only, for metadata and downloads. Private and gated repositories have not been tested.
+
+## Import
+
+```sh
+noodle model import path/to/model.gguf my-gguf
+noodle model import path/to/mlx-folder my-mlx
+```
+
+Imports copy data into Noodle's store. An MLX folder needs a config, a tokenizer and Safetensors weights, flat. Symlinks, escaping shard references and executable Python files are refused, and Noodle does not enable remote model code. An accepted folder is not a promise that every architecture runs: support depends on the runtime.
+
+`noodle model rm <id>` removes Noodle's copy and nothing else.
+
+<span id="idle-sleep"></span>
+
+## Idle sleep
+
+Models unload after five idle minutes by default and reload on the next request, which frees the memory they used. The process, port and API key stay the same. Override the policy with `--keep-alive` or `NOODLE_MODEL_KEEP_ALIVE`; the flag wins.
+
+```sh
+noodle model serve qwen3.5-4b --keep-alive 1h
+noodle model run qwen3.5-4b "Hello" --keep-alive 0
+```
+
+Durations follow Ollama's convention: `5m`, `1h`, `1h30m`, `250ms`, bare integers as seconds, and any negative value to stay loaded until stopped. Changing the policy of a running model is rejected, so stop it first.
+
+Larger models take longer to reload than small ones.
